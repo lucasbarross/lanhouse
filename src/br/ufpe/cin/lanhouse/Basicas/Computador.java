@@ -1,5 +1,7 @@
 package br.ufpe.cin.lanhouse.Basicas;
 
+import br.ufpe.cin.lanhouse.Exceptions.*;
+
 public class Computador {
 
 	private String id;
@@ -10,6 +12,7 @@ public class Computador {
 	private Aplicativo apps [] = new Aplicativo [100];
 	private int hd_ocupado = 0;
 	private int ram_ocupada = 0;
+	private boolean preparado = false;
 
 	public Computador(String id, int hd, int ram){
 		this.id = id;
@@ -44,9 +47,10 @@ public class Computador {
 	public void aprontar(boolean ligado, Cliente cliente){
 		this.ligado = true;
 		this.cliente = cliente;
+		this.preparado = true;
 	}
 
-	public boolean procurarApp(String nome){
+	public boolean procurarApp(String nome) throws AplicativoNaoEncontradoException{
 		int index = 0;
 		while(index < apps.length){
 			if(nome == this.apps[index].getNome()){
@@ -55,22 +59,21 @@ public class Computador {
 				index+=1;
 			}
 		}
-		/* EXCEPTION APP NÃO ENCONTRADO */
-		return false;
+		throw new AplicativoNaoEncontradoException();
 	}
 
-	public void executar(String nome){
+	/*public void executar(String nome){
 		if(this.procurarApp(nome) == true){
 
 		}
-	}
+	} */
 
-	public void instalar(Aplicativo app){
+	public void instalar(Aplicativo app) throws SemEspacoNoDiscoExcpetion{
 		boolean vazio = false;
 		int indice = 0;
 
 		if(hd_ocupado + app.getTamanho() > hd){
-			/* EXCEPTION SEM ESPAÇO NO DISCO */		
+			throw new SemEspacoNoDiscoExcpetion();
 		} else{
 			while(vazio == false && indice<100){
 				if(apps[indice] == null){
