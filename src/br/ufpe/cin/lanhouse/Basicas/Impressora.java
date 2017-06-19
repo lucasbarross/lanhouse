@@ -28,80 +28,16 @@ public class Impressora {
         this.numeroDeImpressoes = 0;
     }
 
-    public String getMarca() {
-		return marca;
-	}
-
-	public void setMarca(String marca) {
-		this.marca = marca;
-	}
-
 	public String getNumero() {
 		return numero;
 	}
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-	public double getCargaTintaPreta() {
-		return cargaTintaPreta;
-	}
-
-	public void setCargaTintaPreta(double cargaTintaPreta) {
-		this.cargaTintaPreta = cargaTintaPreta;
-	}
-
-	public double getCargaTintaColorida() {
-		return cargaTintaColorida;
-	}
-
-	public void setCargaTintaColorida(double cargaTintaColorida) {
-		this.cargaTintaColorida = cargaTintaColorida;
-	}
-
-	public int getCargaPapel() {
-		return cargaPapel;
-	}
-
-	public void setCargaPapel(int cargaPapel) {
-		this.cargaPapel = cargaPapel;
-	}
-
-	public double getTintaPorPagina() {
-		return tintaPorPagina;
-	}
-
-	public void setTintaPorPagina(double tintaPorPagina) {
-		this.tintaPorPagina = tintaPorPagina;
-	}
-
-	public int getNumeroDeImpressoes() {
-		return numeroDeImpressoes;
-	}
-
-	public void setNumeroDeImpressoes(int numeroDeImpressoes) {
-		this.numeroDeImpressoes = numeroDeImpressoes;
-	}
-
-	public boolean isImpressaoCalibrada() {
-		return impressaoCalibrada;
-	}
-
-	public void setImpressaoCalibrada(boolean impressaoCalibrada) {
-		this.impressaoCalibrada = impressaoCalibrada;
-	}
-
-	public void recarregarTinta() {
-        this.cargaTintaPreta = 1;
-    }
 
     public void imprimirEmPreto(int numeroPaginas) throws OutOfPagesException, OutOfBlackInkException, ImpressoraDescalibradaException {
         if (impressaoCalibrada) {
             if (this.cargaPapel >= numeroPaginas) {
                 if (cargaTintaPreta >= numeroPaginas * tintaPorPagina) {
-                    this.cargaPapel = this.cargaPapel = numeroPaginas;
-                    this.cargaTintaPreta = this.cargaTintaPreta - (numeroPaginas * tintaPorPagina);
+                    this.cargaPapel = this.cargaPapel - numeroPaginas;
+                    this.cargaTintaPreta = this.cargaTintaPreta - (numeroPaginas * this.tintaPorPagina);
                 } else {
                     throw new OutOfBlackInkException();
                 }
@@ -117,8 +53,8 @@ public class Impressora {
         if (impressaoCalibrada) {
             if (this.cargaPapel >= numeroPaginas) {
                 if (cargaTintaColorida >= numeroPaginas * tintaPorPagina) {
-                    this.cargaPapel = this.cargaPapel = numeroPaginas;
-                    this.cargaTintaColorida = this.cargaTintaColorida - (numeroPaginas * tintaPorPagina);
+                    this.cargaPapel = this.cargaPapel - numeroPaginas;
+                    this.cargaTintaColorida = this.cargaTintaColorida - (numeroPaginas * this.tintaPorPagina);
                 } else {
                     throw new OutOfCollorInkException();
                 }

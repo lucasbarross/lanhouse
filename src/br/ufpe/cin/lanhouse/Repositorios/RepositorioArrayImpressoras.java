@@ -19,15 +19,6 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		this.index = 0;
 	}
 
-	@Override
-	public void cadastrar(Impressora impressora) {
-		try {
-			inserir(impressora);
-		} catch (ImpressoraJaCadastradaException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
 	public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException {
 		boolean existe = false;
 		for (int i = 0; i < this.getIndex(); i++) {
@@ -42,76 +33,38 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		}
 	}
 
-	@Override
-	public void remover(String numero) {
-		try {
-		Impressora seraRemovida = this.procurar(numero);
+	public void remover(String numero) throws ImpressoraNaoEncontradaException {
 		int i = getIndexProcurado(numero);
-		impressoras[i] = impressoras[this.getIndex()];
-		impressoras[this.getIndex()] = null;
-		this.setIndex(this.getIndex() - 1);
-		} catch(ImpressoraNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+		if (i == this.index) {
+			throw new ImpressoraNaoEncontradaException();
+		} else {
+			this.index = this.index - 1;
+			this.impressoras[i] = impressoras[this.index];
+			this.impressoras[this.index] = null;
 		}
 	}
-	
-	// FAZER DPS
-	public void atualizar() {
-		
-	}
-	
-	@Override
-	public void imprimirEmPreto(String numero, int numeroDePaginas) throws ImpressoraNaoEncontradaException,
-			ImpressoraDescalibradaException, OutOfPagesException, OutOfBlackInkException {
-		try {
-			Impressora i = this.procurar(numero);
-			i.imprimirEmPreto(numeroDePaginas);
-		} catch (ImpressoraNaoEncontradaException e) {
-			System.out.println(e.getMessage());
-		} catch (ImpressoraDescalibradaException e) {
-			System.out.println(e.getMessage());
-		} catch (OutOfPagesException e) {
-			System.out.println(e.getMessage());
-		} catch (OutOfBlackInkException e) {
-			System.out.println((e.getMessage()));
+
+	public void atualizar(Impressora atualizada) throws ImpressoraNaoEncontradaException {
+		int i = this.getIndexProcurado(atualizada.getNumero());
+		if(i == this.index) {
+			throw new ImpressoraNaoEncontradaException();
+		} else {
+			this.impressoras[i] = atualizada;
 		}
-
 	}
 
-	@Override
-	public void imprimirEmColorido(String numero, int numeroDePaginas) throws ImpressoraNaoEncontradaException,
-			ImpressoraDescalibradaException, OutOfPagesException, OutOfCollorInkException {
-		try {
-			Impressora i = this.procurar(numero);
-			i.imprimirEmColorido(numeroDePaginas);
-		} catch (ImpressoraNaoEncontradaException e) {
-			System.out.println(e.getMessage());
-		} catch (ImpressoraDescalibradaException e) {
-			System.out.println(e.getMessage());
-		} catch (OutOfPagesException e) {
-			System.out.println(e.getMessage());
-		} catch (OutOfCollorInkException e) {
-			System.out.println((e.getMessage()));
-		}
-
-	}
-
-	/*
-	 * @Override public void scanear() throws ScannerDescalibradoException {
-	 * 
-	 * }
-	 */
 	public Impressora procurar(String numero) throws ImpressoraNaoEncontradaException {
 		Impressora resposta = null;
 		int i = this.getIndexProcurado(numero);
 		if (i < this.getIndex()) {
-			resposta = impressoras[i];
+			resposta = this.impressoras[i];
 		} else {
 			throw new ImpressoraNaoEncontradaException();
 		}
 
 		return resposta;
 	}
+
 
 	public int getIndexProcurado(String numero) {
 		int indice = 0;
