@@ -53,7 +53,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
             this.apps[this.index] = null;
         }
     }
-
+//
     private int getIndice(String nome) {
         boolean achou = false;
         int indice = -1;
