@@ -1,5 +1,66 @@
 package br.ufpe.cin.lanhouse.Repositorios;
 
-public class RepositorioListaImpressoras {
+import br.ufpe.cin.lanhouse.Basicas.Impressora;
+import br.ufpe.cin.lanhouse.Exceptions.ImpressoraJaCadastradaException;
+import br.ufpe.cin.lanhouse.Exceptions.ImpressoraNaoEncontradaException;
+import br.ufpe.cin.lanhouse.Interfaces.RepositorioImpressoras;
+
+public class RepositorioListaImpressoras implements RepositorioImpressoras {
+    private Impressora impressora;
+    private RepositorioListaImpressoras proximo;
+
+    public RepositorioListaImpressoras() {
+        this.impressora = null;
+        this.proximo = null;
+    }
+
+    public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException {
+        if(this.existe(impressora.getNumero())) {
+            throw new ImpressoraJaCadastradaException();
+        } else {
+            if(this.impressora == null) {
+                this.impressora = impressora;
+                this.proximo = new RepositorioListaImpressoras();
+            }
+        }
+    }
+
+    public void remover(String numero) throws ImpressoraNaoEncontradaException {
+
+    }
+
+    public Impressora procurar(String numero) throws ImpressoraNaoEncontradaException {
+        Impressora resposta = null;
+
+        if(this.impressora != null) {
+            if(this.impressora.getNumero().equals(numero)) {
+                resposta = this.impressora;
+            } else {
+                this.proximo.procurar(numero);
+            }
+        } else {
+            throw new ImpressoraNaoEncontradaException();
+        }
+
+        return resposta;
+    }
+
+    public void atualizar(Impressora atualizada) throws ImpressoraNaoEncontradaException{
+
+    }
+
+    public boolean existe(String numero) {
+        boolean resposta = false;
+
+        if(this.impressora.getNumero().equals(numero)) {
+           resposta = true;
+        }
+        else {
+            resposta = this.proximo.existe(numero);
+        }
+        return resposta;
+
+    }
+
 
 }
