@@ -19,13 +19,24 @@ public class Computador {
 		this.hd = hd;
 		this.ram = ram;
 	}
+    public String estado(){
+        if(this.ligado){
+            return "Ligado";
+        }else{
+            return "Desligado";
+        }
+    }
 
 	public String getEstado(){
-		if(ligado == true){
+		if(ligado){
 			return "Ligado";
 		}else{
 			return "Desligado";
 		}
+	}
+
+	public String getId(){
+		return this.id;
 	}
 
 	public int getRAM(){
@@ -44,29 +55,31 @@ public class Computador {
 		return this.hd;
 	}
 
-	public void aprontar(boolean ligado, Cliente cliente){
+	public void aprontar(Cliente cliente){
 		this.ligado = true;
 		this.cliente = cliente;
 		this.preparado = true;
 	}
 
-	public boolean procurarApp(String nome) throws AplicativoNaoEncontradoException{
+	public int procurarApp(String nome) throws AppNaoEncontradoException {
 		int index = 0;
 		while(index < apps.length){
-			if(nome == this.apps[index].getNome()){
-				return true;
+			if(nome.equals(this.apps[index].getNome())){
+				return index;
 			}else{
-				index+=1;
+				index += 1;
 			}
 		}
-		throw new AplicativoNaoEncontradoException();
+		throw new AppNaoEncontradoException();
 	}
 
-	/*public void executar(String nome){
-		if(this.procurarApp(nome) == true){
+	public void executarAdministrador(String nome) throws AppNaoEncontradoException{
+		apps[this.procurarApp(nome)].executarAdmnistrador();
+	}
 
-		}
-	} */
+	public void executar(String nome) throws AppNaoEncontradoException {
+		apps[this.procurarApp(nome)].executar();
+	}
 
 	public void instalar(Aplicativo app) throws SemEspacoNoDiscoExcpetion{
 		boolean vazio = false;
@@ -74,8 +87,8 @@ public class Computador {
 
 		if(hd_ocupado + app.getTamanho() > hd){
 			throw new SemEspacoNoDiscoExcpetion();
-		} else{
-			while(vazio == false && indice<100){
+		}else{
+			while(vazio == false || indice<100){
 				if(apps[indice] == null){
 					vazio = true;
 					continue;
@@ -83,9 +96,8 @@ public class Computador {
 					indice += 1;
 				}
 			}
-			if(vazio == false){
-
-				/* COPIA TODO MUNDO PRA UM ARRAY DE APLICATIVOS COM MAIS 20 POSIÇÕES */
+			if(vazio){
+				/* COPIA TODOS PRA UM ARRAY DE APLICATIVOS COM MAIS 20 POSIÃ‡Ã•ES */
 				Aplicativo [] appsUP = new Aplicativo [apps.length+20];
 
 				for(int i=0;i<apps.length;i++){
@@ -97,13 +109,13 @@ public class Computador {
 			}else{
 				apps[indice] = app;
 				this.hd_ocupado += app.getTamanho();
-			}	
+			}
 		}
 	}
 
 
-	/* observar estado atual da máquina */
-	public String estado(){
+	/* observar estado atual da mÃ¡quina */
+	public String estadoAtual(){
 		return "Estado: " + this.estado() + '\n' +
 				"Usuario: " + this.getUsuario() + '\n'+
 				"HD Total: " + this.getHD() + '\n'+
