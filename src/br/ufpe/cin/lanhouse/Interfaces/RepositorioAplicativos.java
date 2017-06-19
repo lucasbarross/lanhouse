@@ -8,4 +8,5 @@ public interface RepositorioAplicativos {
     Aplicativo procurar(String nome) throws AppNaoEncontradoException;
     void atualizar(Aplicativo app) throws AppNaoEncontradoException;
     void remover(String nome) throws AppNaoEncontradoException;
+    int getIndexAtual();
 }

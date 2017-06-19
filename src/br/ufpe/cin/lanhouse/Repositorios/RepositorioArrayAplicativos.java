@@ -42,7 +42,6 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         }
     }
 
-
     public void remover(String nome) throws AppNaoEncontradoException {
         int i = this.getIndice(nome);
         if(i == -1){
@@ -53,7 +52,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
             this.apps[this.index] = null;
         }
     }
-//
+
     private int getIndice(String nome) {
         boolean achou = false;
         int indice = -1;
@@ -65,5 +64,10 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
             }
         }
         return indice;
+    }
+
+
+    public int getIndexAtual(){
+        return index;
     }
 }

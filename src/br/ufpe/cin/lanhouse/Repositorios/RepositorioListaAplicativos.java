@@ -67,9 +67,8 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
         }
     }
 
-    public void imprimir(){
-        if(this.app != null){
-            System.out.println(this.app.getNome());
-        }
+    public int getIndexAtual() {
+        return 0;
     }
+
 }
