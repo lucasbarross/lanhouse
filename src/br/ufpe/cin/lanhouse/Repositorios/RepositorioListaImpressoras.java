@@ -26,7 +26,16 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     }
 
     public void remover(String numero) throws ImpressoraNaoEncontradaException {
-
+    	if(this.impressora == null) {
+    		throw new ImpressoraNaoEncontradaException();
+    	} else {
+    		if(this.impressora.getNumero().equals(numero)) {
+    			this.impressora = this.proximo.impressora;
+    			this.proximo = this.proximo.proximo;
+    		} else {
+    			this.proximo.remover(numero);
+    		}
+    	}
     }
 
     public Impressora procurar(String numero) throws ImpressoraNaoEncontradaException {
@@ -46,7 +55,15 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     }
 
     public void atualizar(Impressora atualizada) throws ImpressoraNaoEncontradaException{
-
+    	if(this.impressora == null) {
+    		throw new ImpressoraNaoEncontradaException();
+    	} else {
+    		if(this.impressora.getNumero().equals(atualizada.getNumero())) {
+    			this.impressora = atualizada;
+    		} else {
+    			this.proximo.atualizar(atualizada);
+    		}
+    	}
     }
 
     public boolean existe(String numero) {

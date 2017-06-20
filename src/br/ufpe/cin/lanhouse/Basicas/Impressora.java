@@ -6,6 +6,7 @@ import br.ufpe.cin.lanhouse.Exceptions.*;
  * Created by vlma on 16/06/2017.
  */
 public class Impressora {
+	//talvez retirar atributos marca e calibrado(????)
     private String marca;
     private String numero;
     private double cargaTintaPreta;
@@ -38,6 +39,7 @@ public class Impressora {
                 if (cargaTintaPreta >= numeroPaginas * tintaPorPagina) {
                     this.cargaPapel = this.cargaPapel - numeroPaginas;
                     this.cargaTintaPreta = this.cargaTintaPreta - (numeroPaginas * this.tintaPorPagina);
+                    this.numeroDeImpressoes++;
                 } else {
                     throw new OutOfBlackInkException();
                 }
@@ -55,6 +57,7 @@ public class Impressora {
                 if (cargaTintaColorida >= numeroPaginas * tintaPorPagina) {
                     this.cargaPapel = this.cargaPapel - numeroPaginas;
                     this.cargaTintaColorida = this.cargaTintaColorida - (numeroPaginas * this.tintaPorPagina);
+                    this.numeroDeImpressoes++;
                 } else {
                     throw new OutOfCollorInkException();
                 }
@@ -79,6 +82,7 @@ public class Impressora {
     // talvez CalibradoException
     public void calibrar() {
         this.impressaoCalibrada = true;
+        this.numeroDeImpressoes = 0;
     }
 
 

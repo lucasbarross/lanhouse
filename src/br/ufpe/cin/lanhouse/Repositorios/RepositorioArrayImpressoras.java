@@ -1,13 +1,8 @@
 package br.ufpe.cin.lanhouse.Repositorios;
 
 import br.ufpe.cin.lanhouse.Basicas.Impressora;
-import br.ufpe.cin.lanhouse.Exceptions.ImpressoraDescalibradaException;
 import br.ufpe.cin.lanhouse.Exceptions.ImpressoraJaCadastradaException;
 import br.ufpe.cin.lanhouse.Exceptions.ImpressoraNaoEncontradaException;
-import br.ufpe.cin.lanhouse.Exceptions.OutOfBlackInkException;
-import br.ufpe.cin.lanhouse.Exceptions.OutOfCollorInkException;
-import br.ufpe.cin.lanhouse.Exceptions.OutOfPagesException;
-import br.ufpe.cin.lanhouse.Exceptions.ScannerDescalibradoException;
 import br.ufpe.cin.lanhouse.Interfaces.RepositorioImpressoras;
 
 public class RepositorioArrayImpressoras implements RepositorioImpressoras {
