@@ -40,7 +40,13 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
         }
 
     }
-
+    public String listarComputadores() {
+        String info = "";
+        if(this.maquina != null) {
+            info = info + " " + this.maquina.getId() + " " + this.maquina.getEstado()+ "|" + this.maquina.getUsuario() +"\n" + this.proximo.listarComputadores();
+        }
+        return info;
+    }
 
     public void atualizar(Computador maquina) throws ComputadorNaoEncontradoException {
         if(this.maquina != null){

@@ -88,6 +88,13 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
         }
         return tamanho;
     }
+    public String listarAplicativos() {
+        String info = "";
+        if(this.app != null) {
+            info = info + " " + this.app.getNome() + " " + this.app.getTamanho()+"\n" + this.proximo.listarAplicativos();
+        }
+        return info;
+    }
 
     public String getApps(){
         if(this.app != null){

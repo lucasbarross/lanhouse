@@ -10,4 +10,5 @@ public interface RepositorioAplicativos {
     void atualizar(Aplicativo app) throws AppNaoEncontradoException;
     void remover(String nome) throws AppNaoEncontradoException;
     int getTamanho();
+
 }

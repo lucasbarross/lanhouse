@@ -24,6 +24,15 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         computadores[index] = maquina;
         index++;
     }
+    public String listarComputadores() {
+        String info ="";
+
+        for(int i = 0; i < this.index; i++) {
+            info = info + " " + computadores[i].getId() + " " + computadores[i].getEstado() + "|" + computadores[i].getUsuario() + "\n";
+        }
+
+        return info;
+    }
 
     public Computador procurar(String id) throws ComputadorNaoEncontradoException{
 

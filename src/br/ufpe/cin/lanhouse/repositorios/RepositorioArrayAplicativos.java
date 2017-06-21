@@ -13,6 +13,15 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         apps = new Aplicativo[10];
         index = 0;
     }
+    public String listarAplicativos() {
+        String info ="";
+
+        for(int i = 0; i < this.index; i++) {
+            info = info + " " + apps[i].getNome() + " " + apps[i].getTamanho()+"\n";
+        }
+
+        return info;
+    }
 
     public void inserir(Aplicativo app) throws SemEspacoAplicativosException {
         if(index == apps.length-1){
