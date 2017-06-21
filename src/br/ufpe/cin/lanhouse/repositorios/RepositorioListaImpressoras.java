@@ -89,5 +89,13 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
         return tamanho;
     }
 
+    public String listarImpressoras() {
+        String info = "";
+        if(this.impressora != null) {
+            info = info + " " + this.impressora.getMarca() + " " + this.impressora.getNumero()+"\n" + this.proximo.listarImpressoras();
+        }
+        return info;
+    }
+
 
 }

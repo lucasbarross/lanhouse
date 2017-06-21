@@ -17,14 +17,14 @@ public class Impressora {
     private int numeroDeImpressoes;
     private boolean impressaoCalibrada;
 
-    public Impressora(String m, String numero, int papelMax, double tPP) {
-        this.marca = m;
+    public Impressora(String marca, String numero, int papelMax, double tintaPorPagina) {
+        this.marca = marca;
         this.numero = numero;
         this.CARGA_MAX_PAPEL = papelMax;
         this.cargaPapel = 0;
         this.cargaTintaPreta = 0;
         this.cargaTintaColorida = 0;
-        this.tintaPorPagina = tPP;
+        this.tintaPorPagina = tintaPorPagina;
         this.impressaoCalibrada = false;
         this.numeroDeImpressoes = 0;
     }
@@ -91,6 +91,10 @@ public class Impressora {
         if(this.numeroDeImpressoes > 100) {
             this.impressaoCalibrada = false;
         }
+    }
+
+    public String getMarca() {
+        return this.marca;
     }
 
 
