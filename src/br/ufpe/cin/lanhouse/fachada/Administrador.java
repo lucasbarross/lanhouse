@@ -1,6 +1,8 @@
 package br.ufpe.cin.lanhouse.fachada;
 import br.ufpe.cin.lanhouse.basicas.Aplicativo;
 import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
+import br.ufpe.cin.lanhouse.exceptions.PessoaNaoEncontradaException;
+import br.ufpe.cin.lanhouse.exceptions.SemComputadorException;
 import br.ufpe.cin.lanhouse.negocios.*;
 
 import java.io.BufferedReader;
@@ -32,5 +34,8 @@ public class Administrador {
         return cadastroAplicativos.procurar(nome);
     }
 
+    public void usarComputador(String cpf) throws PessoaNaoEncontradaException, SemComputadorException {
+        cadastroPessoas.procurar(cpf).usarComputador();
+    }
 
 }

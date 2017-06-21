@@ -2,22 +2,30 @@ package br.ufpe.cin.lanhouse.repositorios;
 
 import br.ufpe.cin.lanhouse.basicas.Aplicativo;
 import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
+import br.ufpe.cin.lanhouse.exceptions.SemEspacoAplicativosException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
 
 public class RepositorioArrayAplicativos implements RepositorioAplicativos {
     private Aplicativo[] apps;
     private int index;
 
-    public RepositorioArrayAplicativos (int tamanho){
-        apps = new Aplicativo[tamanho];
+    public RepositorioArrayAplicativos (){
+        apps = new Aplicativo[10];
         index = 0;
     }
 
-    public void inserir(Aplicativo app) {
+    public void inserir(Aplicativo app) throws SemEspacoAplicativosException {
+        if(index == apps.length-1){
+            Aplicativo[] novaArray = new Aplicativo[apps.length + 10];
+            for (int i = 0; i < novaArray.length; i++) {
+                novaArray[i] = apps[i];
+            }
+            apps = novaArray;
+            inserir(app);
+        }
         apps[index] = app;
         index++;
     }
-
 
     public Aplicativo procurar(String nome) throws AppNaoEncontradoException {
         Aplicativo app;

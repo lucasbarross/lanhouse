@@ -10,18 +10,18 @@ import br.ufpe.cin.lanhouse.repositorios.RepositorioListaImpressoras;
 
 public class CadastroImpressoras {
     private RepositorioImpressoras impressoras;
-    private static final int TAMANHO = 30;
+    private final int capacidade = 30;
 
     public CadastroImpressoras(boolean array) {
         if(array) {
-            impressoras = new RepositorioArrayImpressoras(TAMANHO);
+            impressoras = new RepositorioArrayImpressoras();
         } else {
             impressoras = new RepositorioListaImpressoras();
         }
     }
 
     public void cadastrar(Impressora i) throws SemSlotException, ImpressoraJaCadastradaException {
-        if(this.impressoras.getTamanho() < TAMANHO) {
+        if(this.impressoras.getTamanho() < capacidade) {
             this.impressoras.inserir(i);
         } else {
             throw new SemSlotException();

@@ -2,27 +2,28 @@ package br.ufpe.cin.lanhouse.negocios;
 
 import br.ufpe.cin.lanhouse.basicas.Computador;
 import br.ufpe.cin.lanhouse.exceptions.ComputadorNaoEncontradoException;
+import br.ufpe.cin.lanhouse.exceptions.SemEspacoComputadoresException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
 import br.ufpe.cin.lanhouse.repositorios.*;
 
 
 public class CadastroComputadores {
     private RepositorioComputadores computadores;
-    private static final int TAMANHOARRAY = 100;
+    private final int capacidade = 100;
 
     public CadastroComputadores(boolean array){
         if(array){
-            computadores = new RepositorioArrayComputadores(TAMANHOARRAY);
+            computadores = new RepositorioArrayComputadores();
         } else {
             computadores = new RepositorioListaComputadores();
         }
     }
 
-    public void cadastrar(Computador computador) throws ArrayIndexOutOfBoundsException{
-        if(computadores.getIndexAtual() < TAMANHOARRAY){
+    public void cadastrar(Computador computador) throws SemEspacoComputadoresException{
+        if(computadores.getIndexAtual() < capacidade){
             computadores.inserir((Computador) computadores);
         }else{
-            throw new ArrayIndexOutOfBoundsException();
+            throw new SemEspacoComputadoresException();
         }
     }
 

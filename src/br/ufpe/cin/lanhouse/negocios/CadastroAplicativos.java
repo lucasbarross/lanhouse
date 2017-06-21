@@ -6,20 +6,23 @@ import br.ufpe.cin.lanhouse.repositorios.*;
 import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class CadastroAplicativos {
+    private final int hd = 1000;
+    private int hdUsado = 0;
+
     private RepositorioAplicativos aplicativos;
-    private static final int TAMANHO = 100;
 
     public CadastroAplicativos(boolean array){
         if(array){
-            aplicativos = new RepositorioArrayAplicativos(TAMANHO);
+            aplicativos = new RepositorioArrayAplicativos();
         } else {
             aplicativos = new RepositorioListaAplicativos();
         }
     }
-    // mudar index atual para gettamanho
+
     public void cadastrar(Aplicativo app) throws SemEspacoAplicativosException {
-        if(aplicativos.getTamanho() < TAMANHO){
+        if(hdUsado + app.getTamanho() < hd){
             aplicativos.inserir(app);
+            hdUsado+=app.getTamanho();
         }else{
             throw new SemEspacoAplicativosException();
         }

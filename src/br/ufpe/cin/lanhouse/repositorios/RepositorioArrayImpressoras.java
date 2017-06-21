@@ -3,25 +3,29 @@ package br.ufpe.cin.lanhouse.repositorios;
 import br.ufpe.cin.lanhouse.basicas.Impressora;
 import br.ufpe.cin.lanhouse.exceptions.ImpressoraJaCadastradaException;
 import br.ufpe.cin.lanhouse.exceptions.ImpressoraNaoEncontradaException;
+import br.ufpe.cin.lanhouse.exceptions.SemSlotException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioImpressoras;
 
 public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	private Impressora[] impressoras;
 	private int index;
 
-	public RepositorioArrayImpressoras(int tamanho) {
-		this.impressoras = new Impressora[tamanho];
+	public RepositorioArrayImpressoras() {
+		this.impressoras = new Impressora[10];
 		this.index = 0;
 	}
 
-
-
-	public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException {
-		if(!existe(impressora.getNumero())) {
-			this.impressoras[index] = impressora;
-		} else {
-			throw new ImpressoraJaCadastradaException();
+	public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException, SemSlotException {
+		if(index == impressoras.length-1){
+			Impressora[] novaArray = new Impressora[impressoras.length + 10];
+			for (int i = 0; i < novaArray.length; i++) {
+				novaArray[i] = impressoras[i];
+			}
+			impressoras = novaArray;
+			inserir(impressora);
 		}
+		impressoras[index] = impressora;
+		index++;
 	}
 
 	public void remover(String numero) throws ImpressoraNaoEncontradaException {

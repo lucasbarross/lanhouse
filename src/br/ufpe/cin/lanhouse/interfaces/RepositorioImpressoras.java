@@ -5,7 +5,7 @@ import br.ufpe.cin.lanhouse.exceptions.*;
 
 public interface RepositorioImpressoras {
 
-	void inserir(Impressora impressora) throws ImpressoraJaCadastradaException;
+	void inserir(Impressora impressora) throws ImpressoraJaCadastradaException, SemSlotException;
 
 	void remover(String numero) throws ImpressoraNaoEncontradaException;
 

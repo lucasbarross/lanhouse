@@ -7,12 +7,20 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     private Pessoa [] pessoas;
     private int index;
 
-    public RepositorioArrayPessoas(int tamanho){
-        this.pessoas = new Pessoa [tamanho];
-        this.index=0;
+    public RepositorioArrayPessoas(){
+        this.pessoas = new Pessoa [10];
+        this.index = 0;
     }
 
     public void inserir(Pessoa pessoa){
+        if(index == pessoas.length - 1){
+            Pessoa[] novaArray = new Pessoa[pessoas.length * 2];
+            for (int i = 0; i < novaArray.length; i++) {
+                novaArray[i] = pessoas[i];
+            }
+            pessoas = novaArray;
+            inserir(pessoa);
+        }
         pessoas[index] = pessoa;
         index++;
     }
@@ -42,7 +50,6 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
 
     }
 
-    @Override
     public int getTamanho() {
         return index;
     }
