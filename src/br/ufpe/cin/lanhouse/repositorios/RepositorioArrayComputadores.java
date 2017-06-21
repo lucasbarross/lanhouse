@@ -42,6 +42,11 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
 
     }
 
+    @Override
+    public int getIndexAtual() {
+        return 0;
+    }
+
     public void atualizar(Computador maquina) throws ComputadorNaoEncontradoException{
         int i = this.getIndice(maquina.getId());
         if(i == -1){
