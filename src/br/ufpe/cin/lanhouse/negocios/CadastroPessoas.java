@@ -1,6 +1,7 @@
 package br.ufpe.cin.lanhouse.negocios;
 
 import br.ufpe.cin.lanhouse.basicas.Pessoa;
+import br.ufpe.cin.lanhouse.exceptions.PessoaJaCadastradaException;
 import br.ufpe.cin.lanhouse.exceptions.PessoaNaoEncontradaException;
 import br.ufpe.cin.lanhouse.exceptions.SemEspacoAplicativosException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioPessoas;

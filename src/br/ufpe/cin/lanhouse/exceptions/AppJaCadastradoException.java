@@ -3,8 +3,8 @@ package br.ufpe.cin.lanhouse.exceptions;
 /**
  * Created by vlma on 21/06/2017.
  */
-public class AppJaCadastrado extends Exception {
-    public AppJaCadastrado() {
+public class AppJaCadastradoException extends Exception {
+    public AppJaCadastradoException() {
         super("App já cadastrado.");
     }
 }
