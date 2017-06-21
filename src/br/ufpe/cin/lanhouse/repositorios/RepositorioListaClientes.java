@@ -1,15 +1,16 @@
 package br.ufpe.cin.lanhouse.repositorios;
 
+import br.ufpe.cin.lanhouse.basicas.Cliente;
 import br.ufpe.cin.lanhouse.basicas.Pessoa;
 import br.ufpe.cin.lanhouse.exceptions.PessoaNaoEncontradaException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioPessoas;
 
-public class RepositorioListaPessoas implements RepositorioPessoas {
+public class RepositorioListaClientes {
 
-    private Pessoa pessoa;
-    private RepositorioListaPessoas proximo;
+    private Cliente pessoa;
+    private RepositorioListaClientes proximo;
 
-    public RepositorioListaPessoas(){
+    public RepositorioListaClientes(){
         this.pessoa = null;
         this.proximo = null;
     }
@@ -30,30 +31,15 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
         return resposta;
     }
 
-    public void inserir(Pessoa pessoa) {
+    public void inserir(Cliente pessoa) {
         if(this.proximo != null){
             this.proximo.inserir(pessoa);
         } else {
             this.pessoa = pessoa;
-            this.proximo = new RepositorioListaPessoas();
+            this.proximo = new RepositorioListaClientes();
         }
 
     }
-
-
-    public void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException {
-        if(this.pessoa != null){
-            if(this.pessoa.getCpf().equals(pessoa.getCpf())){
-                this.pessoa = pessoa;
-            } else {
-                this.proximo.atualizar(pessoa);
-            }
-        } else {
-            throw new PessoaNaoEncontradaException();
-        }
-
-    }
-
 
     public void remover(String cpf) throws PessoaNaoEncontradaException {
         if(this.pessoa != null){
@@ -76,4 +62,11 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
         return tamanho;
     }
 
+    public String getClientes() {
+        String info = "";
+        if(this.pessoa != null) {
+            info = this.pessoa.getInfo() + "\n" + this.proximo.getClientes();
+        }
+        return info;
+    }
 }

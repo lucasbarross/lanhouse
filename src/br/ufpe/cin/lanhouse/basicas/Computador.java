@@ -1,5 +1,7 @@
 package br.ufpe.cin.lanhouse.basicas;
-
+/**
+ * Created by sgfl on 16/06/2017.
+ */
 import br.ufpe.cin.lanhouse.exceptions.*;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 
@@ -36,9 +38,9 @@ public class Computador {
 		ligado = false;
 	}
 
-	public void desconectarCliente() throws SemClienteException {
+	public String desconectarCliente() throws SemClienteException {
 		if(this.cliente != null) {
-			this.cliente.desconectarComputador();
+			return this.cliente.desconectarComputador();
 		} else {
 			throw new SemClienteException();
 		}
@@ -103,7 +105,8 @@ public class Computador {
 
 	/* observar estado atual da mÃ¡quina */
 	public String estadoAtual(){
-		return "Estado: " + this.getEstado() + '\n' +
+		return "Id: " + this.getId() + '\n'+
+				"Estado: " + this.getEstado() + '\n' +
 				"Usuario: " + this.getUsuario() + '\n'+
 				"HD Total: " + this.getHD() + '\n'+
 				"HD Disponivel: " + (this.getHD() - this.hd_ocupado) + '\n'+

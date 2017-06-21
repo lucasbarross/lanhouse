@@ -21,8 +21,8 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
 
     public Aplicativo procurar(String nome) throws AppNaoEncontradoException {
         Aplicativo app;
-
         int i = this.getIndice(nome);
+
         if(i == -1){
             throw new AppNaoEncontradoException();
         } else {
@@ -35,6 +35,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
 
     public void atualizar(Aplicativo app) throws AppNaoEncontradoException {
         int i = this.getIndice(app.getNome());
+
         if(i == -1){
             throw new AppNaoEncontradoException();
         } else {
@@ -44,6 +45,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
 
     public void remover(String nome) throws AppNaoEncontradoException {
         int i = this.getIndice(nome);
+
         if(i == -1){
             throw new AppNaoEncontradoException();
         } else {
@@ -66,8 +68,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         return indice;
     }
 
-
-    public int getIndexAtual(){
+    public int getTamanho(){
         return index;
     }
 }
