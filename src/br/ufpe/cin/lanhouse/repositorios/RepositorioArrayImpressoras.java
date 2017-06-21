@@ -80,6 +80,15 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		return false;
 	}
 
+	public String listarImpressoras() {
+		String info ="";
+
+		for(int i = 0; i < this.index; i++) {
+			info = info + " " + impressoras[i].getMarca() + " " + impressoras[i].getNumero()+"\n";
+		}
+
+		return info;
+	}
 
 	public int getTamanho() {
 		return this.index;

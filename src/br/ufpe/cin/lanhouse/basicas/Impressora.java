@@ -93,5 +93,9 @@ public class Impressora {
         }
     }
 
+    public String getMarca() {
+        return this.marca;
+    }
+
 
 }
