@@ -3,7 +3,7 @@ package br.ufpe.cin.lanhouse.negocios;
 import br.ufpe.cin.lanhouse.basicas.Impressora;
 import br.ufpe.cin.lanhouse.exceptions.ImpressoraJaCadastradaException;
 import br.ufpe.cin.lanhouse.exceptions.ImpressoraNaoEncontradaException;
-import br.ufpe.cin.lanhouse.exceptions.SemSlotException;
+import br.ufpe.cin.lanhouse.exceptions.SemEspacoImpressoraException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioImpressoras;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayImpressoras;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioListaImpressoras;
@@ -20,11 +20,11 @@ public class CadastroImpressoras {
         }
     }
 
-    public void cadastrar(Impressora i) throws SemSlotException, ImpressoraJaCadastradaException {
+    public void cadastrar(Impressora i) throws SemEspacoImpressoraException, ImpressoraJaCadastradaException {
         if(this.impressoras.getTamanho() < capacidade) {
             this.impressoras.inserir(i);
         } else {
-            throw new SemSlotException();
+            throw new SemEspacoImpressoraException();
         }
     }
 

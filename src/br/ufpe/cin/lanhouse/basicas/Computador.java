@@ -8,11 +8,9 @@ import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 public class Computador {
 
 	private String id;
-	private int hd;
 	private int ram;
 	private boolean ligado;
 	private Cliente cliente;
-	private int hd_ocupado = 0;
 	private int ram_ocupada = 0;
 	private boolean pronto = false;
     private RepositorioListaAplicativos appsExecucao;
@@ -20,7 +18,6 @@ public class Computador {
 	public Computador(String id, int ram){
         appsExecucao = new RepositorioListaAplicativos();
 		this.id = id;
-		this.hd = 1000;
 		this.ram = ram;
 	}
 
@@ -70,11 +67,10 @@ public class Computador {
 		}
 	}
 
-	public int getHD(){
-		return this.hd;
-	}
-
-    public void setCliente(Cliente cliente) throws ComputadorUtilizadoException {
+    public void setCliente(Cliente cliente) throws ComputadorUtilizadoException, ComputadorDesligadoException {
+		if(!this.ligado) {
+			throw new ComputadorDesligadoException();
+		}
 		if(this.cliente == null) {
 			this.cliente = cliente;
 		} else {
@@ -108,8 +104,6 @@ public class Computador {
 		return "Id: " + this.getId() + '\n'+
 				"Estado: " + this.getEstado() + '\n' +
 				"Usuario: " + this.getUsuario() + '\n'+
-				"HD Total: " + this.getHD() + '\n'+
-				"HD Disponivel: " + (this.getHD() - this.hd_ocupado) + '\n'+
 				"RAM Total: " + this.getRAM() + '\n'+
 				"RAM Disponivel: " + (this.getRAM() - this.ram_ocupada) + '\n'+
 				"Aplicativos em execução: " + appsExecucao.getApps();

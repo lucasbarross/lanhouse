@@ -69,4 +69,11 @@ public class RepositorioListaClientes {
         }
         return info;
     }
+
+    public void passarTempo() {
+        if(this.pessoa != null) {
+            this.pessoa.passarTempo();
+            this.proximo.passarTempo();
+        }
+    }
 }

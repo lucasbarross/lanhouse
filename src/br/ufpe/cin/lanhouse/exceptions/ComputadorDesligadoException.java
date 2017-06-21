@@ -6,6 +6,6 @@ package br.ufpe.cin.lanhouse.exceptions;
 
 public class ComputadorDesligadoException extends Exception {
     public ComputadorDesligadoException() {
-        super("O computador já está desligado");
+        super("O computador está desligado");
     }
 }

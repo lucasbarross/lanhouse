@@ -24,7 +24,7 @@ public class Funcionario extends Pessoa {
         computador.desligar();
     }
 
-    public void conectarCliente(Cliente cliente, Computador computador) throws ClienteComComputadorException, ComputadorUtilizadoException {
+    public void conectarCliente(Cliente cliente, Computador computador) throws ClienteComComputadorException, ComputadorUtilizadoException, ComputadorDesligadoException {
         computador.setCliente(cliente);
         cliente.setComputador(computador);
         clientesAtendidos++;
@@ -34,5 +34,9 @@ public class Funcionario extends Pessoa {
     public void desconectarCliente(Computador computador) throws SemClienteException, PessoaNaoEncontradaException {
         String cpfCliente = computador.desconectarCliente();
         clientes.remover(cpfCliente);
+    }
+
+    public void passarTempo() {
+        this.clientes.passarTempo();
     }
 }
