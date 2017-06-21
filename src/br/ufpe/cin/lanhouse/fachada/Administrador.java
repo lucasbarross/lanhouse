@@ -15,7 +15,7 @@ public class Administrador {
     private CadastroPessoas cadastroPessoas;
 
     public void lerConfig() throws IOException {
-        FileReader entrada = new FileReader("src/br/ufpe/cin/lanhouse/config.txt");
+        FileReader entrada = new FileReader("config.txt");
         BufferedReader br = new BufferedReader(entrada);
         String linha = br.readLine();
         boolean array;
