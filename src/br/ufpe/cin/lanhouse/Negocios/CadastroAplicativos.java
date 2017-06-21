@@ -1,10 +1,9 @@
 package br.ufpe.cin.lanhouse.negocios;
 
 import br.ufpe.cin.lanhouse.basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
-import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayAplicativos;
-import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
+import br.ufpe.cin.lanhouse.repositorios.*;
+import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class CadastroAplicativos {
     private RepositorioAplicativos aplicativos;
@@ -17,8 +16,8 @@ public class CadastroAplicativos {
             aplicativos = new RepositorioListaAplicativos();
         }
     }
-
-    public void cadastrar(Aplicativo app) throws ArrayIndexOutOfBoundsException{
+    // mudar index atual para gettamanho
+    public void cadastrar(Aplicativo app) throws SemEspacoAplicativosException {
         if(aplicativos.getIndexAtual() < TAMANHO){
             aplicativos.inserir(app);
         }else{
