@@ -15,6 +15,7 @@ public interface RepositorioImpressoras {
 
 	int getTamanho();
 
-	boolean existe();
+	boolean existe(String impressora);
+
 
 }

@@ -80,6 +80,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		return false;
 	}
 
+
 	public int getTamanho() {
 		return this.index;
 	}
