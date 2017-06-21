@@ -16,7 +16,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
 
     public void inserir(Aplicativo app) throws SemEspacoAplicativosException {
         if(index == apps.length-1){
-            Aplicativo[] novaArray = new Aplicativo[apps.length + 10];
+            Aplicativo[] novaArray = new Aplicativo[apps.length * 2];
             for (int i = 0; i < novaArray.length; i++) {
                 novaArray[i] = apps[i];
             }
