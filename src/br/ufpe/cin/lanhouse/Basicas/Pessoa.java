@@ -13,19 +13,7 @@ public abstract class Pessoa {
 		this.sexo = sexo;
 		this.idade = idade;
 	}
-	
-	/* 
-	 Funcionario quando usa aparece o tempo dos usuarios, cliente quando usa aparece a lista de aplicativos. 
-	*/
-	
-	public abstract void usarComputador();
-	
-	/*
-	 Cliente precisa de permissao para instalar, Funcionario nao.
-	 */
-	
-	public abstract void instalarAplicativo(Aplicativo app, Computador computador);
-	
+
 	public String getNome() {
 		return nome;
 	}

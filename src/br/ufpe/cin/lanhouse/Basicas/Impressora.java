@@ -33,7 +33,7 @@ public class Impressora {
 		return numero;
 	}
 
-    public void imprimirEmPreto(int numeroPaginas) throws OutOfPagesException, OutOfBlackInkException, ImpressoraDescalibradaException {
+    public void imprimirEmPreto(int numeroPaginas) throws SemFolhaException, SemTintaPretaException, ImpressoraDescalibradaException {
         if (impressaoCalibrada) {
             if (this.cargaPapel >= numeroPaginas) {
                 if (cargaTintaPreta >= numeroPaginas * tintaPorPagina) {
@@ -41,17 +41,17 @@ public class Impressora {
                     this.cargaTintaPreta = this.cargaTintaPreta - (numeroPaginas * this.tintaPorPagina);
                     this.numeroDeImpressoes++;
                 } else {
-                    throw new OutOfBlackInkException();
+                    throw new SemTintaPretaException();
                 }
             } else {
-                throw new OutOfPagesException();
+                throw new SemFolhaException();
             }
         } else {
             throw new ImpressoraDescalibradaException();
         }
     }
     
-    public void imprimirEmColorido(int numeroPaginas) throws OutOfPagesException, OutOfCollorInkException, ImpressoraDescalibradaException {
+    public void imprimirEmColorido(int numeroPaginas) throws SemFolhaException, SemTintaColoridaException, ImpressoraDescalibradaException {
         if (impressaoCalibrada) {
             if (this.cargaPapel >= numeroPaginas) {
                 if (cargaTintaColorida >= numeroPaginas * tintaPorPagina) {
@@ -59,10 +59,10 @@ public class Impressora {
                     this.cargaTintaColorida = this.cargaTintaColorida - (numeroPaginas * this.tintaPorPagina);
                     this.numeroDeImpressoes++;
                 } else {
-                    throw new OutOfCollorInkException();
+                    throw new SemTintaColoridaException();
                 }
             } else {
-                throw new OutOfPagesException();
+                throw new SemFolhaException();
             }
         } else {
             throw new ImpressoraDescalibradaException();

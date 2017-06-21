@@ -3,7 +3,7 @@ package br.ufpe.cin.lanhouse.Negocios;
 import br.ufpe.cin.lanhouse.Basicas.Impressora;
 import br.ufpe.cin.lanhouse.Exceptions.ImpressoraJaCadastradaException;
 import br.ufpe.cin.lanhouse.Exceptions.ImpressoraNaoEncontradaException;
-import br.ufpe.cin.lanhouse.Exceptions.OutOfSlotsException;
+import br.ufpe.cin.lanhouse.Exceptions.SemSlotException;
 import br.ufpe.cin.lanhouse.Interfaces.RepositorioImpressoras;
 import br.ufpe.cin.lanhouse.Repositorios.RepositorioArrayImpressoras;
 import br.ufpe.cin.lanhouse.Repositorios.RepositorioListaImpressoras;
@@ -25,18 +25,18 @@ public class CadastroImpressoras {
         }
     }
 
-    public void cadastrar(Impressora i) throws OutOfSlotsException, ImpressoraJaCadastradaException {
+    public void cadastrar(Impressora i) throws SemSlotException, ImpressoraJaCadastradaException {
         if(isArray) {
             if(this.impressoras.getTamanho() < TAMANHOARRAY) {
                 this.impressoras.inserir(i);
             } else {
-                throw new OutOfSlotsException();
+                throw new SemSlotException();
             }
         } else {
             if(this.impressoras.getTamanho() < TAMANHOARRAY) {
                 this.impressoras.inserir(i);
             } else {
-                throw new OutOfSlotsException();
+                throw new SemSlotException();
             }
         }
     }

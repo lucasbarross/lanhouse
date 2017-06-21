@@ -21,6 +21,19 @@ public class Computador {
 		this.ram = ram;
 	}
 
+	public void ligar() throws ComputadorLigadoException {
+		if(ligado) {
+			throw new ComputadorLigadoException();
+		}
+		ligado = true;
+	}
+
+	public void desligar() throws ComputadorDesligadoException {
+		if(!ligado) {
+			throw new ComputadorDesligadoException();
+		}
+		ligado = false;
+	}
 	public String getEstado(){
 		if(ligado){
 			return "Ligado";
