@@ -85,4 +85,15 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
         return 0;
     }
 
+    public String getApps(){
+        if(this.app != null){
+            if(this.proximo.proximo != null) {
+                return this.app.getNome() + ", " + proximo.getApps();
+            } else {
+                return this.app.getNome();
+            }
+        } else {
+            return "";
+        }
+    }
 }

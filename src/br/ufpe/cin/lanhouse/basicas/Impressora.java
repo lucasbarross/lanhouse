@@ -70,12 +70,12 @@ public class Impressora {
     }
     
 
-    public void recarregarPagina(int numeroDePaginas) throws NotEnoughRoomException {
+    public void recarregarPagina(int numeroDePaginas) throws SemEspacoPapelException {
         int total = this.cargaPapel + numeroDePaginas;
         if (total <= CARGA_MAX_PAPEL) {
             this.cargaPapel = total;
         } else {
-            throw new NotEnoughRoomException();
+            throw new SemEspacoPapelException();
         }
     }
 

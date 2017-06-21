@@ -9,8 +9,13 @@ public class Funcionario extends Pessoa {
 		super(nome, cpf, sexo, idade);
         clientesAtendidos = 0;
 	}
-	
-	public void ligarComputador(Computador computador) throws ComputadorLigadoException {
+
+    @Override
+    public String usarComputador() throws SemComputadorException {
+        return null;
+    }
+
+    public void ligarComputador(Computador computador) throws ComputadorLigadoException {
         computador.ligar();
     }
 

@@ -20,11 +20,7 @@ public class Administrador {
         String linha = br.readLine();
         boolean array;
 
-        if(linha.equals("array")) {
-            array = true;
-        }else{
-            array = false;
-        }
+        array = linha.equals("array");
 
         cadastroAplicativos= new CadastroAplicativos(array);
         cadastroComputadores = new CadastroComputadores(array);
@@ -33,8 +29,8 @@ public class Administrador {
     }
 
     public Aplicativo procurarApp(String nome) throws AppNaoEncontradoException {
-        Aplicativo app = cadastroAplicativos.procurar(nome);
-        return app;
+        return cadastroAplicativos.procurar(nome);
     }
+
 
 }
