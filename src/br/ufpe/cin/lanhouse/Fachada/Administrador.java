@@ -1,5 +1,8 @@
 package br.ufpe.cin.lanhouse.Fachada;
+import br.ufpe.cin.lanhouse.Basicas.Aplicativo;
+import br.ufpe.cin.lanhouse.Exceptions.AppNaoEncontradoException;
 import br.ufpe.cin.lanhouse.Negocios.*;
+
 public class Administrador {
 
     private CadastroAplicativos cadastroAplicativos;
@@ -16,5 +19,9 @@ public class Administrador {
         cadastroPessoas = new CadastroPessoas();
     }
 
+    public Aplicativo procurarApp(String nome) throws AppNaoEncontradoException {
+        Aplicativo app = cadastroAplicativos.procurar(nome);
+        return app;
+    }
 
 }

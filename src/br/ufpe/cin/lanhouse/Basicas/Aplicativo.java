@@ -4,29 +4,22 @@ public class Aplicativo {
 	
 	private String nome;
 	private int tamanho;
-	boolean precisaAdm;
-	int ramNecessaria;
+	private boolean executado;
+	private int ramNecessaria;
 	
 	public Aplicativo(String nome, int tamanho, boolean precisaAdm, int ramNecessaria){
 		this.nome = nome;
 		this.tamanho = tamanho;
-		this.precisaAdm = precisaAdm;
+		this.executado = false;
 		this.ramNecessaria = ramNecessaria;
 	}
 	
 	public String executar(){
-		String resultado = "";
-		
-		if(!precisaAdm){
-			resultado = nome+" foi executado com sucesso.";
-		}else{
-			resultado = nome+" precisa ser executado como administrador.";
-		}
-		return resultado;
+		executado = true;
+		return nome+" foi executado com sucesso.";
 	}
-	
-	public String executarAdmnistrador(){
-		return nome+" foi executado com sucesso como administrador.";
+	public void encerrar(){
+		executado = false;
 	}
 	
 	public void renomear(String nome){
@@ -35,6 +28,9 @@ public class Aplicativo {
 	
 	public String getNome(){
 		return this.nome;
+	}
+	public boolean getExecutado(){
+		return executado;
 	}
 
 	public int getTamanho() {
