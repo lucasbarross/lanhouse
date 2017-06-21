@@ -14,14 +14,10 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		this.index = 0;
 	}
 
+
+
 	public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException {
-		boolean existe = false;
-		for (int i = 0; i < this.getIndex(); i++) {
-			if (this.impressoras[i].getNumero().equals(impressora.getNumero())) {
-				existe = true;
-			}
-		}
-		if(!existe) {
+		if(!existe(impressora.getNumero())) {
 			this.impressoras[index] = impressora;
 		} else {
 			throw new ImpressoraJaCadastradaException();
@@ -75,24 +71,22 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		return indice;
 	}
 
+	public boolean existe(String impressora) {
+		for(int i = 0; i < this.index; i++) {
+			if(this.impressoras[i].equals(impressora)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	public int getTamanho() {
 		return this.index;
-	}
-
-	public Impressora[] getImpressoras() {
-		return impressoras;
-	}
-
-	public void setImpressoras(Impressora[] impressoras) {
-		this.impressoras = impressoras;
 	}
 
 	public int getIndex() {
 		return this.index;
 	}
 
-	public void setIndex(int index) {
-		this.index = index;
-	}
 
 }
