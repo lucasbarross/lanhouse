@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Exceptions;
+package br.ufpe.cin.lanhouse.exceptions;
 
 /**
  * Created by gap on 21/06/2017.

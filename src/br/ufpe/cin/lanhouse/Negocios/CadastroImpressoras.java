@@ -10,34 +10,21 @@ import br.ufpe.cin.lanhouse.repositorios.RepositorioListaImpressoras;
 
 public class CadastroImpressoras {
     private RepositorioImpressoras impressoras;
-    private static final int TAMANHOARRAY = 30;
-    private boolean isArray;
+    private static final int TAMANHO = 30;
 
     public CadastroImpressoras(boolean array) {
         if(array) {
-            impressoras = new RepositorioArrayImpressoras(TAMANHOARRAY);
-            //array
-            isArray = true;
+            impressoras = new RepositorioArrayImpressoras(TAMANHO);
         } else {
             impressoras = new RepositorioListaImpressoras();
-            //lista
-            isArray = false;
         }
     }
 
     public void cadastrar(Impressora i) throws SemSlotException, ImpressoraJaCadastradaException {
-        if(isArray) {
-            if(this.impressoras.getTamanho() < TAMANHOARRAY) {
-                this.impressoras.inserir(i);
-            } else {
-                throw new SemSlotException();
-            }
+        if(this.impressoras.getTamanho() < TAMANHO) {
+            this.impressoras.inserir(i);
         } else {
-            if(this.impressoras.getTamanho() < TAMANHOARRAY) {
-                this.impressoras.inserir(i);
-            } else {
-                throw new SemSlotException();
-            }
+            throw new SemSlotException();
         }
     }
 

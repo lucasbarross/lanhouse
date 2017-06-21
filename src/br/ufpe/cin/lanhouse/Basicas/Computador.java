@@ -1,7 +1,7 @@
-package br.ufpe.cin.lanhouse.Basicas;
+package br.ufpe.cin.lanhouse.basicas;
 
-import br.ufpe.cin.lanhouse.Exceptions.*;
-import br.ufpe.cin.lanhouse.Repositorios.RepositorioListaAplicativos;
+import br.ufpe.cin.lanhouse.exceptions.*;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 
 public class Computador {
 
