@@ -9,8 +9,8 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	private Impressora[] impressoras;
 	private int index;
 
-	public RepositorioArrayImpressoras() {
-		this.impressoras = new Impressora[100];
+	public RepositorioArrayImpressoras(int tamanho) {
+		this.impressoras = new Impressora[tamanho];
 		this.index = 0;
 	}
 
@@ -48,6 +48,8 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		}
 	}
 
+
+
 	public Impressora procurar(String numero) throws ImpressoraNaoEncontradaException {
 		Impressora resposta = null;
 		int i = this.getIndexProcurado(numero);
@@ -73,6 +75,10 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		return indice;
 	}
 
+	public int getTamanho() {
+		return this.index;
+	}
+
 	public Impressora[] getImpressoras() {
 		return impressoras;
 	}
@@ -82,7 +88,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	}
 
 	public int getIndex() {
-		return index;
+		return this.index;
 	}
 
 	public void setIndex(int index) {

@@ -8,18 +8,18 @@ import br.ufpe.cin.lanhouse.Repositorios.RepositorioListaAplicativos;
 
 public class CadastroAplicativos {
     private RepositorioAplicativos aplicativos;
-    private static final int TAMANHOARRAY = 100;
+    private static final int TAMANHO = 100;
 
     public CadastroAplicativos(boolean array){
         if(array){
-            aplicativos = new RepositorioArrayAplicativos(TAMANHOARRAY);
+            aplicativos = new RepositorioArrayAplicativos(TAMANHO);
         } else {
             aplicativos = new RepositorioListaAplicativos();
         }
     }
 
     public void cadastrar(Aplicativo app) throws ArrayIndexOutOfBoundsException{
-        if(aplicativos.getIndexAtual() < TAMANHOARRAY){
+        if(aplicativos.getIndexAtual() < TAMANHO){
             aplicativos.inserir(app);
         }else{
             throw new ArrayIndexOutOfBoundsException();

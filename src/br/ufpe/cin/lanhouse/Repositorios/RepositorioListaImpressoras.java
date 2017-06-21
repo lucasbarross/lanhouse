@@ -8,10 +8,12 @@ import br.ufpe.cin.lanhouse.Interfaces.RepositorioImpressoras;
 public class RepositorioListaImpressoras implements RepositorioImpressoras {
     private Impressora impressora;
     private RepositorioListaImpressoras proximo;
+    private int tamanho;
 
     public RepositorioListaImpressoras() {
         this.impressora = null;
         this.proximo = null;
+        this.tamanho = 0;
     }
 
     public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException {
@@ -77,6 +79,14 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
         }
         return resposta;
 
+    }
+
+    public int getTamanho() {
+        if(this.impressora != null) {
+            this.tamanho++;
+            this.proximo.getTamanho();
+        }
+        return this.tamanho;
     }
 
 

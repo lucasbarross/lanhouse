@@ -13,4 +13,6 @@ public interface RepositorioImpressoras {
 
 	void atualizar(Impressora atualizada) throws ImpressoraNaoEncontradaException;
 
+	int getTamanho();
+
 }
