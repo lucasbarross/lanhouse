@@ -1,8 +1,6 @@
 package br.ufpe.cin.lanhouse.fachada;
-import br.ufpe.cin.lanhouse.basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
-import br.ufpe.cin.lanhouse.exceptions.PessoaNaoEncontradaException;
-import br.ufpe.cin.lanhouse.exceptions.SemComputadorException;
+import br.ufpe.cin.lanhouse.basicas.*;
+import br.ufpe.cin.lanhouse.exceptions.*;
 import br.ufpe.cin.lanhouse.negocios.*;
 
 import java.io.BufferedReader;
@@ -16,26 +14,20 @@ public class Administrador {
     private CadastroImpressoras cadastroImpressoras;
     private CadastroPessoas cadastroPessoas;
 
-    public void lerConfig() throws IOException {
-        FileReader entrada = new FileReader("config.txt");
-        BufferedReader br = new BufferedReader(entrada);
-        String linha = br.readLine();
-        boolean array;
-
-        array = linha.equals("array");
-
-        cadastroAplicativos= new CadastroAplicativos(array);
-        cadastroComputadores = new CadastroComputadores(array);
-        cadastroImpressoras = new CadastroImpressoras(array);
-        cadastroPessoas = new CadastroPessoas(array);
+    public Administrador(CadastroAplicativos cadastroAplicativos, CadastroComputadores cadastroComputadores, CadastroImpressoras cadastroImpressoras, CadastroPessoas cadastroPessoas) {
+        this.cadastroAplicativos = cadastroAplicativos;
+        this.cadastroComputadores = cadastroComputadores;
+        this.cadastroImpressoras = cadastroImpressoras;
+        this.cadastroPessoas = cadastroPessoas;
     }
 
     public Aplicativo procurarApp(String nome) throws AppNaoEncontradoException {
         return cadastroAplicativos.procurar(nome);
     }
 
-    public void usarComputador(String cpf) throws PessoaNaoEncontradaException, SemComputadorException {
-        cadastroPessoas.procurar(cpf).usarComputador();
+    public String usarComputador(String cpf) throws PessoaNaoEncontradaException, SemComputadorException {
+        Pessoa usuario = cadastroPessoas.procurar(cpf);
+        return usuario.usarComputador();
     }
 
 }
