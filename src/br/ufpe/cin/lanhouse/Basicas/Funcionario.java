@@ -16,5 +16,12 @@ public class Funcionario extends Pessoa{
         computador.desligar();
     }
 
-    public void conectarCliente(Cliente cliente, Computador computador)
+    public void conectarCliente(Cliente cliente, Computador computador) throws ClienteComComputadorException, ComputadorUtilizadoException {
+        computador.setCliente(cliente);
+        cliente.setComputador(computador);
+    }
+
+    public void desconectarCliente(Computador computador) throws SemClienteException {
+        computador.desconectarCliente();
+    }
 }

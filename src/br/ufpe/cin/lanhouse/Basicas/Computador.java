@@ -35,6 +35,15 @@ public class Computador {
 		}
 		ligado = false;
 	}
+
+	public void desconectarCliente() throws SemClienteException {
+		if(this.cliente != null) {
+			this.cliente.desconectarComputador();
+		} else {
+			throw new SemClienteException();
+		}
+	}
+
 	public String getEstado(){
 		if(ligado){
 			return "Ligado";
@@ -63,16 +72,20 @@ public class Computador {
 		return this.hd;
 	}
 
-    public void setCliente(Cliente cliente){
-        this.cliente = cliente;
+    public void setCliente(Cliente cliente) throws ComputadorUtilizadoException {
+		if(this.cliente == null) {
+			this.cliente = cliente;
+		} else {
+			throw new ComputadorUtilizadoException();
+		}
     }
 
-	public void executar(Aplicativo app) throws AppNaoEncontradoException, AppEmExecucaoException, SemRamExcepetion {
+	public void executar(Aplicativo app) throws AppNaoEncontradoException, AppEmExecucaoException, SemRamException {
         if(appsExecucao.existe(app.getNome())){
             throw new AppEmExecucaoException();
         }else{
             if(ram_ocupada+app.getRamNecessaria()>ram){
-                throw new SemRamExcepetion();
+                throw new SemRamException();
           } else {
                 appsExecucao.inserir(app);
                 app.executar();

@@ -9,15 +9,23 @@ public class Cliente extends Pessoa{
 		super(nome, cpf, sexo, idade);
 	}
 
-    public void setComputador(Computador computador) {
-        this.computador = computador;
+    public void setComputador(Computador computador) throws ClienteComComputadorException {
+        if(this.computador == null) {
+            this.computador = computador;
+        } else {
+            throw new ClienteComComputadorException();
+        }
     }
 
     public String getComputador() {
         return this.computador.getEstado();
     }
 
-	public void executarAplicativo(Aplicativo app) throws AppEmExecucaoException, AppNaoEncontradoException {
+	public void executarAplicativo(Aplicativo app) throws AppEmExecucaoException, AppNaoEncontradoException, SemRamException {
         this.computador.executar(app);
 	}
+
+    public void desconectarComputador() {
+        this.computador = null;
+    }
 }
