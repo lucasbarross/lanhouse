@@ -1,7 +1,11 @@
-package br.ufpe.cin.lanhouse.Fachada;
-import br.ufpe.cin.lanhouse.Basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.Exceptions.AppNaoEncontradoException;
-import br.ufpe.cin.lanhouse.Negocios.*;
+package br.ufpe.cin.lanhouse.fachada;
+import br.ufpe.cin.lanhouse.basicas.Aplicativo;
+import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
+import br.ufpe.cin.lanhouse.negocios.*;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class Administrador {
 
@@ -10,12 +14,21 @@ public class Administrador {
     private CadastroImpressoras cadastroImpressoras;
     private CadastroPessoas cadastroPessoas;
 
-    public void lerConfig(){
-        boolean array = true; //leitura do arquivo config.txt;
+    public void lerConfig() throws IOException {
+        FileReader entrada = new FileReader("src/br/ufpe/cin/lanhouse/config.txt");
+        BufferedReader br = new BufferedReader(in);
+        String linha = br.readLine();
+        boolean array;
+
+        if(linha.equals("array")) {
+            array = true;
+        }else{
+            array = false;
+        }
 
         cadastroAplicativos= new CadastroAplicativos(array);
-        cadastroComputadores = new CadastroComputadores();
-        cadastroImpressoras = new CadastroImpressoras();
+        cadastroComputadores = new CadastroComputadores(array);
+        cadastroImpressoras = new CadastroImpressoras(array);
         cadastroPessoas = new CadastroPessoas();
     }
 

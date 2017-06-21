@@ -1,6 +1,4 @@
-package br.ufpe.cin.lanhouse.Programa;
-
-import br.*;
+package br.ufpe.cin.lanhouse.programa;
 
 public class LanHouse {
 

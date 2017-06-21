@@ -1,7 +1,7 @@
-package br.ufpe.cin.lanhouse.Interfaces;
+package br.ufpe.cin.lanhouse.interfaces;
 
-import br.ufpe.cin.lanhouse.Basicas.Impressora;
-import br.ufpe.cin.lanhouse.Exceptions.*;
+import br.ufpe.cin.lanhouse.basicas.Impressora;
+import br.ufpe.cin.lanhouse.exceptions.*;
 
 public interface RepositorioImpressoras {
 

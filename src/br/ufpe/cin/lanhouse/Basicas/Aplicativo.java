@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Basicas;
+package br.ufpe.cin.lanhouse.basicas;
 
 public class Aplicativo {
 	

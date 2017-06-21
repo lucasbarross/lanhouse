@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Exceptions;
+package br.ufpe.cin.lanhouse.exceptions;
 
 public class SemTintaColoridaException extends Exception {
 	public SemTintaColoridaException() {

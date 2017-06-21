@@ -1,6 +1,6 @@
-package br.ufpe.cin.lanhouse.Basicas;
+package br.ufpe.cin.lanhouse.basicas;
 
-import br.ufpe.cin.lanhouse.Exceptions.*;
+import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class Cliente extends Pessoa{
     Computador computador = null;

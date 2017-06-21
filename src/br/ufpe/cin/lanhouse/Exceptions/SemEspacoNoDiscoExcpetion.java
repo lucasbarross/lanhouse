@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Exceptions;
+package br.ufpe.cin.lanhouse.exceptions;
 
 public class SemEspacoNoDiscoExcpetion extends Exception{
 	public SemEspacoNoDiscoExcpetion(){

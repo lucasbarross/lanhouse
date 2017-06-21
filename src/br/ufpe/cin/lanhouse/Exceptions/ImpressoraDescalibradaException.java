@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Exceptions;
+package br.ufpe.cin.lanhouse.exceptions;
 
 /**
  * Created by vlma on 16/06/2017.

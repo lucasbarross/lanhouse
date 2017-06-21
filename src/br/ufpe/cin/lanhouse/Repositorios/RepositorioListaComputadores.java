@@ -1,8 +1,8 @@
-package br.ufpe.cin.lanhouse.Repositorios;
+package br.ufpe.cin.lanhouse.repositorios;
 
-import br.ufpe.cin.lanhouse.Basicas.Computador;
-import br.ufpe.cin.lanhouse.Interfaces.RepositorioComputadores;
-import br.ufpe.cin.lanhouse.Exceptions.*;
+import br.ufpe.cin.lanhouse.basicas.Computador;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
+import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class RepositorioListaComputadores implements RepositorioComputadores {
 

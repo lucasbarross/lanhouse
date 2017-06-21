@@ -1,7 +1,7 @@
-package br.ufpe.cin.lanhouse.Repositorios;
-import br.ufpe.cin.lanhouse.Basicas.Computador;
-import br.ufpe.cin.lanhouse.Exceptions.ComputadorNaoEncontradoException;
-import br.ufpe.cin.lanhouse.Interfaces.RepositorioComputadores;
+package br.ufpe.cin.lanhouse.repositorios;
+import br.ufpe.cin.lanhouse.basicas.Computador;
+import br.ufpe.cin.lanhouse.exceptions.ComputadorNaoEncontradoException;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
 
 public class RepositorioArrayComputadores implements RepositorioComputadores {
     private Computador [] computadores;

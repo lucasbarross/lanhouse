@@ -1,6 +1,6 @@
-package br.ufpe.cin.lanhouse.Repositorios;
+package br.ufpe.cin.lanhouse.repositorios;
 
-import br.ufpe.cin.lanhouse.Interfaces.RepositorioPessoas;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioPessoas;
 
 public class RepositorioArrayPessoas implements RepositorioPessoas{
 

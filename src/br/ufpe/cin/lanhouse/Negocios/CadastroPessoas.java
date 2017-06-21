@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Negocios;
+package br.ufpe.cin.lanhouse.negocios;
 
 public class CadastroPessoas {
 

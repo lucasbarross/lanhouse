@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Repositorios;
+package br.ufpe.cin.lanhouse.repositorios;
 
 public class RepositorioListaPessoas {
 

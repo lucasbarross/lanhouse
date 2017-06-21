@@ -1,8 +1,8 @@
-package br.ufpe.cin.lanhouse.Repositorios;
+package br.ufpe.cin.lanhouse.repositorios;
 
-import br.ufpe.cin.lanhouse.Basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.Exceptions.AppNaoEncontradoException;
-import br.ufpe.cin.lanhouse.Interfaces.RepositorioAplicativos;
+import br.ufpe.cin.lanhouse.basicas.Aplicativo;
+import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
 
 public class RepositorioListaAplicativos implements RepositorioAplicativos {
 

@@ -1,4 +1,4 @@
-package br.ufpe.cin.lanhouse.Interfaces;
+package br.ufpe.cin.lanhouse.interfaces;
 
 public interface RepositorioPessoas {
 

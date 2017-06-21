@@ -1,10 +1,10 @@
-package br.ufpe.cin.lanhouse.Negocios;
+package br.ufpe.cin.lanhouse.negocios;
 
-import br.ufpe.cin.lanhouse.Basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.Exceptions.AppNaoEncontradoException;
-import br.ufpe.cin.lanhouse.Interfaces.RepositorioAplicativos;
-import br.ufpe.cin.lanhouse.Repositorios.RepositorioArrayAplicativos;
-import br.ufpe.cin.lanhouse.Repositorios.RepositorioListaAplicativos;
+import br.ufpe.cin.lanhouse.basicas.Aplicativo;
+import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayAplicativos;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 
 public class CadastroAplicativos {
     private RepositorioAplicativos aplicativos;

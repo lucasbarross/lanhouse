@@ -1,12 +1,12 @@
-package br.ufpe.cin.lanhouse.Negocios;
+package br.ufpe.cin.lanhouse.negocios;
 
-import br.ufpe.cin.lanhouse.Basicas.Impressora;
-import br.ufpe.cin.lanhouse.Exceptions.ImpressoraJaCadastradaException;
-import br.ufpe.cin.lanhouse.Exceptions.ImpressoraNaoEncontradaException;
-import br.ufpe.cin.lanhouse.Exceptions.SemSlotException;
-import br.ufpe.cin.lanhouse.Interfaces.RepositorioImpressoras;
-import br.ufpe.cin.lanhouse.Repositorios.RepositorioArrayImpressoras;
-import br.ufpe.cin.lanhouse.Repositorios.RepositorioListaImpressoras;
+import br.ufpe.cin.lanhouse.basicas.Impressora;
+import br.ufpe.cin.lanhouse.exceptions.ImpressoraJaCadastradaException;
+import br.ufpe.cin.lanhouse.exceptions.ImpressoraNaoEncontradaException;
+import br.ufpe.cin.lanhouse.exceptions.SemSlotException;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioImpressoras;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayImpressoras;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioListaImpressoras;
 
 public class CadastroImpressoras {
     private RepositorioImpressoras impressoras;

@@ -1,7 +1,7 @@
-package br.ufpe.cin.lanhouse.Interfaces;
+package br.ufpe.cin.lanhouse.interfaces;
 
-import br.ufpe.cin.lanhouse.Basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.Exceptions.AppNaoEncontradoException;
+import br.ufpe.cin.lanhouse.basicas.Aplicativo;
+import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
 
 public interface RepositorioAplicativos {
     void inserir(Aplicativo app);

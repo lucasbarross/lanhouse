@@ -1,9 +1,9 @@
-package br.ufpe.cin.lanhouse.Repositorios;
+package br.ufpe.cin.lanhouse.repositorios;
 
-import br.ufpe.cin.lanhouse.Basicas.Impressora;
-import br.ufpe.cin.lanhouse.Exceptions.ImpressoraJaCadastradaException;
-import br.ufpe.cin.lanhouse.Exceptions.ImpressoraNaoEncontradaException;
-import br.ufpe.cin.lanhouse.Interfaces.RepositorioImpressoras;
+import br.ufpe.cin.lanhouse.basicas.Impressora;
+import br.ufpe.cin.lanhouse.exceptions.ImpressoraJaCadastradaException;
+import br.ufpe.cin.lanhouse.exceptions.ImpressoraNaoEncontradaException;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioImpressoras;
 
 public class RepositorioListaImpressoras implements RepositorioImpressoras {
     private Impressora impressora;
