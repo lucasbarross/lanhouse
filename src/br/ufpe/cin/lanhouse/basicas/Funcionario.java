@@ -1,11 +1,11 @@
 package br.ufpe.cin.lanhouse.basicas;
 
 import br.ufpe.cin.lanhouse.exceptions.*;
-import br.ufpe.cin.lanhouse.repositorios.RepositorioListaPessoas;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioListaClientes;
 
 public class Funcionario extends Pessoa {
     private int clientesAtendidos;
-    private RepositorioListaPessoas clientes;
+    private RepositorioListaClientes clientes;
 
 	public Funcionario(String nome, String cpf, char sexo, int idade) {
 		super(nome, cpf, sexo, idade);
@@ -13,7 +13,7 @@ public class Funcionario extends Pessoa {
 	}
 
     public String usarComputador() {
-
+        return this.clientes.getClientes();
     }
 
 	public void ligarComputador(Computador computador) throws ComputadorLigadoException {
@@ -28,9 +28,11 @@ public class Funcionario extends Pessoa {
         computador.setCliente(cliente);
         cliente.setComputador(computador);
         clientesAtendidos++;
+        clientes.inserir(cliente);
     }
 
-    public void desconectarCliente(Computador computador) throws SemClienteException {
-        computador.desconectarCliente();
+    public void desconectarCliente(Computador computador) throws SemClienteException, PessoaNaoEncontradaException {
+        String cpfCliente = computador.desconectarCliente();
+        clientes.remover(cpfCliente);
     }
 }

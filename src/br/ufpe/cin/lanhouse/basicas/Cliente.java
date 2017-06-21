@@ -44,8 +44,9 @@ public class Cliente extends Pessoa{
         this.computador.executar(app);
 	}
 
-    public void desconectarComputador() {
+    public String desconectarComputador() {
         this.computador = null;
         this.tempoAtual = 0;
+        return this.getCpf();
     }
 }

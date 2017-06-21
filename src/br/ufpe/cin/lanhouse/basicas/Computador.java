@@ -38,9 +38,9 @@ public class Computador {
 		ligado = false;
 	}
 
-	public void desconectarCliente() throws SemClienteException {
+	public String desconectarCliente() throws SemClienteException {
 		if(this.cliente != null) {
-			this.cliente.desconectarComputador();
+			return this.cliente.desconectarComputador();
 		} else {
 			throw new SemClienteException();
 		}
