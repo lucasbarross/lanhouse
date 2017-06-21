@@ -40,6 +40,4 @@ public class CadastroImpressoras {
         return this.impressoras.procurar(i);
     }
 
-
-
 }
