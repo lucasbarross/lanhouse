@@ -1,6 +1,7 @@
 package br.ufpe.cin.lanhouse.negocios;
 
 import br.ufpe.cin.lanhouse.basicas.Computador;
+import br.ufpe.cin.lanhouse.exceptions.ComputadorJaCadastradoException;
 import br.ufpe.cin.lanhouse.exceptions.ComputadorNaoEncontradoException;
 import br.ufpe.cin.lanhouse.exceptions.SemEspacoComputadoresException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
@@ -19,7 +20,12 @@ public class CadastroComputadores {
         }
     }
 
-    public void cadastrar(Computador computador) throws SemEspacoComputadoresException{
+    public void cadastrar(Computador computador) throws ComputadorJaCadastradoException, SemEspacoComputadoresException{
+
+        if(computadores.existe(computador.getId())) {
+            throw new ComputadorJaCadastradoException();
+        }
+
         if(computadores.getIndexAtual() < capacidade){
             computadores.inserir((Computador) computadores);
         }else{

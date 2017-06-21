@@ -19,7 +19,10 @@ public class CadastroAplicativos {
         }
     }
 
-    public void cadastrar(Aplicativo app) throws SemEspacoAplicativosException {
+    public void cadastrar(Aplicativo app) throws AppJaCadastradoException, SemEspacoAplicativosException {
+        if(aplicativos.existe(app.getNome())) {
+            throw new AppJaCadastradoException();
+        }
         if(hdUsado + app.getTamanho() < hd){
             aplicativos.inserir(app);
             hdUsado+=app.getTamanho();

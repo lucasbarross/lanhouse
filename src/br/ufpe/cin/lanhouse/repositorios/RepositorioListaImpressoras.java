@@ -16,14 +16,10 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
         this.tamanho = 0;
     }
 
-    public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException {
-        if(this.existe(impressora.getNumero())) {
-            throw new ImpressoraJaCadastradaException();
-        } else {
-            if(this.impressora == null) {
-                this.impressora = impressora;
-                this.proximo = new RepositorioListaImpressoras();
-            }
+    public void inserir(Impressora impressora)  {
+        if(this.impressora == null) {
+            this.impressora = impressora;
+            this.proximo = new RepositorioListaImpressoras();
         }
     }
 
@@ -68,17 +64,16 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     	}
     }
 
-    public boolean existe(String numero) {
-        boolean resposta;
-
-        if(this.impressora.getNumero().equals(numero)) {
-           resposta = true;
-        }
-        else {
-            resposta = this.proximo.existe(numero);
+    public boolean existe(String numero){
+        boolean resposta = false;
+        if(this.impressora != null){
+            if(this.impressora.getNumero().equals(numero)){
+                resposta = true;
+            } else {
+                this.proximo.existe(numero);
+            }
         }
         return resposta;
-
     }
 
     public int getTamanho() {

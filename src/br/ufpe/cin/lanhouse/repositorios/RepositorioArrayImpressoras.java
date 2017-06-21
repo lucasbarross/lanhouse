@@ -15,7 +15,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		this.index = 0;
 	}
 
-	public void inserir(Impressora impressora) throws ImpressoraJaCadastradaException, SemEspacoImpressoraException {
+	public void inserir(Impressora impressora)  {
 		if(index == impressoras.length-1){
 			Impressora[] novaArray = new Impressora[impressoras.length * 2];
 			for (int i = 0; i < novaArray.length; i++) {

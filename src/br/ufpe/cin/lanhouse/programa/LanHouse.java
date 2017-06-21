@@ -56,8 +56,8 @@ public class LanHouse {
 			adm.cadastrarPessoa(new Cliente("Dilma", "6", f, 54));
 			adm.cadastrarPessoa(new Cliente("Fernando Collor", "7", m, 54));
 			adm.cadastrarPessoa(new Cliente("Russel", "8", m, 54));
-			adm.cadastrarPessoa(new Cliente("Saulo Guilhermino", "9", m, 54));
-			adm.cadastrarPessoa(new Cliente("Alexandre", "11", m, 54));
+			adm.cadastrarPessoa(new Funcionario("Saulo Guilhermino", "9", m, 54));
+			adm.cadastrarPessoa(new Funcionario("Alexandre", "11", m, 54));
 			//erro
 			adm.cadastrarPessoa(new Cliente("Wowboy", "11", m, 54));
 		} catch(ClienteJaCadastradoException e) {
@@ -96,6 +96,19 @@ public class LanHouse {
 			adm.cadastrarAplicativo(new Aplicativo("Skype", 15, 15));
 		} catch (AplicativoJaCadastradoException e) {
 			e.printStackTrace();
+		}
+
+		try {
+			adm.ligarComputador("9", "1");
+			adm.ligarComputador("9", "3");
+			adm.ligarComputador("9", "4");
+			adm.ligarComputador("9", "5");
+			adm.ligarComputador("11", "2");
+			adm.ligarComputador("11", "7");
+			adm.ligarComputador("11", "6");
+
+		} catch () {
+
 		}
 	}
 

@@ -21,6 +21,10 @@ public class CadastroImpressoras {
     }
 
     public void cadastrar(Impressora i) throws SemEspacoImpressoraException, ImpressoraJaCadastradaException {
+        if(impressoras.existe(i.getNumero())) {
+            throw new ImpressoraJaCadastradaException();
+        }
+
         if(this.impressoras.getTamanho() < capacidade) {
             this.impressoras.inserir(i);
         } else {

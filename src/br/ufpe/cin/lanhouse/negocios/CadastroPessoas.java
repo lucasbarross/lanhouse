@@ -19,7 +19,11 @@ public class CadastroPessoas {
         }
     }
 
-    public void cadastrar(Pessoa pessoa) throws SemEspacoAplicativosException {
+    public void cadastrar(Pessoa pessoa) throws PessoaJaCadastradaException, SemEspacoAplicativosException {
+        if(pessoas.existe(pessoa.getCpf())) {
+            throw new PessoaJaCadastradaException();
+        }
+
         if(pessoas.getTamanho() < capacidade){
             pessoas.inserir(pessoa);
         }else{

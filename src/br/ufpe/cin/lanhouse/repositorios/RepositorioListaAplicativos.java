@@ -43,7 +43,6 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
 
     public boolean existe(String nome){
         boolean resposta = false;
-
         if(this.app != null){
             if(this.app.getNome().equals(nome)){
                 resposta = true;
@@ -51,7 +50,6 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
                 this.proximo.existe(nome);
             }
         }
-
         return resposta;
     }
 

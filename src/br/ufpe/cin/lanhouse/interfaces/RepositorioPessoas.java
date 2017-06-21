@@ -8,4 +8,5 @@ public interface RepositorioPessoas {
     void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException;
     void remover (String cpf) throws PessoaNaoEncontradaException;
     int getTamanho();
+    boolean existe(String nome);
 }

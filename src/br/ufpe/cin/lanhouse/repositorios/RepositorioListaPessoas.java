@@ -76,4 +76,16 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
         return tamanho;
     }
 
+    public boolean existe(String nome){
+        boolean resposta = false;
+        if(this.pessoa != null){
+            if(this.pessoa.getNome().equals(nome)){
+                resposta = true;
+            } else {
+                this.proximo.existe(nome);
+            }
+        }
+        return resposta;
+    }
+
 }

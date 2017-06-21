@@ -79,4 +79,16 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
     public int getIndexAtual() {
         return 0;
     }
+
+    public boolean existe(String id){
+        boolean resposta = false;
+        if(this.maquina != null){
+            if(this.maquina.getId().equals(id)){
+                resposta = true;
+            } else {
+                this.proximo.existe(id);
+            }
+        }
+        return resposta;
+    }
 }

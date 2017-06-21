@@ -1,5 +1,6 @@
 package br.ufpe.cin.lanhouse.repositorios;
 import br.ufpe.cin.lanhouse.basicas.Computador;
+import br.ufpe.cin.lanhouse.exceptions.ComputadorJaCadastradoException;
 import br.ufpe.cin.lanhouse.exceptions.ComputadorNaoEncontradoException;
 import br.ufpe.cin.lanhouse.exceptions.SemEspacoComputadoresException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
@@ -12,7 +13,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         this.computadores = new Computador [10];
     }
 
-    public void inserir(Computador maquina) throws SemEspacoComputadoresException {
+    public void inserir(Computador maquina) {
         if(index == computadores.length - 1){
             Computador[] novaArray = new Computador[computadores.length * 2];
             for (int i = 0; i < novaArray.length; i++) {
@@ -21,6 +22,8 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
             computadores = novaArray;
             inserir(maquina);
         }
+
+
         computadores[index] = maquina;
         index++;
     }
@@ -85,5 +88,14 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
             }
         }
         return indice;
+    }
+
+    public boolean existe(String id) {
+        for(int i = 0; i < this.index; i++) {
+            if(this.computadores[i].equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

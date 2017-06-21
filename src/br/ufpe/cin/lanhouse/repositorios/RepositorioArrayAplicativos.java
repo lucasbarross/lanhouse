@@ -23,7 +23,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         return info;
     }
 
-    public void inserir(Aplicativo app) throws SemEspacoAplicativosException {
+    public void inserir(Aplicativo app)  {
         if(index == apps.length-1){
             Aplicativo[] novaArray = new Aplicativo[apps.length * 2];
             for (int i = 0; i < novaArray.length; i++) {
@@ -87,5 +87,14 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
 
     public int getTamanho(){
         return index;
+    }
+
+    public boolean existe(String app) {
+        for(int i = 0; i < this.index; i++) {
+            if(this.apps[i].equals(app)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

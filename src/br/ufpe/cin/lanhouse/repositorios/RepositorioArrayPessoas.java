@@ -76,4 +76,12 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         }
         return indice;
     }
+    public boolean existe(String nome) {
+        for(int i = 0; i < this.index; i++) {
+            if(this.pessoas[i].equals(nome)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
