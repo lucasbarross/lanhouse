@@ -68,4 +68,9 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
             throw new ComputadorNaoEncontradoException();
         }
     }
+
+    @Override
+    public int getIndexAtual() {
+        return 0;
+    }
 }
