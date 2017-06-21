@@ -25,7 +25,7 @@ public class Administrador {
         cadastroAplicativos= new CadastroAplicativos(array);
         cadastroComputadores = new CadastroComputadores(array);
         cadastroImpressoras = new CadastroImpressoras(array);
-        cadastroPessoas = new CadastroPessoas();
+        cadastroPessoas = new CadastroPessoas(array);
     }
 
     public Aplicativo procurarApp(String nome) throws AppNaoEncontradoException {

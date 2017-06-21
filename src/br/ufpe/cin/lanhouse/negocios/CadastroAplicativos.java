@@ -18,7 +18,7 @@ public class CadastroAplicativos {
     }
     // mudar index atual para gettamanho
     public void cadastrar(Aplicativo app) throws SemEspacoAplicativosException {
-        if(aplicativos.getIndexAtual() < TAMANHO){
+        if(aplicativos.getTamanho() < TAMANHO){
             aplicativos.inserir(app);
         }else{
             throw new SemEspacoAplicativosException();
