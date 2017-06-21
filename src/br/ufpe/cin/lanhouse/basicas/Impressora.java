@@ -40,6 +40,7 @@ public class Impressora {
                     this.cargaPapel = this.cargaPapel - numeroPaginas;
                     this.cargaTintaPreta = this.cargaTintaPreta - (numeroPaginas * this.tintaPorPagina);
                     this.numeroDeImpressoes++;
+                    this.checarCalibragem();
                 } else {
                     throw new SemTintaPretaException();
                 }
@@ -58,6 +59,7 @@ public class Impressora {
                     this.cargaPapel = this.cargaPapel - numeroPaginas;
                     this.cargaTintaColorida = this.cargaTintaColorida - (numeroPaginas * this.tintaPorPagina);
                     this.numeroDeImpressoes++;
+                    this.checarCalibragem();
                 } else {
                     throw new SemTintaColoridaException();
                 }
@@ -83,6 +85,12 @@ public class Impressora {
     public void calibrar() {
         this.impressaoCalibrada = true;
         this.numeroDeImpressoes = 0;
+    }
+
+    private void checarCalibragem() {
+        if(this.numeroDeImpressoes > 100) {
+            this.impressaoCalibrada = false;
+        }
     }
 
 
