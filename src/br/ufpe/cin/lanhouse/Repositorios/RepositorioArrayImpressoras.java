@@ -51,7 +51,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 
 
 	public Impressora procurar(String numero) throws ImpressoraNaoEncontradaException {
-		Impressora resposta = null;
+		Impressora resposta;
 		int i = this.getIndexProcurado(numero);
 		if (i < this.getIndex()) {
 			resposta = this.impressoras[i];

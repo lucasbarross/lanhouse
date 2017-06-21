@@ -22,7 +22,7 @@ public class CadastroAplicativos {
         if(aplicativos.getIndexAtual() < TAMANHO){
             aplicativos.inserir(app);
         }else{
-            throw new ArrayIndexOutOfBoundsException();
+            throw new SemEspacoAplicativosException();
         }
     }
 

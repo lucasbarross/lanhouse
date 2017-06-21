@@ -69,7 +69,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     }
 
     public boolean existe(String numero) {
-        boolean resposta = false;
+        boolean resposta;
 
         if(this.impressora.getNumero().equals(numero)) {
            resposta = true;

@@ -3,7 +3,7 @@ package br.ufpe.cin.lanhouse.basicas;
 import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class Cliente extends Pessoa{
-    Computador computador = null;
+    private Computador computador = null;
 
 	public Cliente(String nome, String cpf, char sexo, int idade) {
 		super(nome, cpf, sexo, idade);
