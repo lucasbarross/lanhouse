@@ -82,11 +82,11 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     }
 
     public int getTamanho() {
-        if(this.impressora != null) {
-            this.tamanho++;
-            this.proximo.getTamanho();
+        int tamanho = 0;
+        if (this.impressora != null) {
+            tamanho = 1 + this.proximo.getTamanho();
         }
-        return this.tamanho;
+        return tamanho;
     }
 
 
