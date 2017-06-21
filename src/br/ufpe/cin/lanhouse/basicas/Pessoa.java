@@ -4,10 +4,10 @@ import br.ufpe.cin.lanhouse.exceptions.SemComputadorException;
 
 public abstract class Pessoa {
 	
-	private String nome;
-	private String cpf;
-	private char sexo;
-	private int idade;
+	private final String nome;
+	private final String cpf;
+	private final char sexo;
+	private final int idade;
 	
 	public Pessoa(String nome, String cpf, char sexo, int idade) {
 		this.nome = nome;
@@ -21,32 +21,17 @@ public abstract class Pessoa {
 	public String getNome() {
 		return nome;
 	}
-	
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
+
 	public String getCpf() {
 		return cpf;
 	}
-	
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
+
 	
 	public char getSexo() {
 		return sexo;
 	}
-	
-	public void setSexo(char sexo) {
-		this.sexo = sexo;
-	}
-	
+
 	public int getIdade() {
 		return idade;
-	}
-	
-	public void setIdade(int idade) {
-		this.idade = idade;
 	}
 }

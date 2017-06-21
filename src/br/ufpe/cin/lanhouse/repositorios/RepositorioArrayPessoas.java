@@ -15,9 +15,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     public void inserir(Pessoa pessoa){
         if(index == pessoas.length - 1){
             Pessoa[] novaArray = new Pessoa[pessoas.length * 2];
-            for (int i = 0; i < novaArray.length; i++) {
-                novaArray[i] = pessoas[i];
-            }
+            System.arraycopy(pessoas, 0, novaArray, 0, novaArray.length);
             pessoas = novaArray;
             inserir(pessoa);
         }
@@ -63,6 +61,15 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         }
 
     }
+    public String listarPessoas() {
+        String info ="";
+
+        for(int i = 0; i < this.index; i++) {
+            info = info + " " + pessoas[i].getNome() + " | " + pessoas[i].getCpf() + " | " + pessoas[i].getSexo() + " | " + pessoas[i].getIdade()+ "\n";
+        }
+
+        return info;
+    }
 
     private int getIndice(String cpf) {
         boolean achou = false;
@@ -76,9 +83,9 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         }
         return indice;
     }
-    public boolean existe(String nome) {
+    public boolean existe(String cpf) {
         for(int i = 0; i < this.index; i++) {
-            if(this.pessoas[i].equals(nome)) {
+            if(this.pessoas[i].getCpf().equals(cpf)) {
                 return true;
             }
         }

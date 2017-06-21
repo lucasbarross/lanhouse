@@ -9,7 +9,7 @@ import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayPessoas;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioListaPessoas;
 
 public class CadastroPessoas {
-    private RepositorioPessoas pessoas;
+    private final RepositorioPessoas pessoas;
     private final int capacidade = 100;
 
     public CadastroPessoas(boolean array){
@@ -42,5 +42,9 @@ public class CadastroPessoas {
 
     public Pessoa procurar(String cpf) throws PessoaNaoEncontradaException {
         return pessoas.procurar(cpf);
+    }
+
+    public String listarPessoas() {
+        return this.pessoas.listarPessoas();
     }
 }

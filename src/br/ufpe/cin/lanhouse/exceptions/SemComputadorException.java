@@ -6,6 +6,6 @@ package br.ufpe.cin.lanhouse.exceptions;
 public class SemComputadorException extends Exception {
 
     public SemComputadorException(){
-        super("Você não está alocado a nenhum computador.");
+        super("O cliente não está alocado a nenhum computador.");
     }
 }

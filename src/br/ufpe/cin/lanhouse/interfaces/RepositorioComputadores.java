@@ -7,6 +7,7 @@ public interface RepositorioComputadores {
     void inserir(Computador maquina);
     void atualizar(Computador maquina) throws ComputadorNaoEncontradoException;
     void remover (String id) throws ComputadorNaoEncontradoException;
-    int getIndexAtual();
+    int getTamanho();
+    String listarComputadores();
     boolean existe(String nome);
 }

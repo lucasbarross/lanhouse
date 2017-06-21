@@ -1,9 +1,7 @@
 package br.ufpe.cin.lanhouse.repositorios;
 
-import br.ufpe.cin.lanhouse.basicas.Cliente;
-import br.ufpe.cin.lanhouse.basicas.Pessoa;
+import br.ufpe.cin.lanhouse.basicas.*;
 import br.ufpe.cin.lanhouse.exceptions.PessoaNaoEncontradaException;
-import br.ufpe.cin.lanhouse.interfaces.RepositorioPessoas;
 
 public class RepositorioListaClientes {
 
@@ -13,22 +11,6 @@ public class RepositorioListaClientes {
     public RepositorioListaClientes(){
         this.pessoa = null;
         this.proximo = null;
-    }
-
-    public Pessoa procurar(String cpf) throws PessoaNaoEncontradaException {
-        Pessoa resposta = null;
-
-        if(this.pessoa != null){
-            if(this.pessoa.getCpf().equals(cpf)){
-                resposta = this.pessoa;
-            } else {
-                this.proximo.procurar(cpf);
-            }
-        } else {
-            throw new PessoaNaoEncontradaException();
-        }
-
-        return resposta;
     }
 
     public void inserir(Cliente pessoa) {
@@ -54,14 +36,6 @@ public class RepositorioListaClientes {
         }
     }
 
-    public int getTamanho() {
-        int tamanho = 0;
-        if (this.pessoa != null) {
-            tamanho = 1 + this.proximo.getTamanho();
-        }
-        return tamanho;
-    }
-
     public String getClientes() {
         String info = "";
         if(this.pessoa != null) {
@@ -75,17 +49,5 @@ public class RepositorioListaClientes {
             this.pessoa.passarTempo();
             this.proximo.passarTempo();
         }
-    }
-
-    public boolean existe(String nome){
-        boolean resposta = false;
-        if(this.pessoa != null){
-            if(this.pessoa.getNome().equals(nome)){
-                resposta = true;
-            } else {
-                this.proximo.existe(nome);
-            }
-        }
-        return resposta;
     }
 }

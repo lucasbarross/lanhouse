@@ -9,7 +9,7 @@ import br.ufpe.cin.lanhouse.repositorios.*;
 
 
 public class CadastroComputadores {
-    private RepositorioComputadores computadores;
+    private final RepositorioComputadores computadores;
     private final int capacidade = 100;
 
     public CadastroComputadores(boolean array){
@@ -26,7 +26,7 @@ public class CadastroComputadores {
             throw new ComputadorJaCadastradoException();
         }
 
-        if(computadores.getIndexAtual() < capacidade){
+        if(computadores.getTamanho() < capacidade){
             computadores.inserir((Computador) computadores);
         }else{
             throw new SemEspacoComputadoresException();
@@ -43,5 +43,9 @@ public class CadastroComputadores {
 
     public Computador procurar(String id) throws ComputadorNaoEncontradoException {
         return computadores.procurar(id);
+    }
+
+    public String listarComputadores() {
+        return this.computadores.listarComputadores();
     }
 }

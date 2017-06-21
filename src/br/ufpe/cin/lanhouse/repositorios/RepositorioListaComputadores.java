@@ -75,11 +75,6 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
         }
     }
 
-    @Override
-    public int getIndexAtual() {
-        return 0;
-    }
-
     public boolean existe(String id){
         boolean resposta = false;
         if(this.maquina != null){
@@ -90,5 +85,12 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
             }
         }
         return resposta;
+    }
+    public int getTamanho() {
+        int tamanho = 0;
+        if (this.maquina != null) {
+            tamanho = 1 + this.proximo.getTamanho();
+        }
+        return tamanho;
     }
 }

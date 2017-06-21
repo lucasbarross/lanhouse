@@ -3,8 +3,8 @@ package br.ufpe.cin.lanhouse.basicas;
 public class Aplicativo {
 	
 	private String nome;
-	private int tamanho;
-	private int ramNecessaria;
+	private final int tamanho;
+	private final int ramNecessaria;
 	
 	public Aplicativo(String nome, int tamanho, int ramNecessaria){
 		this.nome = nome;

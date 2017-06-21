@@ -1,8 +1,6 @@
 package br.ufpe.cin.lanhouse.repositorios;
 import br.ufpe.cin.lanhouse.basicas.Computador;
-import br.ufpe.cin.lanhouse.exceptions.ComputadorJaCadastradoException;
 import br.ufpe.cin.lanhouse.exceptions.ComputadorNaoEncontradoException;
-import br.ufpe.cin.lanhouse.exceptions.SemEspacoComputadoresException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
 
 public class RepositorioArrayComputadores implements RepositorioComputadores {
@@ -16,9 +14,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
     public void inserir(Computador maquina) {
         if(index == computadores.length - 1){
             Computador[] novaArray = new Computador[computadores.length * 2];
-            for (int i = 0; i < novaArray.length; i++) {
-                novaArray[i] = computadores[i];
-            }
+            System.arraycopy(computadores, 0, novaArray, 0, novaArray.length);
             computadores = novaArray;
             inserir(maquina);
         }
@@ -31,7 +27,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         String info ="";
 
         for(int i = 0; i < this.index; i++) {
-            info = info + " " + computadores[i].getId() + " " + computadores[i].getEstado() + "|" + computadores[i].getUsuario() + "\n";
+            info = info + " " + computadores[i].getId() + " " + computadores[i].getEstado() + " | " + computadores[i].getUsuario() + "\n";
         }
 
         return info;
@@ -62,11 +58,6 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
 
     }
 
-    @Override
-    public int getIndexAtual() {
-        return 0;
-    }
-
     public void atualizar(Computador maquina) throws ComputadorNaoEncontradoException{
         int i = this.getIndice(maquina.getId());
         if(i == -1){
@@ -89,10 +80,13 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         }
         return indice;
     }
+    public int getTamanho() {
+        return this.index;
+    }
 
     public boolean existe(String id) {
         for(int i = 0; i < this.index; i++) {
-            if(this.computadores[i].equals(id)) {
+            if(this.computadores[i].getId().equals(id)) {
                 return true;
             }
         }

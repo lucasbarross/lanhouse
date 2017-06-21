@@ -9,7 +9,7 @@ public class CadastroAplicativos {
     private final int hd = 1000;
     private int hdUsado = 0;
 
-    private RepositorioAplicativos aplicativos;
+    private final RepositorioAplicativos aplicativos;
 
     public CadastroAplicativos(boolean array){
         if(array){
@@ -41,5 +41,9 @@ public class CadastroAplicativos {
 
     public Aplicativo procurar(String nome) throws AppNaoEncontradoException {
         return aplicativos.procurar(nome);
+    }
+
+    public String listarAplicativos() {
+        return this.aplicativos.listarAplicativos();
     }
 }

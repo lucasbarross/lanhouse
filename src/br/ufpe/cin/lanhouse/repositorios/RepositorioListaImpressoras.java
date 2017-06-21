@@ -1,19 +1,16 @@
 package br.ufpe.cin.lanhouse.repositorios;
 
 import br.ufpe.cin.lanhouse.basicas.Impressora;
-import br.ufpe.cin.lanhouse.exceptions.ImpressoraJaCadastradaException;
 import br.ufpe.cin.lanhouse.exceptions.ImpressoraNaoEncontradaException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioImpressoras;
 
 public class RepositorioListaImpressoras implements RepositorioImpressoras {
     private Impressora impressora;
     private RepositorioListaImpressoras proximo;
-    private int tamanho;
 
     public RepositorioListaImpressoras() {
         this.impressora = null;
         this.proximo = null;
-        this.tamanho = 0;
     }
 
     public void inserir(Impressora impressora)  {
@@ -27,7 +24,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     	if(this.impressora == null) {
     		throw new ImpressoraNaoEncontradaException();
     	} else {
-    		if(this.impressora.getNumero().equals(numero)) {
+    		if(this.impressora.getId().equals(numero)) {
     			this.impressora = this.proximo.impressora;
     			this.proximo = this.proximo.proximo;
     		} else {
@@ -40,7 +37,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
         Impressora resposta = null;
 
         if(this.impressora != null) {
-            if(this.impressora.getNumero().equals(numero)) {
+            if(this.impressora.getId().equals(numero)) {
                 resposta = this.impressora;
             } else {
                 this.proximo.procurar(numero);
@@ -56,7 +53,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     	if(this.impressora == null) {
     		throw new ImpressoraNaoEncontradaException();
     	} else {
-    		if(this.impressora.getNumero().equals(atualizada.getNumero())) {
+    		if(this.impressora.getId().equals(atualizada.getId())) {
     			this.impressora = atualizada;
     		} else {
     			this.proximo.atualizar(atualizada);
@@ -67,7 +64,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     public boolean existe(String numero){
         boolean resposta = false;
         if(this.impressora != null){
-            if(this.impressora.getNumero().equals(numero)){
+            if(this.impressora.getId().equals(numero)){
                 resposta = true;
             } else {
                 this.proximo.existe(numero);
@@ -87,7 +84,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     public String listarImpressoras() {
         String info = "";
         if(this.impressora != null) {
-            info = info + " " + this.impressora.getMarca() + " " + this.impressora.getNumero()+"\n" + this.proximo.listarImpressoras();
+            info = info + " " + this.impressora.getMarca() + " " + this.impressora.getId()+"\n" + this.proximo.listarImpressoras();
         }
         return info;
     }

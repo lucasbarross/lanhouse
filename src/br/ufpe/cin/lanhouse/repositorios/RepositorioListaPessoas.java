@@ -67,6 +67,13 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
             throw new PessoaNaoEncontradaException();
         }
     }
+    public String listarPessoas() {
+        String info = "";
+        if(this.pessoa != null) {
+            info = info + " " + this.pessoa.getNome() + " | " + this.pessoa.getCpf()+ " | " + this.pessoa.getSexo() +"\n" + this.proximo.listarPessoas();
+        }
+        return info;
+    }
 
     public int getTamanho() {
         int tamanho = 0;

@@ -7,13 +7,12 @@ import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 
 public class Computador {
 
-	private String id;
-	private int ram;
+	private final String id;
+	private final int ram;
 	private boolean ligado;
 	private Cliente cliente;
 	private int ram_ocupada = 0;
-	private boolean pronto = false;
-    private RepositorioListaAplicativos appsExecucao;
+    private final RepositorioListaAplicativos appsExecucao;
 
 	public Computador(String id, int ram){
         appsExecucao = new RepositorioListaAplicativos();
@@ -55,10 +54,6 @@ public class Computador {
 		return this.id;
 	}
 
-	public int getRAM(){
-		return this.ram;
-	}
-
 	public String getUsuario(){
 		if(this.cliente == null){
 			return "------";
@@ -78,24 +73,22 @@ public class Computador {
 		}
     }
 
-	public void executar(Aplicativo app) throws AppNaoEncontradoException, AppEmExecucaoException, SemRamException {
+	public String executar(Aplicativo app) throws AppEmExecucaoException, SemRamException {
         if(appsExecucao.existe(app.getNome())){
             throw new AppEmExecucaoException();
-        }else{
-            if(ram_ocupada+app.getRamNecessaria()>ram){
-                throw new SemRamException();
-          } else {
-                appsExecucao.inserir(app);
-                app.executar();
-                ram_ocupada += app.getRamNecessaria();
-          }
         }
+		if(ram_ocupada+app.getRamNecessaria() > ram){
+			throw new SemRamException();
+	   	}
+		appsExecucao.inserir(app);
+		ram_ocupada += app.getRamNecessaria();
+		return app.executar();
 	}
 
-	public void encerrar(Aplicativo app) throws AppNaoEncontradoException{
-            appsExecucao.remover(app.getNome());
-            ram_ocupada = ram_ocupada - app.getRamNecessaria();
-            app.encerrar();
+	public String encerrar(Aplicativo app) throws AppNaoEncontradoException{
+		appsExecucao.remover(app.getNome());
+		ram_ocupada = ram_ocupada - app.getRamNecessaria();
+		return app.encerrar();
 	}
 
 
@@ -104,8 +97,8 @@ public class Computador {
 		return "Id: " + this.getId() + '\n'+
 				"Estado: " + this.getEstado() + '\n' +
 				"Usuario: " + this.getUsuario() + '\n'+
-				"RAM Total: " + this.getRAM() + '\n'+
-				"RAM Disponivel: " + (this.getRAM() - this.ram_ocupada) + '\n'+
+				"RAM Total: " + this.ram + '\n'+
+				"RAM Disponivel: " + (this.ram - this.ram_ocupada) + '\n'+
 				"Aplicativos em execução: " + appsExecucao.getApps();
 	}
 

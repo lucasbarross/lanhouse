@@ -9,7 +9,7 @@ import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayImpressoras;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioListaImpressoras;
 
 public class CadastroImpressoras {
-    private RepositorioImpressoras impressoras;
+    private final RepositorioImpressoras impressoras;
     private final int capacidade = 30;
 
     public CadastroImpressoras(boolean array) {
@@ -21,7 +21,7 @@ public class CadastroImpressoras {
     }
 
     public void cadastrar(Impressora i) throws SemEspacoImpressoraException, ImpressoraJaCadastradaException {
-        if(impressoras.existe(i.getNumero())) {
+        if(impressoras.existe(i.getId())) {
             throw new ImpressoraJaCadastradaException();
         }
 
@@ -42,6 +42,10 @@ public class CadastroImpressoras {
 
     public Impressora procurar(String i) throws ImpressoraNaoEncontradaException {
         return this.impressoras.procurar(i);
+    }
+
+    public String listarImpressoras() {
+        return this.impressoras.listarImpressoras();
     }
 
 }

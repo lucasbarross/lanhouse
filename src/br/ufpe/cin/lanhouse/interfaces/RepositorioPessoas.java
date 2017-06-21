@@ -9,4 +9,5 @@ public interface RepositorioPessoas {
     void remover (String cpf) throws PessoaNaoEncontradaException;
     int getTamanho();
     boolean existe(String nome);
+    String listarPessoas();
 }

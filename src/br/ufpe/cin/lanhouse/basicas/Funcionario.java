@@ -5,11 +5,12 @@ import br.ufpe.cin.lanhouse.repositorios.RepositorioListaClientes;
 
 public class Funcionario extends Pessoa {
     private int clientesAtendidos;
-    private RepositorioListaClientes clientes;
+    private final RepositorioListaClientes clientes;
 
 	public Funcionario(String nome, String cpf, char sexo, int idade) {
 		super(nome, cpf, sexo, idade);
         clientesAtendidos = 0;
+        clientes = new RepositorioListaClientes();
 	}
 
     public String usarComputador() {

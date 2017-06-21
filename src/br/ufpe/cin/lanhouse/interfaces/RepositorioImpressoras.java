@@ -17,5 +17,6 @@ public interface RepositorioImpressoras {
 
 	boolean existe(String impressora);
 
+	String listarImpressoras();
 
 }

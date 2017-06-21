@@ -18,14 +18,9 @@ public class Cliente extends Pessoa{
         }
     }
 
-    public int getTempoAtual() {
-        return this.tempoAtual;
-    }
-
     public String getInfo() {
-        String info = "Cliente: " + this.getNome() + ";\nCPF:" + this.getCpf() + ";" +
-                "\nTempo Atual: " + this.getTempoAtual() + " minutos;\n";
-        return info;
+        return "Cliente: " + this.getNome() + ";\nCPF:" + this.getCpf() + ";" +
+                "\nTempo Atual: " + this.tempoAtual + " minutos;\n";
     }
 
     public void passarTempo() {
@@ -40,9 +35,16 @@ public class Cliente extends Pessoa{
         }
     }
 
-	public void executarAplicativo(Aplicativo app) throws AppEmExecucaoException, AppNaoEncontradoException, SemRamException {
-        this.computador.executar(app);
+	public String executarAplicativo(Aplicativo app) throws AppEmExecucaoException, SemRamException, SemComputadorException {
+        if(this.computador == null) {
+            throw new SemComputadorException();
+        }
+        return this.computador.executar(app);
 	}
+
+    public String encerrarAplicativo(Aplicativo app) throws AppNaoEncontradoException {
+        return this.computador.encerrar(app);
+    }
 
     public String desconectarComputador() {
         this.computador = null;

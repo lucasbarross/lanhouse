@@ -1,16 +1,11 @@
 package br.ufpe.cin.lanhouse.programa;
 
 import br.ufpe.cin.lanhouse.basicas.*;
-import br.ufpe.cin.lanhouse.exceptions.AplicativoJaCadastradoException;
-import br.ufpe.cin.lanhouse.exceptions.ClienteJaCadastradoException;
-import br.ufpe.cin.lanhouse.exceptions.ComputadorJaCadastradoException;
-import br.ufpe.cin.lanhouse.exceptions.ImpressoraJaCadastradaException;
-import br.ufpe.cin.lanhouse.fachada.Administrador;
+import br.ufpe.cin.lanhouse.exceptions.*;
+import br.ufpe.cin.lanhouse.fachada.*;
 import br.ufpe.cin.lanhouse.negocios.*;
-import br.ufpe.cin.lanhouse.repositorios.*;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -19,10 +14,10 @@ public class LanHouse {
 	public static void main(String[] args) {
 		Administrador adm;
 		try {
-			FileReader entrada = null;
+			FileReader entrada;
 			entrada = new FileReader("config.txt");
 			BufferedReader br = new BufferedReader(entrada);
-			String linha = null;
+			String linha;
 			linha = br.readLine();
 			boolean array;
 			array = linha.equals("array");
@@ -30,7 +25,7 @@ public class LanHouse {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
+/*
 		try {
 			adm.cadastrarComputador(new Computador("1", 500));
 			adm.cadastrarComputador(new Computador("2", 500));
@@ -107,9 +102,15 @@ public class LanHouse {
 			adm.ligarComputador("11", "7");
 			adm.ligarComputador("11", "6");
 
-		} catch () {
-
-		}
+		} catch (ComputadorLigadoException e) {
+			e.printStackTrace();
+		} catch (PessoaNaoEncontradaException e) {
+			e.printStackTrace();
+		} catch (PessoaSemPermissaoException e) {
+			e.printStackTrace();
+		} catch (ComputadorNaoEncontradoException e) {
+			e.printStackTrace();
+		} */
 	}
 
 }

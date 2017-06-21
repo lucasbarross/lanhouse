@@ -6,16 +6,14 @@ import br.ufpe.cin.lanhouse.exceptions.*;
  * Created by vlma on 16/06/2017.
  */
 public class Impressora {
-	//talvez retirar atributos marca e calibrado(????)
-    private String marca;
-    private String numero;
+    private final String marca;
+    private final String numero;
     private double cargaTintaPreta;
     private double cargaTintaColorida;
     private int cargaPapel;
     private final int CARGA_MAX_PAPEL;
-    private double tintaPorPagina;
+    private final double tintaPorPagina;
     private int numeroDeImpressoes;
-    private boolean impressaoCalibrada;
 
     public Impressora(String marca, String numero, int papelMax, double tintaPorPagina) {
         this.marca = marca;
@@ -25,52 +23,40 @@ public class Impressora {
         this.cargaTintaPreta = 0;
         this.cargaTintaColorida = 0;
         this.tintaPorPagina = tintaPorPagina;
-        this.impressaoCalibrada = false;
         this.numeroDeImpressoes = 0;
     }
 
-	public String getNumero() {
+	public String getId() {
 		return numero;
 	}
 
-    public void imprimirEmPreto(int numeroPaginas) throws SemFolhaException, SemTintaPretaException, ImpressoraDescalibradaException {
-        if (impressaoCalibrada) {
-            if (this.cargaPapel >= numeroPaginas) {
-                if (cargaTintaPreta >= numeroPaginas * tintaPorPagina) {
-                    this.cargaPapel = this.cargaPapel - numeroPaginas;
-                    this.cargaTintaPreta = this.cargaTintaPreta - (numeroPaginas * this.tintaPorPagina);
-                    this.numeroDeImpressoes++;
-                    this.checarCalibragem();
-                } else {
-                    throw new SemTintaPretaException();
-                }
+    public void imprimirEmPreto(int numeroPaginas) throws SemFolhaException, SemTintaPretaException {
+        if (this.cargaPapel >= numeroPaginas) {
+            if (cargaTintaPreta >= numeroPaginas * tintaPorPagina) {
+                this.cargaPapel = this.cargaPapel - numeroPaginas;
+                this.cargaTintaPreta = this.cargaTintaPreta - (numeroPaginas * this.tintaPorPagina);
+                this.numeroDeImpressoes++;
             } else {
-                throw new SemFolhaException();
+                throw new SemTintaPretaException();
             }
         } else {
-            throw new ImpressoraDescalibradaException();
+            throw new SemFolhaException();
         }
     }
     
-    public void imprimirEmColorido(int numeroPaginas) throws SemFolhaException, SemTintaColoridaException, ImpressoraDescalibradaException {
-        if (impressaoCalibrada) {
-            if (this.cargaPapel >= numeroPaginas) {
-                if (cargaTintaColorida >= numeroPaginas * tintaPorPagina) {
-                    this.cargaPapel = this.cargaPapel - numeroPaginas;
-                    this.cargaTintaColorida = this.cargaTintaColorida - (numeroPaginas * this.tintaPorPagina);
-                    this.numeroDeImpressoes++;
-                    this.checarCalibragem();
-                } else {
-                    throw new SemTintaColoridaException();
-                }
+    public void imprimirEmColorido(int numeroPaginas) throws SemFolhaException, SemTintaColoridaException {
+        if (this.cargaPapel >= numeroPaginas) {
+            if (this.cargaTintaColorida >= numeroPaginas * this.tintaPorPagina) {
+                this.cargaPapel = this.cargaPapel - numeroPaginas;
+                this.cargaTintaColorida = this.cargaTintaColorida - (numeroPaginas * this.tintaPorPagina);
+                this.numeroDeImpressoes += numeroPaginas;
             } else {
-                throw new SemFolhaException();
+                throw new SemTintaColoridaException();
             }
         } else {
-            throw new ImpressoraDescalibradaException();
+            throw new SemFolhaException();
         }
     }
-    
 
     public void recarregarPagina(int numeroDePaginas) throws SemEspacoPapelException {
         int total = this.cargaPapel + numeroDePaginas;
@@ -81,16 +67,12 @@ public class Impressora {
         }
     }
 
-    // talvez CalibradoException
-    public void calibrar() {
-        this.impressaoCalibrada = true;
-        this.numeroDeImpressoes = 0;
+    public void recarregarTintaPreta() {
+        this.cargaTintaPreta = 1;
     }
 
-    private void checarCalibragem() {
-        if(this.numeroDeImpressoes > 100) {
-            this.impressaoCalibrada = false;
-        }
+    public void recarregarTintaColorida() {
+        this.cargaTintaColorida = 1;
     }
 
     public String getMarca() {
