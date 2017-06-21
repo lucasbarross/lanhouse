@@ -5,6 +5,6 @@ package br.ufpe.cin.lanhouse.Exceptions;
  */
 public class SemFolhaException extends Exception{
 	public SemFolhaException() {
-		super("Não tem mais folhas");
+		super("Não há folhas suficientes");
 	}
 }

@@ -5,6 +5,6 @@ package br.ufpe.cin.lanhouse.Exceptions;
  */
 public class ImpressoraJaCadastradaException extends Exception {
 	public ImpressoraJaCadastradaException() {
-		super("ImpressoraJaCadastradaException");
+		super("A impressora já está cadastrada");
 	}
 }

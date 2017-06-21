@@ -5,7 +5,7 @@ package br.ufpe.cin.lanhouse.Exceptions;
  */
 public class ComputadorNaoEncontradoException extends Exception {
     public ComputadorNaoEncontradoException() {
-        super("ComputadorNaoEncontradoException");
+        super("O computador não foi encontrado");
     }
 
 }

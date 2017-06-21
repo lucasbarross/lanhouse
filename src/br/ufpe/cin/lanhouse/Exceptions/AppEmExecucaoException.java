@@ -5,6 +5,6 @@ package br.ufpe.cin.lanhouse.Exceptions;
  */
 public class AppEmExecucaoException extends Exception{
     public AppEmExecucaoException(){
-        super("O Aplicativo ja esta sendo executado");
+        super("O aplicativo já está sendo executado");
     }
 }

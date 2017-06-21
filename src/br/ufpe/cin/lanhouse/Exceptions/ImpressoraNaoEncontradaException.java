@@ -5,6 +5,6 @@ package br.ufpe.cin.lanhouse.Exceptions;
  */
 public class ImpressoraNaoEncontradaException extends Exception {
 	public ImpressoraNaoEncontradaException() {
-		super("ImpressoraNaoEncontradaException");
+		super("A impressora não foi encontrada");
 	}
 }

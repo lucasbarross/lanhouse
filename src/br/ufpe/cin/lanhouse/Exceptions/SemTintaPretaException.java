@@ -5,6 +5,6 @@ package br.ufpe.cin.lanhouse.Exceptions;
  */
 public class SemTintaPretaException extends Exception{
 	public SemTintaPretaException() {
-		super("Sem tinta preta");
+		super("Carga de tinta preta insuficiente");
 	}
 }

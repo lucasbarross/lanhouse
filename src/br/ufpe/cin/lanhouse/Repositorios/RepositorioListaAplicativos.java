@@ -41,6 +41,20 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
         return resposta;
     }
 
+    public boolean existe(String nome){
+        boolean resposta = false;
+
+        if(this.app != null){
+            if(this.app.getNome().equals(nome)){
+                resposta = true;
+            } else {
+                this.proximo.existe(nome);
+            }
+        }
+
+        return resposta;
+    }
+
 
     public void atualizar(Aplicativo app) throws AppNaoEncontradoException {
         if(this.app != null){

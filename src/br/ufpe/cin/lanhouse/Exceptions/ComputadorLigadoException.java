@@ -7,5 +7,7 @@ import br.ufpe.cin.lanhouse.Basicas.Computador;
  */
 
 public class ComputadorLigadoException extends Exception {
-    public ComputadorLigadoException() { super("O computador já está ligado")};
+    public ComputadorLigadoException() {
+        super("O computador já está ligado");
+    }
 }

@@ -5,6 +5,6 @@ package br.ufpe.cin.lanhouse.Exceptions;
  */
 public class ImpressoraDescalibradaException extends Exception {
 	public ImpressoraDescalibradaException() {
-		super("ImpressoraDescalibradaException");
+		super("A impressora está descalibrada");
 	}
 }

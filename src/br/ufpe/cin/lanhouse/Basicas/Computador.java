@@ -16,6 +16,7 @@ public class Computador {
     private RepositorioListaAplicativos appsExecucao;
 
 	public Computador(String id, int ram){
+        appsExecucao = new RepositorioListaAplicativos();
 		this.id = id;
 		this.hd = 1000;
 		this.ram = ram;
@@ -54,7 +55,7 @@ public class Computador {
 		if(this.cliente == null){
 			return "------";
 		}else{
-			return ""+this.cliente;
+			return ""+this.cliente.getNome();
 		}
 	}
 
@@ -66,17 +67,24 @@ public class Computador {
         this.cliente = cliente;
     }
 
-	public void executar(Aplicativo app) throws AppNaoEncontradoException, AppEmExecucaoException {
-		if(app.getExecutado()){
-			throw new AppEmExecucaoException();
-		}else {
-			app.executar();
-		}
+	public void executar(Aplicativo app) throws AppNaoEncontradoException, AppEmExecucaoException, SemRamExcepetion {
+        if(appsExecucao.existe(app.getNome())){
+            throw new AppEmExecucaoException();
+        }else{
+            if(ram_ocupada+app.getRamNecessaria()>ram){
+                throw new SemRamExcepetion();
+          } else {
+                appsExecucao.inserir(app);
+                app.executar();
+                ram_ocupada += app.getRamNecessaria();
+          }
+        }
 	}
 
 	public void encerrar(Aplicativo app) throws AppNaoEncontradoException{
-		ram_ocupada = ram_ocupada-app.getRamNecessaria();
-        app.encerrar();
+            appsExecucao.remover(app.getNome());
+            ram_ocupada = ram_ocupada - app.getRamNecessaria();
+            app.encerrar();
 	}
 
 
