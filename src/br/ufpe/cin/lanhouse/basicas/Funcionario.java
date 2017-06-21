@@ -1,21 +1,22 @@
 package br.ufpe.cin.lanhouse.basicas;
 
 import br.ufpe.cin.lanhouse.exceptions.*;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioListaPessoas;
 
 public class Funcionario extends Pessoa {
     private int clientesAtendidos;
+    private RepositorioListaPessoas clientes;
 
 	public Funcionario(String nome, String cpf, char sexo, int idade) {
 		super(nome, cpf, sexo, idade);
         clientesAtendidos = 0;
 	}
 
-    @Override
-    public String usarComputador() throws SemComputadorException {
-        return null;
+    public String usarComputador() {
+
     }
 
-    public void ligarComputador(Computador computador) throws ComputadorLigadoException {
+	public void ligarComputador(Computador computador) throws ComputadorLigadoException {
         computador.ligar();
     }
 

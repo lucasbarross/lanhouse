@@ -1,5 +1,7 @@
 package br.ufpe.cin.lanhouse.basicas;
-
+/**
+ * Created by sgfl on 16/06/2017.
+ */
 import br.ufpe.cin.lanhouse.exceptions.*;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 
@@ -103,7 +105,8 @@ public class Computador {
 
 	/* observar estado atual da mÃ¡quina */
 	public String estadoAtual(){
-		return "Estado: " + this.getEstado() + '\n' +
+		return "Id: " + this.getId() + '\n'+
+				"Estado: " + this.getEstado() + '\n' +
 				"Usuario: " + this.getUsuario() + '\n'+
 				"HD Total: " + this.getHD() + '\n'+
 				"HD Disponivel: " + (this.getHD() - this.hd_ocupado) + '\n'+

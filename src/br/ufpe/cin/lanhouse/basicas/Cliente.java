@@ -4,6 +4,7 @@ import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class Cliente extends Pessoa{
     private Computador computador = null;
+    private int tempoAtual;
 
 	public Cliente(String nome, String cpf, char sexo, int idade) {
 		super(nome, cpf, sexo, idade);
@@ -15,6 +16,20 @@ public class Cliente extends Pessoa{
         } else {
             throw new ClienteComComputadorException();
         }
+    }
+
+    public int getTempoAtual() {
+        return this.tempoAtual;
+    }
+
+    public String getInfo() {
+        String info = "Cliente: " + this.getNome() + ";\nCPF:" + this.getCpf() + ";" +
+                "\nTempo Atual: " + this.getTempoAtual() + " minutos;\n";
+        return info;
+    }
+
+    public void passarTempo() {
+        this.tempoAtual += 10;
     }
 
     public String usarComputador() throws SemComputadorException {
@@ -31,5 +46,6 @@ public class Cliente extends Pessoa{
 
     public void desconectarComputador() {
         this.computador = null;
+        this.tempoAtual = 0;
     }
 }

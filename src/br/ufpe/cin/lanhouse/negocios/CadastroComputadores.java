@@ -4,7 +4,6 @@ import br.ufpe.cin.lanhouse.basicas.Computador;
 import br.ufpe.cin.lanhouse.exceptions.ComputadorNaoEncontradoException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayComputadores;
-import br.ufpe.cin.lanhouse.repositorios.RepositorioListaComputadores;
 
 
 public class CadastroComputadores {
