@@ -17,8 +17,12 @@ public class Cliente extends Pessoa{
         }
     }
 
-    public String getComputador() {
-        return this.computador.getEstado();
+    public String usarComputador() throws SemComputadorException {
+        if(computador != null) {
+            return computador.estadoAtual();
+        } else {
+            throw new SemComputadorException();
+        }
     }
 
 	public void executarAplicativo(Aplicativo app) throws AppEmExecucaoException, AppNaoEncontradoException, SemRamException {

@@ -108,7 +108,8 @@ public class Computador {
 				"HD Total: " + this.getHD() + '\n'+
 				"HD Disponivel: " + (this.getHD() - this.hd_ocupado) + '\n'+
 				"RAM Total: " + this.getRAM() + '\n'+
-				"RAM Disponivel: " + (this.getRAM() - this.ram_ocupada);
+				"RAM Disponivel: " + (this.getRAM() - this.ram_ocupada) + '\n'+
+				"Aplicativos em execução: " + appsExecucao.getApps();
 	}
 
 }

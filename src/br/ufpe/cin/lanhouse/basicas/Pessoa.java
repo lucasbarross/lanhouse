@@ -1,5 +1,7 @@
 package br.ufpe.cin.lanhouse.basicas;
 
+import br.ufpe.cin.lanhouse.exceptions.SemComputadorException;
+
 public abstract class Pessoa {
 	
 	private String nome;
@@ -13,6 +15,8 @@ public abstract class Pessoa {
 		this.sexo = sexo;
 		this.idade = idade;
 	}
+
+	public abstract String usarComputador() throws SemComputadorException;
 
 	public String getNome() {
 		return nome;
