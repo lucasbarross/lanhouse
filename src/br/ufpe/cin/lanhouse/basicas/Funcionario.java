@@ -15,14 +15,6 @@ public class Funcionario extends Pessoa {
         return this.clientes.getClientes();
     }
 
-	public void ligarComputador(Computador computador) throws ComputadorLigadoException {
-        computador.ligar();
-    }
-
-    public void desligarComputador(Computador computador) throws ComputadorDesligadoException {
-        computador.desligar();
-    }
-
     public void conectarCliente(Cliente cliente, Computador computador) throws ClienteComComputadorException, ComputadorUtilizadoException, ComputadorDesligadoException {
         computador.setCliente(cliente);
         cliente.setComputador(computador);

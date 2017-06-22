@@ -141,21 +141,13 @@ public class Administrador {
         ((Funcionario) funcionario).passarTempo();
     }
 
-    public void ligarComputador(String cpfFuncionario, String id) throws ComputadorLigadoException, ComputadorNaoEncontradoException, PessoaNaoEncontradaException, PessoaSemPermissaoException {
-        Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
+    public void ligarComputador(String id) throws ComputadorLigadoException, ComputadorNaoEncontradoException {
         Computador computador = this.cadastroComputadores.procurar(id);
-        if(!(funcionario instanceof Funcionario)) {
-            throw new PessoaSemPermissaoException();
-        }
-        ((Funcionario) funcionario).ligarComputador(computador);
+        computador.ligar();
     }
-    public void desligarComputador(String cpfFuncionario, String id) throws ComputadorDesligadoException, ComputadorNaoEncontradoException, PessoaNaoEncontradaException, PessoaSemPermissaoException {
-        Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
+    public void desligarComputador(String id) throws ComputadorDesligadoException, ComputadorNaoEncontradoException {
         Computador computador = this.cadastroComputadores.procurar(id);
-        if(!(funcionario instanceof Funcionario)) {
-            throw new PessoaSemPermissaoException();
-        }
-        ((Funcionario) funcionario).desligarComputador(computador);
+        computador.desligar();
     }
 
     public void desconectarCliente(String cpfFuncionario, String id) throws ComputadorNaoEncontradoException, PessoaNaoEncontradaException, SemClienteException, PessoaSemPermissaoException {

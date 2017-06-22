@@ -5,5 +5,5 @@ package br.ufpe.cin.lanhouse.exceptions;
  */
 
 public class ComputadorUtilizadoException extends Exception {
-    public ComputadorUtilizadoException() { super("O computador já está sendo utilizado");}
+    public ComputadorUtilizadoException(String id) { super("O computador (" + id + ") já está sendo utilizado");}
 }

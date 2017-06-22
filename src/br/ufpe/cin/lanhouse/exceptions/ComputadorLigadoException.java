@@ -5,7 +5,7 @@ package br.ufpe.cin.lanhouse.exceptions;
  */
 
 public class ComputadorLigadoException extends Exception {
-    public ComputadorLigadoException() {
-        super("O computador já está ligado");
+    public ComputadorLigadoException(String id) {
+        super ("O computador (" + id + ") já está ligado");
     }
 }

@@ -31,24 +31,14 @@ class LanHouse {
         try {
 		    adm.cadastrarPessoa(new Funcionario("Gabriel", "9", 'M', 19));
 		    adm.cadastrarPessoa(new Funcionario("Vilma", "11", 'F', 18));
-			adm.ligarComputador("9", "1");
-			adm.ligarComputador("9", "3");
-			adm.ligarComputador("9", "4");
-			adm.ligarComputador("9", "5");
-			adm.ligarComputador("11", "2");
-			adm.ligarComputador("11", "7");
-			adm.ligarComputador("11", "6");
-		} catch (ComputadorLigadoException e) {
-			System.out.println("O computador já está ligado");
-		} catch (PessoaNaoEncontradaException e) {
-            System.out.println("O cpf não existe");
-        } catch (PessoaSemPermissaoException e) {
-            System.out.println("A pessoa não tem permissao");
-        } catch (ComputadorNaoEncontradoException e) {
-            System.out.println("O computador não existe");
-        } catch (PessoaJaCadastradaException e) {
-            System.out.println("Essa pessoa já foi cadastrada");
-        }
+			adm.ligarComputador("1");
+			adm.ligarComputador("3");
+			adm.ligarComputador("2");
+			adm.ligarComputador("6");
+			adm.ligarComputador("1");
+		} catch (ComputadorLigadoException | PessoaJaCadastradaException | ComputadorNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
     }
 
 }

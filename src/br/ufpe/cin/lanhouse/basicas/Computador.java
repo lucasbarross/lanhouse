@@ -81,7 +81,7 @@ public class Computador {
 
 	public String executar(Aplicativo app) throws AplicativoEmExecucaoException, SemRamException {
         if(this.appsExecucao.existe(app.getNome())){
-            throw new AplicativoEmExecucaoException();
+            throw new AplicativoEmExecucaoException(app.getNome());
         }
 		if(this.ram_ocupada +app.getRamNecessaria() > this.ram){
 			throw new SemRamException();
