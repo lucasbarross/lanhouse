@@ -46,7 +46,7 @@ public class Administrador {
         this.cadastroPessoas.atualizar(pessoa);
     }
 
-    public void atualizarAplicativo(Aplicativo aplicativo) throws AplicativoNaoEncontradoException {
+    public void atualizarAplicativo(Aplicativo aplicativo) throws AplicativoNaoEncontradoException, SemEspacoAplicativosException {
         this.cadastroAplicativos.atualizar(aplicativo);
     }
 

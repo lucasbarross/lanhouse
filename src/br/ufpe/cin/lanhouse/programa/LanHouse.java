@@ -28,6 +28,9 @@ class LanHouse {
             throw new ConfigInvalidoException();
         }
         
+        /*
+         Instalação de aplicativos padrões no HD principal da LAN house.
+         */
         try {
 			adm.instalarAplicativo(new Aplicativo("Skype", 2, 500));
 			adm.instalarAplicativo(new Aplicativo("Discord", 1, 100));
@@ -45,19 +48,20 @@ class LanHouse {
 			adm.instalarAplicativo(new Aplicativo("HeidiSQL",2, 125));
 			adm.instalarAplicativo(new Aplicativo("Sublime", 1, 25));
 			adm.instalarAplicativo(new Aplicativo("Spotify", 2, 300));
+			adm.instalarAplicativo(new Aplicativo("Planeta Minecraft", 7, 1700));
+			adm.instalarAplicativo(new Aplicativo("Colheita Feliz", 50, 2000));
 		} catch (SemEspacoAplicativosException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		} catch (AplicativoJaCadastradoException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			System.out.println(e1.getMessage());
 		}
+        
         
         /*
          * 	TESTE 1
          	Funciona sem erros;
-         	Cadastra dois funcionarios, dois clientes e quatro computadores. 
-         	Liga os computadores, conecta os clientes a dois deles e faz os clientes e um dos funcionarios usarem o computador, imprimindo as informações.
+         	Cadastra dois funcionarios, dois clientes e quatro computadores;
+         	Liga os computadores, conecta os clientes a dois deles e faz os clientes e um dos funcionarios usarem o computador, imprimindo as informações;
         */
 
         try {
@@ -74,6 +78,9 @@ class LanHouse {
 			adm.ligarComputador("2");
 		    adm.conectarCliente("651.065.171-84", "420.367.175-27", "1");
 		    adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
+		    adm.executarApp("420.367.175-27", "Planeta Minecraft");
+		    adm.executarApp("420.367.175-27", "Spotify");
+		    adm.executarApp("823.597.450-93", "Planeta Minecraft");
 			System.out.println(adm.usarComputador("420.367.175-27"));
 			System.out.println(adm.usarComputador("823.597.450-93"));
 			System.out.println(adm.usarComputador("651.065.171-84"));
@@ -81,28 +88,26 @@ class LanHouse {
 		} catch (ComputadorLigadoException | PessoaJaCadastradaException | ComputadorNaoEncontradoException e) {
 			System.out.println(e.getMessage());
 		} catch (SemEspacoComputadoresException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (ComputadorJaCadastradoException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (PessoaNaoEncontradaException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (ClienteComComputadorException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (ComputadorUtilizadoException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (PessoaSemPermissaoException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (ComputadorDesligadoException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 		} catch (SemComputadorException e) {
-			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (AplicativoNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (AplicativoEmExecucaoException e) {
+			System.out.println(e.getMessage());
+		} catch (SemRamException e) {
 			System.out.println(e.getMessage());
 		} finally {
 			System.out.println("----------------- FIM DO TESTE 1 ----------------- ");

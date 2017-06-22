@@ -24,7 +24,6 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
         }
     }
 
-
     public Aplicativo procurar(String nome) throws AplicativoNaoEncontradoException {
         Aplicativo resposta = null;
 
