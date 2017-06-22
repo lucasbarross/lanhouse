@@ -18,7 +18,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
         Pessoa resposta = null;
 
         if(this.pessoa != null){
-            if(this.pessoa.getCpf().equals(cpf)){
+            if(this.pessoa.comparar(cpf)){
                 resposta = this.pessoa;
             } else {
                 this.proximo.procurar(cpf);
@@ -43,7 +43,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
 
     public void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException {
         if(this.pessoa != null){
-            if(this.pessoa.getCpf().equals(pessoa.getCpf())){
+            if(this.pessoa.comparar(pessoa.getCpf())){
                 this.pessoa = pessoa;
             } else {
                 this.proximo.atualizar(pessoa);
@@ -57,7 +57,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
 
     public void remover(String cpf) throws PessoaNaoEncontradaException {
         if(this.pessoa != null){
-            if(this.pessoa.getCpf().equals(cpf)){
+            if(this.pessoa.comparar(cpf)){
                 this.pessoa = this.proximo.pessoa;
                 this.proximo = this.proximo.proximo;
             } else {
@@ -74,19 +74,10 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
         }
         return info;
     }
-
-    public int getTamanho() {
-        int tamanho = 0;
-        if (this.pessoa != null) {
-            tamanho = 1 + this.proximo.getTamanho();
-        }
-        return tamanho;
-    }
-
     public boolean existe(String nome){
         boolean resposta = false;
         if(this.pessoa != null){
-            if(this.pessoa.getNome().equals(nome)){
+            if(this.pessoa.comparar(nome)){
                 resposta = true;
             } else {
                 this.proximo.existe(nome);

@@ -3,8 +3,8 @@ package br.ufpe.cin.lanhouse.basicas;
 public class Aplicativo {
 	
 	private String nome;
-	private final int tamanho;
-	private final int ramNecessaria;
+	private int tamanho;
+	private int ramNecessaria;
 	
 	public Aplicativo(String nome, int tamanho, int ramNecessaria){
 		this.nome = nome;
@@ -13,23 +13,27 @@ public class Aplicativo {
 	}
 	
 	public String executar(){
-		return nome + " foi executado com sucesso.";
+		return this.nome + " foi executado com sucesso.";
 	}
 
 	public String encerrar(){
-		return nome + " foi encerrado com sucesso.";
+		return this.nome + " foi encerrado com sucesso.";
 	}
 	
 	public void renomear(String nome){
 		this.nome = nome;
 	}
-	
+
+	public boolean comparar(String nome) {
+		return this.nome.equals(nome);
+	}
+
 	public String getNome(){
 		return this.nome;
 	}
 
 	public int getTamanho() {
-		return tamanho;
+		return this.tamanho;
 	}
 	
 	public int getRamNecessaria(){

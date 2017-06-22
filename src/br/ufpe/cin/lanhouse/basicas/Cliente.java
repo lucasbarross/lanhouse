@@ -3,7 +3,7 @@ package br.ufpe.cin.lanhouse.basicas;
 import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class Cliente extends Pessoa{
-    private Computador computador = null;
+    private Computador computador;
     private int tempoAtual;
 
 	public Cliente(String nome, String cpf, char sexo, int idade) {
@@ -28,21 +28,21 @@ public class Cliente extends Pessoa{
     }
 
     public String usarComputador() throws SemComputadorException {
-        if(computador != null) {
-            return computador.estadoAtual();
+        if(this.computador != null) {
+            return this.computador.estadoAtual();
         } else {
             throw new SemComputadorException();
         }
     }
 
-	public String executarAplicativo(Aplicativo app) throws AppEmExecucaoException, SemRamException, SemComputadorException {
+	public String executarAplicativo(Aplicativo app) throws AplicativoEmExecucaoException, SemRamException, SemComputadorException {
         if(this.computador == null) {
             throw new SemComputadorException();
         }
         return this.computador.executar(app);
 	}
 
-    public String encerrarAplicativo(Aplicativo app) throws AppNaoEncontradoException {
+    public String encerrarAplicativo(Aplicativo app) throws AplicativoNaoEncontradoException {
         return this.computador.encerrar(app);
     }
 

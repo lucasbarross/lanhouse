@@ -24,7 +24,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     	if(this.impressora == null) {
     		throw new ImpressoraNaoEncontradaException();
     	} else {
-    		if(this.impressora.getId().equals(numero)) {
+    		if(this.impressora.comparar(numero)) {
     			this.impressora = this.proximo.impressora;
     			this.proximo = this.proximo.proximo;
     		} else {
@@ -37,7 +37,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
         Impressora resposta = null;
 
         if(this.impressora != null) {
-            if(this.impressora.getId().equals(numero)) {
+            if(this.impressora.comparar(numero)) {
                 resposta = this.impressora;
             } else {
                 this.proximo.procurar(numero);
@@ -53,7 +53,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     	if(this.impressora == null) {
     		throw new ImpressoraNaoEncontradaException();
     	} else {
-    		if(this.impressora.getId().equals(atualizada.getId())) {
+    		if(this.impressora.comparar(atualizada.getId())) {
     			this.impressora = atualizada;
     		} else {
     			this.proximo.atualizar(atualizada);
@@ -64,7 +64,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     public boolean existe(String numero){
         boolean resposta = false;
         if(this.impressora != null){
-            if(this.impressora.getId().equals(numero)){
+            if(this.impressora.comparar(numero)){
                 resposta = true;
             } else {
                 this.proximo.existe(numero);
@@ -75,7 +75,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
 
     public int getTamanho() {
         int tamanho = 0;
-        if (this.impressora != null) {
+        if (this.proximo != null) {
             tamanho = 1 + this.proximo.getTamanho();
         }
         return tamanho;

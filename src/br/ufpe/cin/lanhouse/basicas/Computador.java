@@ -1,37 +1,39 @@
 package br.ufpe.cin.lanhouse.basicas;
+
+import br.ufpe.cin.lanhouse.exceptions.*;
+import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
+
 /**
  * Created by sgfl on 16/06/2017.
  */
-import br.ufpe.cin.lanhouse.exceptions.*;
-import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 
 public class Computador {
 
 	private final String id;
-	private final int ram;
+	private int ram;
 	private boolean ligado;
 	private Cliente cliente;
-	private int ram_ocupada = 0;
-    private final RepositorioListaAplicativos appsExecucao;
+	private int ram_ocupada;
+    private RepositorioListaAplicativos appsExecucao;
 
 	public Computador(String id, int ram){
-        appsExecucao = new RepositorioListaAplicativos();
+        this.appsExecucao = new RepositorioListaAplicativos();
 		this.id = id;
 		this.ram = ram;
 	}
 
 	public void ligar() throws ComputadorLigadoException {
-		if(ligado) {
+		if(this.ligado) {
 			throw new ComputadorLigadoException();
 		}
-		ligado = true;
+        this.ligado = true;
 	}
 
 	public void desligar() throws ComputadorDesligadoException {
-		if(!ligado) {
+		if(!this.ligado) {
 			throw new ComputadorDesligadoException();
 		}
-		ligado = false;
+        this.ligado = false;
 	}
 
 	public String desconectarCliente() throws SemClienteException {
@@ -43,7 +45,7 @@ public class Computador {
 	}
 
 	public String getEstado(){
-		if(ligado){
+		if(this.ligado){
 			return "Ligado";
 		}else{
 			return "Desligado";
@@ -58,7 +60,7 @@ public class Computador {
 		if(this.cliente == null){
 			return "------";
 		}else{
-			return ""+this.cliente.getNome();
+			return this.cliente.getNome();
 		}
 	}
 
@@ -73,33 +75,36 @@ public class Computador {
 		}
     }
 
-	public String executar(Aplicativo app) throws AppEmExecucaoException, SemRamException {
-        if(appsExecucao.existe(app.getNome())){
-            throw new AppEmExecucaoException();
+	public String executar(Aplicativo app) throws AplicativoEmExecucaoException, SemRamException {
+        if(this.appsExecucao.existe(app.getNome())){
+            throw new AplicativoEmExecucaoException();
         }
-		if(ram_ocupada+app.getRamNecessaria() > ram){
+		if(this.ram_ocupada +app.getRamNecessaria() > this.ram){
 			throw new SemRamException();
 	   	}
-		appsExecucao.inserir(app);
-		ram_ocupada += app.getRamNecessaria();
+        this.appsExecucao.inserir(app);
+        this.ram_ocupada += app.getRamNecessaria();
 		return app.executar();
 	}
 
-	public String encerrar(Aplicativo app) throws AppNaoEncontradoException{
-		appsExecucao.remover(app.getNome());
-		ram_ocupada = ram_ocupada - app.getRamNecessaria();
+	public String encerrar(Aplicativo app) throws AplicativoNaoEncontradoException {
+        this.appsExecucao.remover(app.getNome());
+        this.ram_ocupada -= app.getRamNecessaria();
 		return app.encerrar();
 	}
 
 
 	/* observar estado atual da mÃ¡quina */
 	public String estadoAtual(){
-		return "Id: " + this.getId() + '\n'+
+        return "Id: " + this.id + '\n'+
 				"Estado: " + this.getEstado() + '\n' +
 				"Usuario: " + this.getUsuario() + '\n'+
 				"RAM Total: " + this.ram + '\n'+
 				"RAM Disponivel: " + (this.ram - this.ram_ocupada) + '\n'+
-				"Aplicativos em execução: " + appsExecucao.getApps();
+				"Aplicativos em execução: " + this.appsExecucao.getApps();
 	}
 
+    public boolean comparar(String id) {
+        return this.id.equals(id);
+    }
 }

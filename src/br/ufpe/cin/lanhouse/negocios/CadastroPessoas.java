@@ -1,47 +1,33 @@
 package br.ufpe.cin.lanhouse.negocios;
 
 import br.ufpe.cin.lanhouse.basicas.Pessoa;
-import br.ufpe.cin.lanhouse.exceptions.PessoaJaCadastradaException;
-import br.ufpe.cin.lanhouse.exceptions.PessoaNaoEncontradaException;
-import br.ufpe.cin.lanhouse.exceptions.SemEspacoAplicativosException;
+import br.ufpe.cin.lanhouse.exceptions.*;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioPessoas;
-import br.ufpe.cin.lanhouse.repositorios.RepositorioArrayPessoas;
-import br.ufpe.cin.lanhouse.repositorios.RepositorioListaPessoas;
 
 public class CadastroPessoas {
-    private final RepositorioPessoas pessoas;
-    private final int capacidade = 100;
+    private RepositorioPessoas pessoas;
 
-    public CadastroPessoas(boolean array){
-        if(array){
-            pessoas = new RepositorioArrayPessoas();
-        } else {
-            pessoas = new RepositorioListaPessoas();
-        }
+    public CadastroPessoas(RepositorioPessoas repositorio) {
+        this.pessoas = repositorio;
     }
 
-    public void cadastrar(Pessoa pessoa) throws PessoaJaCadastradaException, SemEspacoAplicativosException {
-        if(pessoas.existe(pessoa.getCpf())) {
+    public void cadastrar(Pessoa pessoa) throws PessoaJaCadastradaException {
+        if(this.pessoas.existe(pessoa.getCpf())) {
             throw new PessoaJaCadastradaException();
         }
-
-        if(pessoas.getTamanho() < capacidade){
-            pessoas.inserir(pessoa);
-        }else{
-            throw new SemEspacoAplicativosException();
-        }
+        this.pessoas.inserir(pessoa);
     }
 
     public void remover(String nome) throws PessoaNaoEncontradaException {
-        pessoas.remover(nome);
+        this.pessoas.remover(nome);
     }
 
     public void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException {
-        pessoas.atualizar(pessoa);
+        this.pessoas.atualizar(pessoa);
     }
 
     public Pessoa procurar(String cpf) throws PessoaNaoEncontradaException {
-        return pessoas.procurar(cpf);
+        return this.pessoas.procurar(cpf);
     }
 
     public String listarPessoas() {

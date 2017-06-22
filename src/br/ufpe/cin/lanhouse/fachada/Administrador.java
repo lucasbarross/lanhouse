@@ -1,20 +1,21 @@
 package br.ufpe.cin.lanhouse.fachada;
 import br.ufpe.cin.lanhouse.basicas.*;
 import br.ufpe.cin.lanhouse.exceptions.*;
+import br.ufpe.cin.lanhouse.interfaces.*;
 import br.ufpe.cin.lanhouse.negocios.*;
 
 public class Administrador {
 
-    private final CadastroAplicativos cadastroAplicativos;
-    private final CadastroComputadores cadastroComputadores;
-    private final CadastroImpressoras cadastroImpressoras;
-    private final CadastroPessoas cadastroPessoas;
+    private CadastroAplicativos cadastroAplicativos;
+    private CadastroComputadores cadastroComputadores;
+    private CadastroImpressoras cadastroImpressoras;
+    private CadastroPessoas cadastroPessoas;
 
-    public Administrador(CadastroAplicativos cadastroAplicativos, CadastroComputadores cadastroComputadores, CadastroImpressoras cadastroImpressoras, CadastroPessoas cadastroPessoas) {
-        this.cadastroAplicativos = cadastroAplicativos;
-        this.cadastroComputadores = cadastroComputadores;
-        this.cadastroImpressoras = cadastroImpressoras;
-        this.cadastroPessoas = cadastroPessoas;
+    public Administrador(RepositorioAplicativos repositorioAplicativos, RepositorioComputadores repositorioComputadores, RepositorioImpressoras repositorioImpressoras, RepositorioPessoas repositorioPessoas) {
+        this.cadastroAplicativos = new CadastroAplicativos(repositorioAplicativos);
+        this.cadastroComputadores = new CadastroComputadores(repositorioComputadores);
+        this.cadastroImpressoras = new CadastroImpressoras(repositorioImpressoras);
+        this.cadastroPessoas = new CadastroPessoas(repositorioPessoas);
     }
 
     public void removerImpressora(String id) throws ImpressoraNaoEncontradaException {
@@ -29,7 +30,7 @@ public class Administrador {
         this.cadastroPessoas.remover(cpf);
     }
 
-    public void removerAplicativo(String nome) throws AppNaoEncontradoException {
+    public void removerAplicativo(String nome) throws AplicativoNaoEncontradoException {
         this.cadastroAplicativos.remover(nome);
     }
 
@@ -45,30 +46,30 @@ public class Administrador {
         this.cadastroPessoas.atualizar(pessoa);
     }
 
-    public void atualizarAplicativo(Aplicativo aplicativo) throws AppNaoEncontradoException {
+    public void atualizarAplicativo(Aplicativo aplicativo) throws AplicativoNaoEncontradoException {
         this.cadastroAplicativos.atualizar(aplicativo);
     }
 
-    public String executarApp(String cpfCliente, String nomeApp) throws PessoaNaoEncontradaException, AppNaoEncontradoException, PessoaSemPermissaoException, AppEmExecucaoException, SemComputadorException, SemRamException {
-        Pessoa cliente = cadastroPessoas.procurar(cpfCliente);
-        Aplicativo app = cadastroAplicativos.procurar(nomeApp);
+    public String executarApp(String cpfCliente, String nomeApp) throws PessoaNaoEncontradaException, AplicativoNaoEncontradoException, PessoaSemPermissaoException, AplicativoEmExecucaoException, SemComputadorException, SemRamException {
+        Pessoa cliente = this.cadastroPessoas.procurar(cpfCliente);
+        Aplicativo app = this.cadastroAplicativos.procurar(nomeApp);
         if(!(cliente instanceof Cliente)) {
             throw new PessoaSemPermissaoException();
         }
         return ((Cliente) cliente).executarAplicativo(app);
     }
 
-    public String encerrarApp(String cpfCliente, String nomeApp) throws AppNaoEncontradoException, PessoaNaoEncontradaException, PessoaSemPermissaoException {
-        Pessoa cliente = cadastroPessoas.procurar(cpfCliente);
-        Aplicativo app = cadastroAplicativos.procurar(nomeApp);
+    public String encerrarApp(String cpfCliente, String nomeApp) throws AplicativoNaoEncontradoException, PessoaNaoEncontradaException, PessoaSemPermissaoException {
+        Pessoa cliente = this.cadastroPessoas.procurar(cpfCliente);
+        Aplicativo app = this.cadastroAplicativos.procurar(nomeApp);
         if(!(cliente instanceof Cliente)) {
             throw new PessoaSemPermissaoException();
         }
         return ((Cliente) cliente).encerrarAplicativo(app);
     }
 
-    public Aplicativo procurarApp(String nome) throws AppNaoEncontradoException {
-        return cadastroAplicativos.procurar(nome);
+    public Aplicativo procurarApp(String nome) throws AplicativoNaoEncontradoException {
+        return this.cadastroAplicativos.procurar(nome);
     }
 
     public String listarImpressoras() {
@@ -87,7 +88,7 @@ public class Administrador {
         return this.cadastroPessoas.listarPessoas();
     }
 
-    public void renomearAplicativo(String nomeAntigo, String novoNome) throws AppNaoEncontradoException {
+    public void renomearAplicativo(String nomeAntigo, String novoNome) throws AplicativoNaoEncontradoException {
         Aplicativo app = this.cadastroAplicativos.procurar(nomeAntigo);
         app.renomear(novoNome);
     }
@@ -118,14 +119,14 @@ public class Administrador {
     }
 
     public String usarComputador(String cpf) throws PessoaNaoEncontradaException, SemComputadorException {
-        Pessoa usuario = cadastroPessoas.procurar(cpf);
+        Pessoa usuario = this.cadastroPessoas.procurar(cpf);
         return usuario.usarComputador();
     }
 
     public void conectarCliente(String cpfFuncionario, String cpfCliente, String id) throws PessoaNaoEncontradaException, ComputadorNaoEncontradoException, ClienteComComputadorException, ComputadorUtilizadoException, PessoaSemPermissaoException, ComputadorDesligadoException {
-        Pessoa funcionario = cadastroPessoas.procurar(cpfFuncionario);
-        Pessoa cliente = cadastroPessoas.procurar(cpfCliente);
-        Computador computador = cadastroComputadores.procurar(id);
+        Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
+        Pessoa cliente = this.cadastroPessoas.procurar(cpfCliente);
+        Computador computador = this.cadastroComputadores.procurar(id);
         if(!(funcionario instanceof Funcionario) || !(cliente instanceof Cliente)) {
             throw new PessoaSemPermissaoException();
         }
@@ -133,7 +134,7 @@ public class Administrador {
     }
 
     public void passarTempo(String cpfFuncionario) throws PessoaSemPermissaoException, PessoaNaoEncontradaException {
-        Pessoa funcionario = cadastroPessoas.procurar(cpfFuncionario);
+        Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
         if(!(funcionario instanceof Funcionario)) {
             throw new PessoaSemPermissaoException();
         }
@@ -141,16 +142,16 @@ public class Administrador {
     }
 
     public void ligarComputador(String cpfFuncionario, String id) throws ComputadorLigadoException, ComputadorNaoEncontradoException, PessoaNaoEncontradaException, PessoaSemPermissaoException {
-        Pessoa funcionario = cadastroPessoas.procurar(cpfFuncionario);
-        Computador computador = cadastroComputadores.procurar(id);
+        Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
+        Computador computador = this.cadastroComputadores.procurar(id);
         if(!(funcionario instanceof Funcionario)) {
             throw new PessoaSemPermissaoException();
         }
         ((Funcionario) funcionario).ligarComputador(computador);
     }
     public void desligarComputador(String cpfFuncionario, String id) throws ComputadorDesligadoException, ComputadorNaoEncontradoException, PessoaNaoEncontradaException, PessoaSemPermissaoException {
-        Pessoa funcionario = cadastroPessoas.procurar(cpfFuncionario);
-        Computador computador = cadastroComputadores.procurar(id);
+        Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
+        Computador computador = this.cadastroComputadores.procurar(id);
         if(!(funcionario instanceof Funcionario)) {
             throw new PessoaSemPermissaoException();
         }
@@ -158,8 +159,8 @@ public class Administrador {
     }
 
     public void desconectarCliente(String cpfFuncionario, String id) throws ComputadorNaoEncontradoException, PessoaNaoEncontradaException, SemClienteException, PessoaSemPermissaoException {
-        Pessoa funcionario = cadastroPessoas.procurar(cpfFuncionario);
-        Computador computador = cadastroComputadores.procurar(id);
+        Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
+        Computador computador = this.cadastroComputadores.procurar(id);
         if(!(funcionario instanceof Funcionario)) {
             throw new PessoaSemPermissaoException();
         }
@@ -170,7 +171,7 @@ public class Administrador {
         this.cadastroComputadores.cadastrar(computador);
     }
 
-    public void instalarAplicativo(Aplicativo aplicativo) throws SemEspacoAplicativosException, AppJaCadastradoException {
+    public void instalarAplicativo(Aplicativo aplicativo) throws SemEspacoAplicativosException, AplicativoJaCadastradoException {
         this.cadastroAplicativos.cadastrar(aplicativo);
     }
 
@@ -178,7 +179,7 @@ public class Administrador {
         this.cadastroImpressoras.cadastrar(impressora);
     }
 
-    public void cadastrarPessoa(Pessoa pessoa) throws PessoaJaCadastradaException, SemEspacoAplicativosException {
+    public void cadastrarPessoa(Pessoa pessoa) throws PessoaJaCadastradaException {
         this.cadastroPessoas.cadastrar(pessoa);
     }
 }

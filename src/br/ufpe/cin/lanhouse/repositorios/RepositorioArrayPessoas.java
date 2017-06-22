@@ -13,14 +13,14 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     }
 
     public void inserir(Pessoa pessoa){
-        if(index == pessoas.length - 1){
-            Pessoa[] novaArray = new Pessoa[pessoas.length * 2];
-            System.arraycopy(pessoas, 0, novaArray, 0, novaArray.length);
-            pessoas = novaArray;
-            inserir(pessoa);
+        if(this.index == this.pessoas.length - 1){
+            Pessoa[] novaArray = new Pessoa[this.pessoas.length * 2];
+            System.arraycopy(this.pessoas, 0, novaArray, 0, novaArray.length);
+            this.pessoas = novaArray;
+            this.inserir(pessoa);
         }
-        pessoas[index] = pessoa;
-        index++;
+        this.pessoas[this.index] = pessoa;
+        this.index++;
     }
 
     public Pessoa procurar(String cpf) throws PessoaNaoEncontradaException{
@@ -30,7 +30,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         if(i == -1){
             throw new PessoaNaoEncontradaException();
         } else {
-            pessoa = pessoas[i];
+            pessoa = this.pessoas[i];
         }
 
         return pessoa;
@@ -41,15 +41,11 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         if(i == -1){
             throw new PessoaNaoEncontradaException();
         } else {
-            this.index = this.index - 1;
+            this.index -= 1;
             this.pessoas[i] = this.pessoas[this.index];
             this.pessoas[this.index] = null;
         }
 
-    }
-
-    public int getTamanho() {
-        return index;
     }
 
     public void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException{
@@ -57,7 +53,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         if(i == -1){
             throw new PessoaNaoEncontradaException();
         } else {
-            pessoas[i] = pessoa;
+            this.pessoas[i] = pessoa;
         }
 
     }
@@ -65,19 +61,19 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         String info ="";
 
         for(int i = 0; i < this.index; i++) {
-            info = info + " " + pessoas[i].getNome() + " | " + pessoas[i].getCpf() + " | " + pessoas[i].getSexo() + " | " + pessoas[i].getIdade()+ "\n";
+            info = info + " " + this.pessoas[i].getNome() + " | " + this.pessoas[i].getCpf() + " | " + this.pessoas[i].getSexo() + " | " + this.pessoas[i].getIdade()+ "\n";
         }
 
         return info;
     }
 
     private int getIndice(String cpf) {
-        boolean achou = false;
+        boolean procurando = true;
         int indice = -1;
 
-        for (int i = 0; i < pessoas.length && !achou; i++) {
-            if (pessoas[i].getCpf().equals(cpf)) {
-                achou = true;
+        for (int i = 0; i < this.index && procurando; i++) {
+            if (this.pessoas[i].comparar(cpf)) {
+                procurando = false;
                 indice = i;
             }
         }
@@ -85,7 +81,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     }
     public boolean existe(String cpf) {
         for(int i = 0; i < this.index; i++) {
-            if(this.pessoas[i].getCpf().equals(cpf)) {
+            if(this.pessoas[i].comparar(cpf)) {
                 return true;
             }
         }

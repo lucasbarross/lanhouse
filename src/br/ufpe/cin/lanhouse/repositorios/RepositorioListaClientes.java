@@ -25,7 +25,7 @@ public class RepositorioListaClientes {
 
     public void remover(String cpf) throws PessoaNaoEncontradaException {
         if(this.pessoa != null){
-            if(this.pessoa.getCpf().equals(cpf)){
+            if(this.pessoa.comparar(cpf)){
                 this.pessoa = this.proximo.pessoa;
                 this.proximo = this.proximo.proximo;
             } else {

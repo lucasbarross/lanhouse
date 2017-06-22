@@ -1,7 +1,7 @@
 package br.ufpe.cin.lanhouse.repositorios;
 
 import br.ufpe.cin.lanhouse.basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.exceptions.AppNaoEncontradoException;
+import br.ufpe.cin.lanhouse.exceptions.AplicativoNaoEncontradoException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
 
 public class RepositorioListaAplicativos implements RepositorioAplicativos {
@@ -25,17 +25,17 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
     }
 
 
-    public Aplicativo procurar(String nome) throws AppNaoEncontradoException {
+    public Aplicativo procurar(String nome) throws AplicativoNaoEncontradoException {
         Aplicativo resposta = null;
 
         if(this.app != null){
-            if(this.app.getNome().equals(nome)){
+            if(this.app.comparar(nome)){
                 resposta = this.app;
             } else {
                 this.proximo.procurar(nome);
             }
         } else {
-            throw new AppNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException();
         }
 
         return resposta;
@@ -44,7 +44,7 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
     public boolean existe(String nome){
         boolean resposta = false;
         if(this.app != null){
-            if(this.app.getNome().equals(nome)){
+            if(this.app.comparar(nome)){
                 resposta = true;
             } else {
                 this.proximo.existe(nome);
@@ -54,28 +54,28 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
     }
 
 
-    public void atualizar(Aplicativo app) throws AppNaoEncontradoException {
+    public void atualizar(Aplicativo app) throws AplicativoNaoEncontradoException {
         if(this.app != null){
-            if(this.app.getNome().equals(app.getNome())){
+            if(this.app.comparar(app.getNome())){
                 this.app = app;
             } else {
                 this.proximo.atualizar(app);
             }
         } else {
-            throw new AppNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException();
         }
     }
 
-    public void remover(String nome) throws AppNaoEncontradoException {
+    public void remover(String nome) throws AplicativoNaoEncontradoException {
         if(this.app != null){
-            if(this.app.getNome().equals(nome)){
+            if(this.app.comparar(nome)){
                 this.app = this.proximo.app;
                 this.proximo = this.proximo.proximo;
             } else {
                 this.proximo.remover(nome);
             }
         } else {
-            throw new AppNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException();
         }
     }
 
@@ -90,7 +90,7 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
     public String getApps(){
         if(this.app != null){
             if(this.proximo.proximo != null) {
-                return this.app.getNome() + ", " + proximo.getApps();
+                return this.app.getNome() + ", " + this.proximo.getApps();
             } else {
                 return this.app.getNome();
             }

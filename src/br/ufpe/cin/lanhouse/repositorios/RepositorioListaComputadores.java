@@ -19,7 +19,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
         Computador resposta = null;
 
         if(this.maquina != null){
-            if(this.maquina.getId().equals(id)){
+            if(this.maquina.comparar(id)){
                 resposta = this.maquina;
             } else {
                 this.proximo.procurar(id);
@@ -50,7 +50,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
 
     public void atualizar(Computador maquina) throws ComputadorNaoEncontradoException {
         if(this.maquina != null){
-            if(this.maquina.getId().equals(maquina.getId())){
+            if(this.maquina.comparar(maquina.getId())){
                 this.maquina = maquina;
             } else {
                 this.proximo.atualizar(maquina);
@@ -64,7 +64,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
 
     public void remover(String id) throws ComputadorNaoEncontradoException {
         if(this.maquina != null){
-            if(this.maquina.getId().equals(id)){
+            if(this.maquina.comparar(id)){
                 this.maquina = this.proximo.maquina;
                 this.proximo = this.proximo.proximo;
             } else {
@@ -78,7 +78,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
     public boolean existe(String id){
         boolean resposta = false;
         if(this.maquina != null){
-            if(this.maquina.getId().equals(id)){
+            if(this.maquina.comparar(id)){
                 resposta = true;
             } else {
                 this.proximo.existe(id);
@@ -88,7 +88,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
     }
     public int getTamanho() {
         int tamanho = 0;
-        if (this.maquina != null) {
+        if (this.proximo != null) {
             tamanho = 1 + this.proximo.getTamanho();
         }
         return tamanho;

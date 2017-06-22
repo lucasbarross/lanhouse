@@ -5,32 +5,32 @@ import br.ufpe.cin.lanhouse.exceptions.ImpressoraNaoEncontradaException;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioImpressoras;
 
 public class RepositorioArrayImpressoras implements RepositorioImpressoras {
-	private Impressora[] impressoras;
-	private int index;
+    private Impressora[] impressoras;
+    private int index;
 
-	public RepositorioArrayImpressoras() {
+    public RepositorioArrayImpressoras() {
 		this.impressoras = new Impressora[10];
 		this.index = 0;
 	}
 
 	public void inserir(Impressora impressora)  {
-		if(index == impressoras.length-1){
-			Impressora[] novaArray = new Impressora[impressoras.length * 2];
-			System.arraycopy(impressoras, 0, novaArray, 0, novaArray.length);
-			impressoras = novaArray;
-			inserir(impressora);
+		if(this.index == this.impressoras.length-1){
+			Impressora[] novaArray = new Impressora[this.impressoras.length * 2];
+			System.arraycopy(this.impressoras, 0, novaArray, 0, novaArray.length);
+			this.impressoras = novaArray;
+			this.inserir(impressora);
 		}
-		impressoras[index] = impressora;
-		index++;
+		this.impressoras[this.index] = impressora;
+		this.index++;
 	}
 
 	public void remover(String numero) throws ImpressoraNaoEncontradaException {
-		int i = getIndexProcurado(numero);
+		int i = this.getIndexProcurado(numero);
 		if (i == this.index) {
 			throw new ImpressoraNaoEncontradaException();
 		} else {
-			this.index = this.index - 1;
-			this.impressoras[i] = impressoras[this.index];
+			this.index -= 1;
+			this.impressoras[i] = this.impressoras[this.index];
 			this.impressoras[this.index] = null;
 		}
 	}
@@ -62,7 +62,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	private int getIndexProcurado(String numero) {
 		int indice = 0;
 		for (int i = 0; i < this.index; i++) {
-			if (this.impressoras[indice].getId().equals(numero)) {
+      		if (this.impressoras[indice].comparar(numero)) {
 				return indice;
 			} else {
 				indice++;
@@ -73,7 +73,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 
 	public boolean existe(String impressora) {
 		for(int i = 0; i < this.index; i++) {
-			if(this.impressoras[i].getId().equals(impressora)) {
+			if(this.impressoras[i].comparar(impressora)) {
 				return true;
 			}
 		}
@@ -84,7 +84,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		String info ="";
 
 		for(int i = 0; i < this.index; i++) {
-			info = info + " " + impressoras[i].getMarca() + " " + impressoras[i].getId()+"\n";
+			info = info + " " + this.impressoras[i].getMarca() + " " + this.impressoras[i].getId()+"\n";
 		}
 
 		return info;

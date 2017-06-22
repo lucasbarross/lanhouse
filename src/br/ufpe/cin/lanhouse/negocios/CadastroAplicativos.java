@@ -2,45 +2,40 @@ package br.ufpe.cin.lanhouse.negocios;
 
 import br.ufpe.cin.lanhouse.basicas.Aplicativo;
 import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
-import br.ufpe.cin.lanhouse.repositorios.*;
 import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class CadastroAplicativos {
-    private final int hd = 1000;
-    private int hdUsado = 0;
+    private int hd = 1000;
+    private int hdUsado;
 
     private final RepositorioAplicativos aplicativos;
 
-    public CadastroAplicativos(boolean array){
-        if(array){
-            aplicativos = new RepositorioArrayAplicativos();
-        } else {
-            aplicativos = new RepositorioListaAplicativos();
-        }
+    public CadastroAplicativos(RepositorioAplicativos repositorio){
+        this.aplicativos = repositorio;
     }
 
-    public void cadastrar(Aplicativo app) throws AppJaCadastradoException, SemEspacoAplicativosException {
-        if(aplicativos.existe(app.getNome())) {
-            throw new AppJaCadastradoException();
+    public void cadastrar(Aplicativo app) throws AplicativoJaCadastradoException, SemEspacoAplicativosException {
+        if(this.aplicativos.existe(app.getNome())) {
+            throw new AplicativoJaCadastradoException();
         }
-        if(hdUsado + app.getTamanho() < hd){
-            aplicativos.inserir(app);
-            hdUsado+=app.getTamanho();
+        if(this.hdUsado + app.getTamanho() < this.hd){
+            this.aplicativos.inserir(app);
+            this.hdUsado +=app.getTamanho();
         }else{
             throw new SemEspacoAplicativosException();
         }
     }
 
-    public void remover(String nome) throws AppNaoEncontradoException {
-        aplicativos.remover(nome);
+    public void remover(String nome) throws AplicativoNaoEncontradoException {
+        this.aplicativos.remover(nome);
     }
 
-    public void atualizar(Aplicativo app) throws AppNaoEncontradoException {
-        aplicativos.atualizar(app);
+    public void atualizar(Aplicativo app) throws AplicativoNaoEncontradoException {
+        this.aplicativos.atualizar(app);
     }
 
-    public Aplicativo procurar(String nome) throws AppNaoEncontradoException {
-        return aplicativos.procurar(nome);
+    public Aplicativo procurar(String nome) throws AplicativoNaoEncontradoException {
+        return this.aplicativos.procurar(nome);
     }
 
     public String listarAplicativos() {

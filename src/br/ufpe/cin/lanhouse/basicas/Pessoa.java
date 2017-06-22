@@ -4,10 +4,10 @@ import br.ufpe.cin.lanhouse.exceptions.SemComputadorException;
 
 public abstract class Pessoa {
 	
-	private final String nome;
+	private String nome;
 	private final String cpf;
-	private final char sexo;
-	private final int idade;
+	private char sexo;
+	private int idade;
 	
 	public Pessoa(String nome, String cpf, char sexo, int idade) {
 		this.nome = nome;
@@ -19,19 +19,24 @@ public abstract class Pessoa {
 	public abstract String usarComputador() throws SemComputadorException;
 
 	public String getNome() {
-		return nome;
+		return this.nome;
 	}
 
 	public String getCpf() {
-		return cpf;
+		return this.cpf;
 	}
 
 	
 	public char getSexo() {
-		return sexo;
+		return this.sexo;
 	}
 
 	public int getIdade() {
-		return idade;
+		return this.idade;
 	}
+
+    public boolean comparar(String cpf) {
+        return this.cpf.equals(cpf);
+    }
+
 }
