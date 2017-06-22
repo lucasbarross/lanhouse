@@ -9,5 +9,5 @@ public interface RepositorioComputadores {
     void remover (String id) throws ComputadorNaoEncontradoException;
     int getTamanho();
     String listarComputadores();
-    boolean existe(String nome);
+    boolean existe(String id);
 }

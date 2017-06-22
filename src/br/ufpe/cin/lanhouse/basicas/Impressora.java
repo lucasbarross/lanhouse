@@ -11,17 +11,17 @@ public class Impressora {
     private double cargaTintaPreta;
     private double cargaTintaColorida;
     private int cargaPapel;
-    private int CARGA_MAX_PAPEL;
+    private int cargaMaxPapel;
     private double tintaPorPagina;
     private int numeroDeImpressoes;
 
     public Impressora(String marca, String numero, int papelMax, double tintaPorPagina) {
         this.marca = marca;
         this.id = numero;
-        this.CARGA_MAX_PAPEL = papelMax;
+        this.cargaMaxPapel = papelMax;
         this.cargaPapel = 0;
-        this.cargaTintaPreta = 0;
-        this.cargaTintaColorida = 0;
+        this.cargaTintaPreta = 0.0;
+        this.cargaTintaColorida = 0.0;
         this.tintaPorPagina = tintaPorPagina;
         this.numeroDeImpressoes = 0;
     }
@@ -32,9 +32,9 @@ public class Impressora {
 
     public void imprimirEmPreto(int numeroPaginas) throws SemFolhaException, SemTintaPretaException {
         if (this.cargaPapel >= numeroPaginas) {
-            if (this.cargaTintaPreta >= numeroPaginas * this.tintaPorPagina) {
+            if (this.cargaTintaPreta >= this.tintaPorPagina * numeroPaginas) {
                 this.cargaPapel -= numeroPaginas;
-                this.cargaTintaPreta -= (numeroPaginas * this.tintaPorPagina);
+                this.cargaTintaPreta -= (this.tintaPorPagina * numeroPaginas);
                 this.numeroDeImpressoes++;
             } else {
                 throw new SemTintaPretaException();
@@ -46,9 +46,9 @@ public class Impressora {
     
     public void imprimirEmColorido(int numeroPaginas) throws SemFolhaException, SemTintaColoridaException {
         if (this.cargaPapel >= numeroPaginas) {
-            if (this.cargaTintaColorida >= numeroPaginas * this.tintaPorPagina) {
+            if (this.cargaTintaColorida >= this.tintaPorPagina * numeroPaginas) {
                 this.cargaPapel -= numeroPaginas;
-                this.cargaTintaColorida -= (numeroPaginas * this.tintaPorPagina);
+                this.cargaTintaColorida -= (this.tintaPorPagina* numeroPaginas);
                 this.numeroDeImpressoes += numeroPaginas;
             } else {
                 throw new SemTintaColoridaException();
@@ -60,7 +60,7 @@ public class Impressora {
 
     public void recarregarPagina(int numeroDePaginas) throws SemEspacoPapelException {
         int total = this.cargaPapel + numeroDePaginas;
-        if (total <= this.CARGA_MAX_PAPEL) {
+        if (total <= this.cargaMaxPapel) {
             this.cargaPapel = total;
         } else {
             throw new SemEspacoPapelException();
@@ -68,11 +68,11 @@ public class Impressora {
     }
 
     public void recarregarTintaPreta() {
-        this.cargaTintaPreta = 1;
+        this.cargaTintaPreta = 1.0;
     }
 
     public void recarregarTintaColorida() {
-        this.cargaTintaColorida = 1;
+        this.cargaTintaColorida = 1.0;
     }
 
     public String getMarca() {

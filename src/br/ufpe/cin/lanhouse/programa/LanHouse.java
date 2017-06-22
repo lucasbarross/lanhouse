@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class LanHouse {
+class LanHouse {
 
 	public static void main(String[] args) throws IOException, ConfigInvalidoException {
         Administrador adm;

@@ -5,7 +5,7 @@ import br.ufpe.cin.lanhouse.interfaces.RepositorioComputadores;
 
 public class RepositorioArrayComputadores implements RepositorioComputadores {
     private Computador [] computadores;
-    private int index;
+    private int index = 0;
 
     public RepositorioArrayComputadores(){
         this.computadores = new Computador [10];
@@ -27,7 +27,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         String info ="";
 
         for(int i = 0; i < this.index; i++) {
-            info = info + " " + this.computadores[i].getId() + " " + this.computadores[i].getEstado() + " | " + this.computadores[i].getUsuario() + "\n";
+            info = info + ' ' + this.computadores[i].getId() + ' ' + this.computadores[i].getEstado() + " | " + this.computadores[i].getUsuario() + '\n';
         }
 
         return info;
@@ -68,12 +68,12 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
 
     }
 
-    private int getIndice(String nome) {
+    private int getIndice(String id) {
         boolean procurando = true;
         int indice = -1;
 
         for (int i = 0; i < this.index && procurando; i++) {
-            if (this.computadores[i].comparar(nome)) {
+            if (this.computadores[i].comparar(id)) {
                 procurando = false;
                 indice = i;
             }
@@ -85,11 +85,12 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
     }
 
     public boolean existe(String id) {
-        for(int i = 0; i < this.index; i++) {
+        boolean existe = false;
+        for(int i = 0; i < this.index && !existe; i++) {
             if(this.computadores[i].comparar(id)) {
-                return true;
+                existe = true;
             }
         }
-        return false;
+        return existe;
     }
 }

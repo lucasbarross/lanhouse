@@ -7,6 +7,6 @@ public interface RepositorioPessoas {
     void inserir(Pessoa pessoa);
     void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException;
     void remover (String cpf) throws PessoaNaoEncontradaException;
-    boolean existe(String nome);
+    boolean existe(String cpf);
     String listarPessoas();
 }

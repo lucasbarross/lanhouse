@@ -20,27 +20,27 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
         }
     }
 
-    public void remover(String numero) throws ImpressoraNaoEncontradaException {
+    public void remover(String id) throws ImpressoraNaoEncontradaException {
     	if(this.impressora == null) {
     		throw new ImpressoraNaoEncontradaException();
     	} else {
-    		if(this.impressora.comparar(numero)) {
+    		if(this.impressora.comparar(id)) {
     			this.impressora = this.proximo.impressora;
     			this.proximo = this.proximo.proximo;
     		} else {
-    			this.proximo.remover(numero);
+    			this.proximo.remover(id);
     		}
     	}
     }
 
-    public Impressora procurar(String numero) throws ImpressoraNaoEncontradaException {
+    public Impressora procurar(String id) throws ImpressoraNaoEncontradaException {
         Impressora resposta = null;
 
         if(this.impressora != null) {
-            if(this.impressora.comparar(numero)) {
+            if(this.impressora.comparar(id)) {
                 resposta = this.impressora;
             } else {
-                this.proximo.procurar(numero);
+                this.proximo.procurar(id);
             }
         } else {
             throw new ImpressoraNaoEncontradaException();
@@ -61,13 +61,13 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     	}
     }
 
-    public boolean existe(String numero){
+    public boolean existe(String id){
         boolean resposta = false;
         if(this.impressora != null){
-            if(this.impressora.comparar(numero)){
+            if(this.impressora.comparar(id)){
                 resposta = true;
             } else {
-                this.proximo.existe(numero);
+                this.proximo.existe(id);
             }
         }
         return resposta;
@@ -84,7 +84,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
     public String listarImpressoras() {
         String info = "";
         if(this.impressora != null) {
-            info = info + " " + this.impressora.getMarca() + " " + this.impressora.getId()+"\n" + this.proximo.listarImpressoras();
+            info = info + ' ' + this.impressora.getMarca() + ' ' + this.impressora.getId()+ '\n' + this.proximo.listarImpressoras();
         }
         return info;
     }

@@ -12,13 +12,13 @@ public class CadastroImpressoras {
         this.impressoras = repositorio;
     }
 
-    public void cadastrar(Impressora i) throws SemEspacoImpressoraException, ImpressoraJaCadastradaException {
-        if(this.impressoras.existe(i.getId())) {
+    public void cadastrar(Impressora impressora) throws SemEspacoImpressoraException, ImpressoraJaCadastradaException {
+        if(this.impressoras.existe(impressora.getId())) {
             throw new ImpressoraJaCadastradaException();
         }
 
         if(this.impressoras.getTamanho() < this.capacidade) {
-            this.impressoras.inserir(i);
+            this.impressoras.inserir(impressora);
         } else {
             throw new SemEspacoImpressoraException();
         }
@@ -28,12 +28,12 @@ public class CadastroImpressoras {
         this.impressoras.remover(impressora);
     }
 
-    public void atualizar(Impressora i) throws ImpressoraNaoEncontradaException {
-        this.impressoras.atualizar(i);
+    public void atualizar(Impressora impressora) throws ImpressoraNaoEncontradaException {
+        this.impressoras.atualizar(impressora);
     }
 
-    public Impressora procurar(String i) throws ImpressoraNaoEncontradaException {
-        return this.impressoras.procurar(i);
+    public Impressora procurar(String id) throws ImpressoraNaoEncontradaException {
+        return this.impressoras.procurar(id);
     }
 
     public String listarImpressoras() {

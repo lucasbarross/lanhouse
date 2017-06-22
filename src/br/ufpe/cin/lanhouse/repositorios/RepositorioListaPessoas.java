@@ -70,17 +70,17 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
     public String listarPessoas() {
         String info = "";
         if(this.pessoa != null) {
-            info = info + " " + this.pessoa.getNome() + " | " + this.pessoa.getCpf()+ " | " + this.pessoa.getSexo() +"\n" + this.proximo.listarPessoas();
+            info = info + ' ' + this.pessoa.getNome() + " | " + this.pessoa.getCpf()+ " | " + this.pessoa.getSexo() + '\n' + this.proximo.listarPessoas();
         }
         return info;
     }
-    public boolean existe(String nome){
+    public boolean existe(String cpf){
         boolean resposta = false;
         if(this.pessoa != null){
-            if(this.pessoa.comparar(nome)){
+            if(this.pessoa.comparar(cpf)){
                 resposta = true;
             } else {
-                this.proximo.existe(nome);
+                this.proximo.existe(cpf);
             }
         }
         return resposta;

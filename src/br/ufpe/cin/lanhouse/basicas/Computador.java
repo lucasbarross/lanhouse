@@ -11,9 +11,9 @@ public class Computador {
 
 	private final String id;
 	private int ram;
-	private boolean ligado;
-	private Cliente cliente;
-	private int ram_ocupada;
+	private boolean ligado = false;
+	private Cliente cliente = null;
+	private int ram_ocupada = 0;
     private RepositorioListaAplicativos appsExecucao;
 
 	public Computador(String id, int ram){
@@ -45,11 +45,13 @@ public class Computador {
 	}
 
 	public String getEstado(){
+	    String estado;
 		if(this.ligado){
-			return "Ligado";
+			estado = "Ligado";
 		}else{
-			return "Desligado";
+			estado = "Desligado";
 		}
+		return estado;
 	}
 
 	public String getId(){
@@ -57,11 +59,13 @@ public class Computador {
 	}
 
 	public String getUsuario(){
+	    String usuario;
 		if(this.cliente == null){
-			return "------";
+			usuario = "------";
 		}else{
-			return this.cliente.getNome();
+			usuario = this.cliente.getNome();
 		}
+		return usuario;
 	}
 
     public void setCliente(Cliente cliente) throws ComputadorUtilizadoException, ComputadorDesligadoException {

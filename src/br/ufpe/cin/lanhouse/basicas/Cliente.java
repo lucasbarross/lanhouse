@@ -3,8 +3,8 @@ package br.ufpe.cin.lanhouse.basicas;
 import br.ufpe.cin.lanhouse.exceptions.*;
 
 public class Cliente extends Pessoa{
-    private Computador computador;
-    private int tempoAtual;
+    private Computador computador = null;
+    private int tempoAtual = 0;
 
 	public Cliente(String nome, String cpf, char sexo, int idade) {
 		super(nome, cpf, sexo, idade);
@@ -19,7 +19,7 @@ public class Cliente extends Pessoa{
     }
 
     public String getInfo() {
-        return "Cliente: " + this.getNome() + ";\nCPF:" + this.getCpf() + ";" +
+        return "Cliente: " + this.getNome() + ";\nCPF:" + this.getCpf() + ';' +
                 "\nTempo Atual: " + this.tempoAtual + " minutos;\n";
     }
 

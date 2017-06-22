@@ -8,8 +8,8 @@ public abstract class Pessoa {
 	private final String cpf;
 	private char sexo;
 	private int idade;
-	
-	public Pessoa(String nome, String cpf, char sexo, int idade) {
+
+	Pessoa(String nome, String cpf, char sexo, int idade) {
 		this.nome = nome;
 		this.cpf = cpf;
 		this.sexo = sexo;

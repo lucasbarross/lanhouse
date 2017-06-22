@@ -1,27 +1,27 @@
 package br.ufpe.cin.lanhouse.negocios;
 
 import br.ufpe.cin.lanhouse.basicas.Aplicativo;
-import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
 import br.ufpe.cin.lanhouse.exceptions.*;
+import br.ufpe.cin.lanhouse.interfaces.RepositorioAplicativos;
 
 public class CadastroAplicativos {
     private int hd = 1000;
-    private int hdUsado;
+    private int hdUsado = 0;
 
     private final RepositorioAplicativos aplicativos;
 
-    public CadastroAplicativos(RepositorioAplicativos repositorio){
+    public CadastroAplicativos(RepositorioAplicativos repositorio) {
         this.aplicativos = repositorio;
     }
 
     public void cadastrar(Aplicativo app) throws AplicativoJaCadastradoException, SemEspacoAplicativosException {
-        if(this.aplicativos.existe(app.getNome())) {
+        if (this.aplicativos.existe(app.getNome())) {
             throw new AplicativoJaCadastradoException();
         }
-        if(this.hdUsado + app.getTamanho() < this.hd){
+        if (this.hdUsado + app.getTamanho() < this.hd) {
             this.aplicativos.inserir(app);
-            this.hdUsado +=app.getTamanho();
-        }else{
+            this.hdUsado += app.getTamanho();
+        } else {
             throw new SemEspacoAplicativosException();
         }
     }

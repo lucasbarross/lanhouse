@@ -36,8 +36,8 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         return pessoa;
     }
 
-    public void remover(String id) throws PessoaNaoEncontradaException{
-        int i = this.getIndice(id);
+    public void remover(String cpf) throws PessoaNaoEncontradaException{
+        int i = this.getIndice(cpf);
         if(i == -1){
             throw new PessoaNaoEncontradaException();
         } else {
@@ -61,7 +61,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         String info ="";
 
         for(int i = 0; i < this.index; i++) {
-            info = info + " " + this.pessoas[i].getNome() + " | " + this.pessoas[i].getCpf() + " | " + this.pessoas[i].getSexo() + " | " + this.pessoas[i].getIdade()+ "\n";
+            info = info + ' ' + this.pessoas[i].getNome() + " | " + this.pessoas[i].getCpf() + " | " + this.pessoas[i].getSexo() + " | " + this.pessoas[i].getIdade()+ '\n';
         }
 
         return info;
@@ -80,11 +80,12 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         return indice;
     }
     public boolean existe(String cpf) {
-        for(int i = 0; i < this.index; i++) {
-            if(this.pessoas[i].comparar(cpf)) {
-                return true;
+        boolean existe = false;
+        for (int i = 0; i < this.index && !existe; i++) {
+            if (this.pessoas[i].comparar(cpf)) {
+                existe = true;
             }
         }
-        return false;
+        return existe;
     }
 }

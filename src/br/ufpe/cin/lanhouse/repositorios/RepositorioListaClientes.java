@@ -39,7 +39,7 @@ public class RepositorioListaClientes {
     public String getClientes() {
         String info = "";
         if(this.pessoa != null) {
-            info = this.pessoa.getInfo() + "\n" + this.proximo.getClientes();
+            info = this.pessoa.getInfo() + '\n' + this.proximo.getClientes();
         }
         return info;
     }

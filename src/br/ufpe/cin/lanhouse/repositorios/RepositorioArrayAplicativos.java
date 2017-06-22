@@ -16,7 +16,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         String info ="";
 
         for(int i = 0; i < this.index; i++) {
-            info = info + " " + this.apps[i].getNome() + " " + this.apps[i].getTamanho()+"\n";
+            info = info + ' ' + this.apps[i].getNome() + ' ' + this.apps[i].getTamanho()+ '\n';
         }
 
         return info;
@@ -83,11 +83,12 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
     }
 
     public boolean existe(String app) {
-        for(int i = 0; i < this.index; i++) {
+        boolean existe = false;
+        for(int i = 0; i < this.index && !existe; i++) {
             if(this.apps[i].comparar(app)) {
-                return true;
+                existe = true;
             }
         }
-        return false;
+        return existe;
     }
 }

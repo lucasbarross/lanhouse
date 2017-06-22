@@ -24,8 +24,8 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		this.index++;
 	}
 
-	public void remover(String numero) throws ImpressoraNaoEncontradaException {
-		int i = this.getIndexProcurado(numero);
+	public void remover(String id) throws ImpressoraNaoEncontradaException {
+		int i = this.getIndexProcurado(id);
 		if (i == this.index) {
 			throw new ImpressoraNaoEncontradaException();
 		} else {
@@ -46,9 +46,9 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 
 
 
-	public Impressora procurar(String numero) throws ImpressoraNaoEncontradaException {
+	public Impressora procurar(String id) throws ImpressoraNaoEncontradaException {
 		Impressora resposta;
-		int i = this.getIndexProcurado(numero);
+		int i = this.getIndexProcurado(id);
 		if (i < this.index) {
 			resposta = this.impressoras[i];
 		} else {
@@ -61,9 +61,10 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 
 	private int getIndexProcurado(String numero) {
 		int indice = 0;
-		for (int i = 0; i < this.index; i++) {
+		boolean procurando = true;
+		for (int i = 0; i < this.index && procurando; i++) {
       		if (this.impressoras[indice].comparar(numero)) {
-				return indice;
+				procurando = false;
 			} else {
 				indice++;
 			}
@@ -71,20 +72,21 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		return indice;
 	}
 
-	public boolean existe(String impressora) {
-		for(int i = 0; i < this.index; i++) {
-			if(this.impressoras[i].comparar(impressora)) {
-				return true;
+	public boolean existe(String id) {
+		boolean existe = false;
+		for(int i = 0; i < this.index && !existe; i++) {
+			if(this.impressoras[i].comparar(id)) {
+				existe = true;
 			}
 		}
-		return false;
+		return existe;
 	}
 
 	public String listarImpressoras() {
 		String info ="";
 
 		for(int i = 0; i < this.index; i++) {
-			info = info + " " + this.impressoras[i].getMarca() + " " + this.impressoras[i].getId()+"\n";
+			info = info + ' ' + this.impressoras[i].getMarca() + ' ' + this.impressoras[i].getId()+ '\n';
 		}
 
 		return info;

@@ -41,13 +41,13 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
         return resposta;
     }
 
-    public boolean existe(String nome){
+    public boolean existe(String app){
         boolean resposta = false;
         if(this.app != null){
-            if(this.app.comparar(nome)){
+            if(this.app.comparar(app)){
                 resposta = true;
             } else {
-                this.proximo.existe(nome);
+                this.proximo.existe(app);
             }
         }
         return resposta;
@@ -82,20 +82,20 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
     public String listarAplicativos() {
         String info = "";
         if(this.app != null) {
-            info = info + " " + this.app.getNome() + " " + this.app.getTamanho()+"\n" + this.proximo.listarAplicativos();
+            info = info + ' ' + this.app.getNome() + ' ' + this.app.getTamanho()+ '\n' + this.proximo.listarAplicativos();
         }
         return info;
     }
 
     public String getApps(){
+        String listaApps = "";
         if(this.app != null){
             if(this.proximo.proximo != null) {
-                return this.app.getNome() + ", " + this.proximo.getApps();
+                listaApps = this.app.getNome() + ", " + this.proximo.getApps();
             } else {
-                return this.app.getNome();
+                listaApps = this.app.getNome();
             }
-        } else {
-            return "";
         }
+        return listaApps;
     }
 }
