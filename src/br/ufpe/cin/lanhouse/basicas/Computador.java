@@ -24,14 +24,14 @@ public class Computador {
 
 	public void ligar() throws ComputadorLigadoException {
 		if(this.ligado) {
-			throw new ComputadorLigadoException(id);
+			throw new ComputadorLigadoException(this.id);
 		}
         this.ligado = true;
 	}
 
 	public void desligar() throws ComputadorDesligadoException {
 		if(!this.ligado) {
-			throw new ComputadorDesligadoException(id);
+			throw new ComputadorDesligadoException(this.id);
 		}
         this.ligado = false;
 	}
@@ -40,7 +40,7 @@ public class Computador {
 		if(this.cliente != null) {
 			return this.cliente.desconectarComputador();
 		} else {
-			throw new SemClienteException(id);
+			throw new SemClienteException(this.id);
 		}
 	}
 
@@ -70,12 +70,12 @@ public class Computador {
 
     public void setCliente(Cliente cliente) throws ComputadorUtilizadoException, ComputadorDesligadoException {
 		if(!this.ligado) {
-			throw new ComputadorDesligadoException(id);
+			throw new ComputadorDesligadoException(this.id);
 		}
 		if(this.cliente == null) {
 			this.cliente = cliente;
 		} else {
-			throw new ComputadorUtilizadoException(id);
+			throw new ComputadorUtilizadoException(this.id);
 		}
     }
 
@@ -84,7 +84,7 @@ public class Computador {
             throw new AplicativoEmExecucaoException(app.getNome());
         }
 		if(this.ram_ocupada +app.getRamNecessaria() > this.ram){
-			throw new SemRamException(id, app.getNome());
+			throw new SemRamException(this.id, app.getNome());
 	   	}
         this.appsExecucao.inserir(app);
         this.ram_ocupada += app.getRamNecessaria();
