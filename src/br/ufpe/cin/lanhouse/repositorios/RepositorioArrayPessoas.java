@@ -15,7 +15,9 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     public void inserir(Pessoa pessoa){
         if(this.index == this.pessoas.length - 1){
             Pessoa[] novaArray = new Pessoa[this.pessoas.length * 2];
-            System.arraycopy(this.pessoas, 0, novaArray, 0, novaArray.length);
+            for(int i = 0; i < this.pessoas.length; i++){
+            	novaArray[i] = this.pessoas[i];
+            }
             this.pessoas = novaArray;
             this.inserir(pessoa);
         }
@@ -79,6 +81,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         }
         return indice;
     }
+    
     public boolean existe(String cpf) {
         boolean existe = false;
         for (int i = 0; i < this.index && !existe; i++) {

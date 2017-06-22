@@ -16,7 +16,9 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	public void inserir(Impressora impressora)  {
 		if(this.index == this.impressoras.length-1){
 			Impressora[] novaArray = new Impressora[this.impressoras.length * 2];
-			System.arraycopy(this.impressoras, 0, novaArray, 0, novaArray.length);
+			for(int i = 0; i < this.impressoras.length; i++){
+            	novaArray[i] = this.impressoras[i];
+            }
 			this.impressoras = novaArray;
 			this.inserir(impressora);
 		}
@@ -44,8 +46,6 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		}
 	}
 
-
-
 	public Impressora procurar(String id) throws ImpressoraNaoEncontradaException {
 		Impressora resposta;
 		int i = this.getIndexProcurado(id);
@@ -57,7 +57,6 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 
 		return resposta;
 	}
-
 
 	private int getIndexProcurado(String numero) {
 		int indice = 0;

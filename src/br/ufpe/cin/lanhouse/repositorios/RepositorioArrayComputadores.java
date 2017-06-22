@@ -14,7 +14,9 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
     public void inserir(Computador maquina) {
         if(this.index == this.computadores.length - 1){
             Computador[] novaArray = new Computador[this.computadores.length * 2];
-            System.arraycopy(this.computadores, 0, novaArray, 0, novaArray.length);
+            for(int i = 0; i < this.computadores.length; i++){
+            	novaArray[i] = this.computadores[i];
+            }
             this.computadores = novaArray;
             this.inserir(maquina);
         }
@@ -23,6 +25,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         this.computadores[this.index] = maquina;
         this.index++;
     }
+    
     public String listarComputadores() {
         String info ="";
 
@@ -80,6 +83,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         }
         return indice;
     }
+    
     public int getTamanho() {
         return this.index;
     }

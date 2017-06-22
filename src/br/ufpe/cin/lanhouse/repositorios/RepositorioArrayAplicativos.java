@@ -12,6 +12,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         this.apps = new Aplicativo[10];
         this.index = 0;
     }
+    
     public String listarAplicativos() {
         String info ="";
 
@@ -25,6 +26,9 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
     public void inserir(Aplicativo app)  {
         if(this.index == this.apps.length-1){
             Aplicativo[] novaArray = new Aplicativo[this.apps.length * 2];
+            for(int i = 0; i < this.apps.length; i++){
+            	novaArray[i] = this.apps[i];
+            }
             this.apps = novaArray;
             this.inserir(app);
         }

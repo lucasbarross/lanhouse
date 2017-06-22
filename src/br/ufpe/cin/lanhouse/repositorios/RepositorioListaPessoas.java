@@ -40,7 +40,6 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
 
     }
 
-
     public void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException {
         if(this.pessoa != null){
             if(this.pessoa.comparar(pessoa.getCpf())){
@@ -54,7 +53,6 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
 
     }
 
-
     public void remover(String cpf) throws PessoaNaoEncontradaException {
         if(this.pessoa != null){
             if(this.pessoa.comparar(cpf)){
@@ -67,6 +65,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
             throw new PessoaNaoEncontradaException(cpf);
         }
     }
+    
     public String listarPessoas() {
         String info = "";
         if(this.pessoa != null) {
@@ -74,6 +73,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
         }
         return info;
     }
+    
     public boolean existe(String cpf){
         boolean resposta = false;
         if(this.pessoa != null){
