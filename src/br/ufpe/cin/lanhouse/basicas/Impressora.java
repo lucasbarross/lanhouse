@@ -2,9 +2,6 @@ package br.ufpe.cin.lanhouse.basicas;
 
 import br.ufpe.cin.lanhouse.exceptions.*;
 
-/**
- * Created by vlma on 16/06/2017.
- */
 public class Impressora {
     private String marca;
     private final String id;
@@ -13,7 +10,6 @@ public class Impressora {
     private int cargaPapel;
     private int cargaMaxPapel;
     private double tintaPorPagina;
-    private int numeroDeImpressoes;
 
     public Impressora(String marca, String numero, int papelMax, double tintaPorPagina) {
         this.marca = marca;
@@ -23,7 +19,6 @@ public class Impressora {
         this.cargaTintaPreta = 0.0;
         this.cargaTintaColorida = 0.0;
         this.tintaPorPagina = tintaPorPagina;
-        this.numeroDeImpressoes = 0;
     }
 
 	public String getId() {
@@ -35,7 +30,6 @@ public class Impressora {
             if (this.cargaTintaPreta >= this.tintaPorPagina * numeroPaginas) {
                 this.cargaPapel -= numeroPaginas;
                 this.cargaTintaPreta -= (this.tintaPorPagina * numeroPaginas);
-                this.numeroDeImpressoes++;
             } else {
                 throw new SemTintaPretaException(id);
             }
@@ -49,7 +43,6 @@ public class Impressora {
             if (this.cargaTintaColorida >= this.tintaPorPagina * numeroPaginas) {
                 this.cargaPapel -= numeroPaginas;
                 this.cargaTintaColorida -= (this.tintaPorPagina* numeroPaginas);
-                this.numeroDeImpressoes += numeroPaginas;
             } else {
                 throw new SemTintaColoridaException(id);
             }

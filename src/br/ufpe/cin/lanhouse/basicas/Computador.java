@@ -3,10 +3,6 @@ package br.ufpe.cin.lanhouse.basicas;
 import br.ufpe.cin.lanhouse.exceptions.*;
 import br.ufpe.cin.lanhouse.repositorios.RepositorioListaAplicativos;
 
-/**
- * Created by sgfl on 16/06/2017.
- */
-
 public class Computador {
 
 	private final String id;
@@ -105,7 +101,7 @@ public class Computador {
 				"Usuario: " + this.getUsuario() + '\n'+
 				"RAM Total: " + this.ram + '\n'+
 				"RAM Disponivel: " + (this.ram - this.ram_ocupada) + '\n'+
-				"Aplicativos em execução: " + this.appsExecucao.getApps();
+				"Aplicativos em execução: " + this.appsExecucao.getApps() +'\n';
 	}
 
     public boolean comparar(String id) {

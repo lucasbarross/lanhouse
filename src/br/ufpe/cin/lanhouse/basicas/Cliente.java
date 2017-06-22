@@ -19,7 +19,7 @@ public class Cliente extends Pessoa{
     }
 
     public String getInfo() {
-        return "Cliente: " + this.getNome() + ";\nCPF:" + this.getCpf() + ';' +
+        return "Cliente: " + this.getNome() + ";\nCPF: " + this.getCpf() + ';' +
                 "\nTempo Atual: " + this.tempoAtual + " minutos;\n";
     }
 

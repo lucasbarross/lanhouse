@@ -123,10 +123,10 @@ public class Administrador {
         return usuario.usarComputador();
     }
 
-    public void conectarCliente(String cpfFuncionario, String cpfCliente, String id) throws PessoaNaoEncontradaException, ComputadorNaoEncontradoException, ClienteComComputadorException, ComputadorUtilizadoException, PessoaSemPermissaoException, ComputadorDesligadoException {
+    public void conectarCliente(String cpfFuncionario, String cpfCliente, String idComputador) throws PessoaNaoEncontradaException, ComputadorNaoEncontradoException, ClienteComComputadorException, ComputadorUtilizadoException, PessoaSemPermissaoException, ComputadorDesligadoException {
         Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
         Pessoa cliente = this.cadastroPessoas.procurar(cpfCliente);
-        Computador computador = this.cadastroComputadores.procurar(id);
+        Computador computador = this.cadastroComputadores.procurar(idComputador);
         if(!(funcionario instanceof Funcionario)){
             throw new PessoaSemPermissaoException(funcionario.getNome(), funcionario.getCpf());
         }else if(!(cliente instanceof Cliente)) {
@@ -143,18 +143,18 @@ public class Administrador {
         ((Funcionario) funcionario).passarTempo();
     }
 
-    public void ligarComputador(String id) throws ComputadorLigadoException, ComputadorNaoEncontradoException {
-        Computador computador = this.cadastroComputadores.procurar(id);
+    public void ligarComputador(String idComputador) throws ComputadorLigadoException, ComputadorNaoEncontradoException {
+        Computador computador = this.cadastroComputadores.procurar(idComputador);
         computador.ligar();
     }
-    public void desligarComputador(String id) throws ComputadorDesligadoException, ComputadorNaoEncontradoException {
-        Computador computador = this.cadastroComputadores.procurar(id);
+    public void desligarComputador(String idComputador) throws ComputadorDesligadoException, ComputadorNaoEncontradoException {
+        Computador computador = this.cadastroComputadores.procurar(idComputador);
         computador.desligar();
     }
 
-    public void desconectarCliente(String cpfFuncionario, String id) throws ComputadorNaoEncontradoException, PessoaNaoEncontradaException, SemClienteException, PessoaSemPermissaoException {
+    public void desconectarCliente(String cpfFuncionario, String idComputador) throws ComputadorNaoEncontradoException, PessoaNaoEncontradaException, SemClienteException, PessoaSemPermissaoException {
         Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
-        Computador computador = this.cadastroComputadores.procurar(id);
+        Computador computador = this.cadastroComputadores.procurar(idComputador);
         if(!(funcionario instanceof Funcionario)) {
             throw new PessoaSemPermissaoException(funcionario.getNome(), funcionario.getCpf());
         }

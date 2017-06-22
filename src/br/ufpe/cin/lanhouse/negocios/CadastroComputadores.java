@@ -19,7 +19,7 @@ public class CadastroComputadores {
         }
 
         if(this.computadores.getTamanho() < this.capacidade){
-            this.computadores.inserir((Computador) this.computadores);
+            this.computadores.inserir(computador);
         }else{
             throw new SemEspacoComputadoresException(computador.getId());
         }

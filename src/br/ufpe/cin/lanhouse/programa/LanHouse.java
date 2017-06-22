@@ -27,17 +27,85 @@ class LanHouse {
         } else {
             throw new ConfigInvalidoException();
         }
+        
+        try {
+			adm.instalarAplicativo(new Aplicativo("Skype", 2, 500));
+			adm.instalarAplicativo(new Aplicativo("Discord", 1, 100));
+			adm.instalarAplicativo(new Aplicativo("Eclipse", 5, 800));
+			adm.instalarAplicativo(new Aplicativo("GTA V", 60, 2000));
+			adm.instalarAplicativo(new Aplicativo("Chrome", 1, 1000));
+			adm.instalarAplicativo(new Aplicativo("Firefox", 1, 500));
+			adm.instalarAplicativo(new Aplicativo("Steam", 2, 50));
+			adm.instalarAplicativo(new Aplicativo("Unity", 15, 1000));
+			adm.instalarAplicativo(new Aplicativo("GitHub", 1, 75));
+			adm.instalarAplicativo(new Aplicativo("Photoshop", 3, 800));
+			adm.instalarAplicativo(new Aplicativo("Overwatch", 25, 2000));
+			adm.instalarAplicativo(new Aplicativo("CS:GO", 20, 1500));
+			adm.instalarAplicativo(new Aplicativo("Rocket League", 10, 1200));
+			adm.instalarAplicativo(new Aplicativo("HeidiSQL",2, 125));
+			adm.instalarAplicativo(new Aplicativo("Sublime", 1, 25));
+			adm.instalarAplicativo(new Aplicativo("Spotify", 2, 300));
+		} catch (SemEspacoAplicativosException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (AplicativoJaCadastradoException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+        
+        /*
+         * 	TESTE 1
+         	Funciona sem erros;
+         	Cadastra dois funcionarios, dois clientes e quatro computadores. 
+         	Liga os computadores, conecta os clientes a dois deles e faz os clientes e um dos funcionarios usarem o computador, imprimindo as informações.
+        */
 
         try {
-		    adm.cadastrarPessoa(new Funcionario("Gabriel", "9", 'M', 19));
-		    adm.cadastrarPessoa(new Funcionario("Vilma", "11", 'F', 18));
-			adm.ligarComputador("1");
-			adm.ligarComputador("3");
+        	System.out.println("----------------- TESTE 1 -----------------");
+		    adm.cadastrarPessoa(new Funcionario("Gabriel", "828.408.775-89", 'M', 19));
+		    adm.cadastrarPessoa(new Funcionario("Vilma", "651.065.171-84", 'F', 18));
+		    adm.cadastrarPessoa(new Cliente("Lucas", "420.367.175-27", 'M', 18));
+		    adm.cadastrarPessoa(new Cliente("Saulo", "823.597.450-93", 'M', 18));
+		    adm.cadastrarComputador(new Computador("1", 4000));
+		    adm.cadastrarComputador(new Computador("3", 8000));
+		    adm.cadastrarComputador(new Computador("2", 4000));
+		    adm.cadastrarComputador(new Computador("6", 4000));
+		    adm.ligarComputador("1");
 			adm.ligarComputador("2");
-			adm.ligarComputador("6");
-			adm.ligarComputador("1");
+		    adm.conectarCliente("651.065.171-84", "420.367.175-27", "1");
+		    adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
+			System.out.println(adm.usarComputador("420.367.175-27"));
+			System.out.println(adm.usarComputador("823.597.450-93"));
+			System.out.println(adm.usarComputador("651.065.171-84"));
+			System.out.println(adm.usarComputador("828.408.775-89"));
 		} catch (ComputadorLigadoException | PessoaJaCadastradaException | ComputadorNaoEncontradoException e) {
 			System.out.println(e.getMessage());
+		} catch (SemEspacoComputadoresException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (ComputadorJaCadastradoException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (ClienteComComputadorException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (ComputadorUtilizadoException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (ComputadorDesligadoException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} catch (SemComputadorException e) {
+			// TODO Auto-generated catch block
+			System.out.println(e.getMessage());
+		} finally {
+			System.out.println("----------------- FIM DO TESTE 1 ----------------- ");
 		}
     }
 
