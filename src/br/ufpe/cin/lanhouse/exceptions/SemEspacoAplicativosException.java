@@ -5,7 +5,7 @@ package br.ufpe.cin.lanhouse.exceptions;
  */
 
 public class SemEspacoAplicativosException extends Exception {
-    public SemEspacoAplicativosException() {
-        super("Espaço insuficiente para instalar aplicativo.");
+    public SemEspacoAplicativosException(String nome) {
+        super("Espaço insuficiente para instalar o aplicativo (" + nome + ')');
     }
 }

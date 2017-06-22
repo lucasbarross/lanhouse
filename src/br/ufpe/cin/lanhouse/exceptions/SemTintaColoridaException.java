@@ -1,8 +1,8 @@
 package br.ufpe.cin.lanhouse.exceptions;
 
 public class SemTintaColoridaException extends Exception {
-	public SemTintaColoridaException() {
-		super("Carga de tinta colorida insuficiente");
+	public SemTintaColoridaException(String id) {
+		super("Carga de tinta colorida insuficiente na impressora (" + id + ')');
 	}
 
 }

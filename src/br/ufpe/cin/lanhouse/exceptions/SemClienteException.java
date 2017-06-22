@@ -5,5 +5,5 @@ package br.ufpe.cin.lanhouse.exceptions;
  */
 
 public class SemClienteException extends Exception {
-    public SemClienteException() { super("O computador não está sendo utilizado"); }
+    public SemClienteException(String id) { super("o computador (" + id + ") não está sendo utilizado"); }
 }
