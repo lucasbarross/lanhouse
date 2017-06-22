@@ -24,7 +24,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
                 this.proximo.procurar(cpf);
             }
         } else {
-            throw new PessoaNaoEncontradaException();
+            throw new PessoaNaoEncontradaException(cpf);
         }
 
         return resposta;
@@ -49,7 +49,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
                 this.proximo.atualizar(pessoa);
             }
         } else {
-            throw new PessoaNaoEncontradaException();
+            throw new PessoaNaoEncontradaException(pessoa.getCpf());
         }
 
     }
@@ -64,7 +64,7 @@ public class RepositorioListaPessoas implements RepositorioPessoas {
                 this.proximo.remover(cpf);
             }
         } else {
-            throw new PessoaNaoEncontradaException();
+            throw new PessoaNaoEncontradaException(cpf);
         }
     }
     public String listarPessoas() {

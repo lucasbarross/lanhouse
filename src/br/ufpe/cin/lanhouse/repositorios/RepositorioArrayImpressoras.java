@@ -27,7 +27,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	public void remover(String id) throws ImpressoraNaoEncontradaException {
 		int i = this.getIndexProcurado(id);
 		if (i == this.index) {
-			throw new ImpressoraNaoEncontradaException();
+			throw new ImpressoraNaoEncontradaException(id);
 		} else {
 			this.index -= 1;
 			this.impressoras[i] = this.impressoras[this.index];
@@ -38,7 +38,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	public void atualizar(Impressora atualizada) throws ImpressoraNaoEncontradaException {
 		int i = this.getIndexProcurado(atualizada.getId());
 		if(i == this.index) {
-			throw new ImpressoraNaoEncontradaException();
+			throw new ImpressoraNaoEncontradaException(atualizada.getId());
 		} else {
 			this.impressoras[i] = atualizada;
 		}
@@ -52,7 +52,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 		if (i < this.index) {
 			resposta = this.impressoras[i];
 		} else {
-			throw new ImpressoraNaoEncontradaException();
+			throw new ImpressoraNaoEncontradaException(id);
 		}
 
 		return resposta;

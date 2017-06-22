@@ -25,7 +25,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
                 this.proximo.procurar(id);
             }
         } else {
-            throw new ComputadorNaoEncontradoException();
+            throw new ComputadorNaoEncontradoException(id);
         }
 
         return resposta;
@@ -56,7 +56,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
                 this.proximo.atualizar(maquina);
             }
         } else {
-            throw new ComputadorNaoEncontradoException();
+            throw new ComputadorNaoEncontradoException(maquina.getId());
         }
 
     }
@@ -71,7 +71,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
                 this.proximo.remover(id);
             }
         } else {
-            throw new ComputadorNaoEncontradoException();
+            throw new ComputadorNaoEncontradoException(id);
         }
     }
 

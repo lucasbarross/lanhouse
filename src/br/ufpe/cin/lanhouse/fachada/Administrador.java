@@ -54,7 +54,7 @@ public class Administrador {
         Pessoa cliente = this.cadastroPessoas.procurar(cpfCliente);
         Aplicativo app = this.cadastroAplicativos.procurar(nomeApp);
         if(!(cliente instanceof Cliente)) {
-            throw new PessoaSemPermissaoException();
+            throw new PessoaSemPermissaoException(cliente.getNome(), cliente.getCpf());
         }
         return ((Cliente) cliente).executarAplicativo(app);
     }
@@ -63,7 +63,7 @@ public class Administrador {
         Pessoa cliente = this.cadastroPessoas.procurar(cpfCliente);
         Aplicativo app = this.cadastroAplicativos.procurar(nomeApp);
         if(!(cliente instanceof Cliente)) {
-            throw new PessoaSemPermissaoException();
+            throw new PessoaSemPermissaoException(cliente.getNome(), cliente.getCpf());
         }
         return ((Cliente) cliente).encerrarAplicativo(app);
     }
@@ -127,8 +127,10 @@ public class Administrador {
         Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
         Pessoa cliente = this.cadastroPessoas.procurar(cpfCliente);
         Computador computador = this.cadastroComputadores.procurar(id);
-        if(!(funcionario instanceof Funcionario) || !(cliente instanceof Cliente)) {
-            throw new PessoaSemPermissaoException();
+        if(!(funcionario instanceof Funcionario)){
+            throw new PessoaSemPermissaoException(funcionario.getNome(), funcionario.getCpf());
+        }else if(!(cliente instanceof Cliente)) {
+            throw new PessoaSemPermissaoException(cliente.getNome(), cliente.getCpf());
         }
         ((Funcionario) funcionario).conectarCliente(((Cliente) cliente), computador);
     }
@@ -136,7 +138,7 @@ public class Administrador {
     public void passarTempo(String cpfFuncionario) throws PessoaSemPermissaoException, PessoaNaoEncontradaException {
         Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
         if(!(funcionario instanceof Funcionario)) {
-            throw new PessoaSemPermissaoException();
+            throw new PessoaSemPermissaoException(funcionario.getNome(), funcionario.getCpf());
         }
         ((Funcionario) funcionario).passarTempo();
     }
@@ -154,7 +156,7 @@ public class Administrador {
         Pessoa funcionario = this.cadastroPessoas.procurar(cpfFuncionario);
         Computador computador = this.cadastroComputadores.procurar(id);
         if(!(funcionario instanceof Funcionario)) {
-            throw new PessoaSemPermissaoException();
+            throw new PessoaSemPermissaoException(funcionario.getNome(), funcionario.getCpf());
         }
         ((Funcionario) funcionario).desconectarCliente(computador);
     }

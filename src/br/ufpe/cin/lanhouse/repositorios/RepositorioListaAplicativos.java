@@ -35,7 +35,7 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
                 this.proximo.procurar(nome);
             }
         } else {
-            throw new AplicativoNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException(nome);
         }
 
         return resposta;
@@ -62,7 +62,7 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
                 this.proximo.atualizar(app);
             }
         } else {
-            throw new AplicativoNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException(app.getNome());
         }
     }
 
@@ -75,7 +75,7 @@ public class RepositorioListaAplicativos implements RepositorioAplicativos {
                 this.proximo.remover(nome);
             }
         } else {
-            throw new AplicativoNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException(nome);
         }
     }
 

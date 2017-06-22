@@ -13,7 +13,7 @@ public class CadastroPessoas {
 
     public void cadastrar(Pessoa pessoa) throws PessoaJaCadastradaException {
         if(this.pessoas.existe(pessoa.getCpf())) {
-            throw new PessoaJaCadastradaException();
+            throw new PessoaJaCadastradaException(pessoa.getCpf());
         }
         this.pessoas.inserir(pessoa);
     }

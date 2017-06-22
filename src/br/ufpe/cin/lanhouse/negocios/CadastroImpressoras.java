@@ -14,13 +14,13 @@ public class CadastroImpressoras {
 
     public void cadastrar(Impressora impressora) throws SemEspacoImpressoraException, ImpressoraJaCadastradaException {
         if(this.impressoras.existe(impressora.getId())) {
-            throw new ImpressoraJaCadastradaException();
+            throw new ImpressoraJaCadastradaException(impressora.getId());
         }
 
         if(this.impressoras.getTamanho() < this.capacidade) {
             this.impressoras.inserir(impressora);
         } else {
-            throw new SemEspacoImpressoraException();
+            throw new SemEspacoImpressoraException(impressora.getId());
         }
     }
 

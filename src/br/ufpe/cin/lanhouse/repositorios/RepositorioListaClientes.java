@@ -32,7 +32,7 @@ public class RepositorioListaClientes {
                 this.proximo.remover(cpf);
             }
         } else {
-            throw new PessoaNaoEncontradaException();
+            throw new PessoaNaoEncontradaException(cpf);
         }
     }
 

@@ -38,7 +38,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
         Computador maquina;
         int i = this.getIndice(id);
         if(i == -1){
-            throw new ComputadorNaoEncontradoException();
+            throw new ComputadorNaoEncontradoException(id);
         } else {
             maquina = this.computadores[i];
         }
@@ -49,7 +49,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
     public void remover(String id) throws ComputadorNaoEncontradoException{
         int i = this.getIndice(id);
         if(i == -1){
-            throw new ComputadorNaoEncontradoException();
+            throw new ComputadorNaoEncontradoException(id);
         } else {
             this.index -= 1;
             this.computadores[i] = this.computadores[this.index];
@@ -61,7 +61,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
     public void atualizar(Computador maquina) throws ComputadorNaoEncontradoException{
         int i = this.getIndice(maquina.getId());
         if(i == -1){
-            throw new ComputadorNaoEncontradoException();
+            throw new ComputadorNaoEncontradoException(maquina.getId());
         } else {
             this.computadores[i] = maquina;
         }

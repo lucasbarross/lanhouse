@@ -15,13 +15,13 @@ public class CadastroComputadores {
     public void cadastrar(Computador computador) throws ComputadorJaCadastradoException, SemEspacoComputadoresException{
 
         if(this.computadores.existe(computador.getId())) {
-            throw new ComputadorJaCadastradoException();
+            throw new ComputadorJaCadastradoException(computador.getId());
         }
 
         if(this.computadores.getTamanho() < this.capacidade){
             this.computadores.inserir((Computador) this.computadores);
         }else{
-            throw new SemEspacoComputadoresException();
+            throw new SemEspacoComputadoresException(computador.getId());
         }
     }
 

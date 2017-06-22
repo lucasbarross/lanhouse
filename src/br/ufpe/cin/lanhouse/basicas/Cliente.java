@@ -14,7 +14,7 @@ public class Cliente extends Pessoa{
         if(this.computador == null) {
             this.computador = computador;
         } else {
-            throw new ClienteComComputadorException();
+            throw new ClienteComComputadorException(getNome(), getCpf());
         }
     }
 
@@ -31,13 +31,13 @@ public class Cliente extends Pessoa{
         if(this.computador != null) {
             return this.computador.estadoAtual();
         } else {
-            throw new SemComputadorException();
+            throw new SemComputadorException(getNome(), getCpf());
         }
     }
 
 	public String executarAplicativo(Aplicativo app) throws AplicativoEmExecucaoException, SemRamException, SemComputadorException {
         if(this.computador == null) {
-            throw new SemComputadorException();
+            throw new SemComputadorException(getNome(), getCpf());
         }
         return this.computador.executar(app);
 	}

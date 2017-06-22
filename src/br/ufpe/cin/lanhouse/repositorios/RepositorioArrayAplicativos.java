@@ -38,7 +38,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         int i = this.getIndice(nome);
 
         if(i == -1){
-            throw new AplicativoNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException(nome);
         } else {
             app = this.apps[i];
         }
@@ -51,7 +51,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         int i = this.getIndice(app.getNome());
 
         if(i == -1){
-            throw new AplicativoNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException(app.getNome());
         } else {
             this.apps[i] = app;
         }
@@ -61,7 +61,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
         int i = this.getIndice(nome);
 
         if(i == -1){
-            throw new AplicativoNaoEncontradoException();
+            throw new AplicativoNaoEncontradoException(nome);
         } else {
             this.index -= 1;
             this.apps[i] = this.apps[this.index];

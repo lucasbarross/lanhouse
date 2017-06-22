@@ -22,7 +22,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
 
     public void remover(String id) throws ImpressoraNaoEncontradaException {
     	if(this.impressora == null) {
-    		throw new ImpressoraNaoEncontradaException();
+    		throw new ImpressoraNaoEncontradaException(id);
     	} else {
     		if(this.impressora.comparar(id)) {
     			this.impressora = this.proximo.impressora;
@@ -43,7 +43,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
                 this.proximo.procurar(id);
             }
         } else {
-            throw new ImpressoraNaoEncontradaException();
+            throw new ImpressoraNaoEncontradaException(id);
         }
 
         return resposta;
@@ -51,7 +51,7 @@ public class RepositorioListaImpressoras implements RepositorioImpressoras {
 
     public void atualizar(Impressora atualizada) throws ImpressoraNaoEncontradaException{
     	if(this.impressora == null) {
-    		throw new ImpressoraNaoEncontradaException();
+    		throw new ImpressoraNaoEncontradaException(atualizada.getId());
     	} else {
     		if(this.impressora.comparar(atualizada.getId())) {
     			this.impressora = atualizada;

@@ -28,7 +28,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
         Pessoa pessoa;
         int i = this.getIndice(cpf);
         if(i == -1){
-            throw new PessoaNaoEncontradaException();
+            throw new PessoaNaoEncontradaException(cpf);
         } else {
             pessoa = this.pessoas[i];
         }
@@ -39,7 +39,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     public void remover(String cpf) throws PessoaNaoEncontradaException{
         int i = this.getIndice(cpf);
         if(i == -1){
-            throw new PessoaNaoEncontradaException();
+            throw new PessoaNaoEncontradaException(cpf);
         } else {
             this.index -= 1;
             this.pessoas[i] = this.pessoas[this.index];
@@ -51,7 +51,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     public void atualizar(Pessoa pessoa) throws PessoaNaoEncontradaException{
         int i = this.getIndice(pessoa.getCpf());
         if(i == -1){
-            throw new PessoaNaoEncontradaException();
+            throw new PessoaNaoEncontradaException(pessoa.getCpf());
         } else {
             this.pessoas[i] = pessoa;
         }
