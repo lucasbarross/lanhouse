@@ -25,15 +25,19 @@ public class Computador {
         this.ligado = true;
 	}
 
-	public void desligar() throws ComputadorDesligadoException {
+	public void desligar() throws ComputadorDesligadoException, ComputadorUtilizadoException {
 		if(!this.ligado) {
 			throw new ComputadorDesligadoException(this.id);
+		}
+		if(this.cliente != null) {
+			throw new ComputadorUtilizadoException(this.id);
 		}
         this.ligado = false;
 	}
 
 	public String desconectarCliente() throws SemClienteException {
 		if(this.cliente != null) {
+		    this.appsExecucao = new RepositorioListaAplicativos();
 			return this.cliente.desconectarComputador();
 		} else {
 			throw new SemClienteException(this.id);

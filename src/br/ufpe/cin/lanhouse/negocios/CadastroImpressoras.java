@@ -6,7 +6,7 @@ import br.ufpe.cin.lanhouse.interfaces.RepositorioImpressoras;
 
 public class CadastroImpressoras {
     private RepositorioImpressoras impressoras;
-    private int capacidade = 30;
+    private int capacidade = 5;
 
     public CadastroImpressoras(RepositorioImpressoras repositorio) {
         this.impressoras = repositorio;

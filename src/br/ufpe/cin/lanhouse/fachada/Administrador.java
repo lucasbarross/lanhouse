@@ -147,7 +147,7 @@ public class Administrador {
         Computador computador = this.cadastroComputadores.procurar(idComputador);
         computador.ligar();
     }
-    public void desligarComputador(String idComputador) throws ComputadorDesligadoException, ComputadorNaoEncontradoException {
+    public void desligarComputador(String idComputador) throws ComputadorDesligadoException, ComputadorNaoEncontradoException, ComputadorUtilizadoException {
         Computador computador = this.cadastroComputadores.procurar(idComputador);
         computador.desligar();
     }
@@ -175,5 +175,10 @@ public class Administrador {
 
     public void cadastrarPessoa(Pessoa pessoa) throws PessoaJaCadastradaException {
         this.cadastroPessoas.cadastrar(pessoa);
+    }
+
+    public String getEstadoImpressora(String id) throws ImpressoraNaoEncontradaException {
+        Impressora impressora = this.cadastroImpressoras.procurar(id);
+        return impressora.getEstado();
     }
 }

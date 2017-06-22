@@ -11,9 +11,9 @@ public class Impressora {
     private int cargaMaxPapel;
     private double tintaPorPagina;
 
-    public Impressora(String marca, String numero, int papelMax, double tintaPorPagina) {
+    public Impressora(String marca, String id, int papelMax, double tintaPorPagina) {
         this.marca = marca;
-        this.id = numero;
+        this.id = id;
         this.cargaMaxPapel = papelMax;
         this.cargaPapel = 0;
         this.cargaTintaPreta = 0.0;
@@ -72,6 +72,13 @@ public class Impressora {
         return this.marca;
     }
 
+    public String getEstado() {
+        return this.marca + ' ' + this.id +
+                ":\n - Numero de Páginas: " + this.cargaPapel + '/' +  this.cargaMaxPapel +
+                ";\n - Tinta por Página: " + this.tintaPorPagina +
+                ";\n - Carga de Tinta Preta: " + this.cargaTintaPreta + "/1.0" +
+                ";\n - Carga de Tinta Colorida: " + this.cargaTintaColorida + "/1.0;\n";
+    }
     public boolean comparar(String id) {
         return this.id.equals(id);
     }

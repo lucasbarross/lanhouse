@@ -14,7 +14,7 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
     public void inserir(Computador maquina) {
         if(this.index == this.computadores.length - 1){
             Computador[] novaArray = new Computador[this.computadores.length * 2];
-            for(int i = 0; i < this.computadores.length; i++){
+            for(int i = 0; i < this.computadores.length-1; i++){
             	novaArray[i] = this.computadores[i];
             }
             this.computadores = novaArray;

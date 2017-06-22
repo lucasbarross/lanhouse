@@ -27,9 +27,9 @@ class LanHouse {
         } else {
             throw new ConfigInvalidoException();
         }
-        
+
         /*
-         Instalação de aplicativos padrões no HD principal da LAN house.
+         Instalaï¿½ï¿½o de aplicativos padrï¿½es no HD principal da LAN house.
          */
         try {
 			adm.instalarAplicativo(new Aplicativo("Skype", 2, 500));
@@ -55,13 +55,13 @@ class LanHouse {
 		} catch (AplicativoJaCadastradoException e1) {
 			System.out.println(e1.getMessage());
 		}
-        
-        
+
+
         /*
          * 	TESTE 1
          	Funciona sem erros;
          	Cadastra dois funcionarios, dois clientes e quatro computadores;
-         	Liga os computadores, conecta os clientes a dois deles e faz os clientes e um dos funcionarios usarem o computador, imprimindo as informações;
+         	Liga os computadores, conecta os clientes a dois deles e faz os clientes e um dos funcionarios usarem o computador, imprimindo as informaï¿½ï¿½es;
         */
 
         try {
@@ -112,6 +112,57 @@ class LanHouse {
 		} finally {
 			System.out.println("----------------- FIM DO TESTE 1 ----------------- ");
 		}
-    }
+
+		/*
+		* 	TESTE 2
+		* 	Funciona sem erros;
+			Cadastra 4 impressoras, lista elas, remove uma impressora e lista de novo;
+			Printa o estado da impressora 2, atualiza ela, printa de novo atualizada;
+			Printa o estado das impressoras 0 e 3, utiliza elas e printa o estado de novo;
+			Cadastra mais duas impressoras, listando elas apÃ³s cada impressora adicionada;
+			Remove uma impressora, lista as impressoras;
+			Adiciona uma nova, lista de novo e printa o estado da ultima adicionada;
+		 */
+
+		try {
+			System.out.println("----------------- TESTE 2 -----------------");
+			adm.cadastrarImpressora(new Impressora("HP", "000", 10, 0.2));
+			adm.cadastrarImpressora(new Impressora("HP", "001", 10, 0.2));
+			adm.cadastrarImpressora(new Impressora("Trivial", "002", 20, 0.05));
+			adm.cadastrarImpressora(new Impressora("Trivial", "003", 20, 0.05));
+			System.out.println(adm.listarImpressoras());
+			adm.removerImpressora("001");
+			System.out.println(adm.listarImpressoras());
+			System.out.println(adm.getEstadoImpressora("002"));
+			adm.atualizarImpressora(new Impressora("HP", "002", 15, 0.1));
+			System.out.println(adm.getEstadoImpressora("002"));
+			System.out.println(adm.getEstadoImpressora("000"));
+			System.out.println(adm.getEstadoImpressora("003"));
+			adm.recarregarPagina("000", 5);
+			adm.recarregarPagina("003", 20);
+			adm.recarregarTintaPreta("000");
+			adm.recarregarTintaPreta("003");
+			adm.recarregarTintaColorida("003");
+			adm.imprimirEmPreto("000", 2);
+			adm.imprimirEmColorido("003", 8);
+			adm.imprimirEmPreto("003", 10);
+			System.out.println(adm.getEstadoImpressora("000"));
+			System.out.println(adm.getEstadoImpressora("003"));
+			adm.cadastrarImpressora(new Impressora("IP", "001", 20, 0.02));
+			System.out.println(adm.listarImpressoras());
+			adm.cadastrarImpressora(new Impressora("IP", "004", 16, 0.03));
+			System.out.println(adm.listarImpressoras());
+			adm.removerImpressora("000");
+			System.out.println(adm.listarImpressoras());
+			adm.cadastrarImpressora(new Impressora("GAP", "005", 50, 0.01));
+			System.out.println(adm.listarImpressoras());
+			System.out.println(adm.getEstadoImpressora("005"));
+		} catch (SemEspacoImpressoraException | ImpressoraJaCadastradaException | SemTintaPretaException | SemFolhaException | ImpressoraNaoEncontradaException | SemTintaColoridaException | SemEspacoPapelException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			System.out.println("----------------- FIM DO TESTE 2 ----------------- ");
+		}
+
+	}
 
 }

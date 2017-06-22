@@ -26,7 +26,7 @@ public class RepositorioArrayAplicativos implements RepositorioAplicativos {
     public void inserir(Aplicativo app)  {
         if(this.index == this.apps.length-1){
             Aplicativo[] novaArray = new Aplicativo[this.apps.length * 2];
-            for(int i = 0; i < this.apps.length; i++){
+            for(int i = 0; i < this.apps.length-1; i++){
             	novaArray[i] = this.apps[i];
             }
             this.apps = novaArray;

@@ -15,7 +15,7 @@ public class RepositorioArrayPessoas implements RepositorioPessoas {
     public void inserir(Pessoa pessoa){
         if(this.index == this.pessoas.length - 1){
             Pessoa[] novaArray = new Pessoa[this.pessoas.length * 2];
-            for(int i = 0; i < this.pessoas.length; i++){
+            for(int i = 0; i < this.pessoas.length-1; i++){
             	novaArray[i] = this.pessoas[i];
             }
             this.pessoas = novaArray;

@@ -16,7 +16,7 @@ public class RepositorioArrayImpressoras implements RepositorioImpressoras {
 	public void inserir(Impressora impressora)  {
 		if(this.index == this.impressoras.length-1){
 			Impressora[] novaArray = new Impressora[this.impressoras.length * 2];
-			for(int i = 0; i < this.impressoras.length; i++){
+			for(int i = 0; i < this.impressoras.length-1; i++){
             	novaArray[i] = this.impressoras[i];
             }
 			this.impressoras = novaArray;
