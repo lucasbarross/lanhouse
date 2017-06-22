@@ -31,10 +31,10 @@ public class Impressora {
                 this.cargaPapel -= numeroPaginas;
                 this.cargaTintaPreta -= (this.tintaPorPagina * numeroPaginas);
             } else {
-                throw new SemTintaPretaException(id);
+                throw new SemTintaPretaException(this.id);
             }
         } else {
-            throw new SemFolhaException(id);
+            throw new SemFolhaException(this.id);
         }
     }
     
@@ -44,10 +44,10 @@ public class Impressora {
                 this.cargaPapel -= numeroPaginas;
                 this.cargaTintaColorida -= (this.tintaPorPagina* numeroPaginas);
             } else {
-                throw new SemTintaColoridaException(id);
+                throw new SemTintaColoridaException(this.id);
             }
         } else {
-            throw new SemFolhaException(id);
+            throw new SemFolhaException(this.id);
         }
     }
 
@@ -56,7 +56,7 @@ public class Impressora {
         if (total <= this.cargaMaxPapel) {
             this.cargaPapel = total;
         } else {
-            throw new SemEspacoPapelException(id);
+            throw new SemEspacoPapelException(this.id);
         }
     }
 
