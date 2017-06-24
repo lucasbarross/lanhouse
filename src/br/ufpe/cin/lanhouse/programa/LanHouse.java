@@ -111,6 +111,7 @@ class LanHouse {
 			System.out.println(e.getMessage());
 		} finally {
 			System.out.println("----------------- FIM DO TESTE 1 ----------------- ");
+			System.out.println("");
 		}
 
 		/*
@@ -161,8 +162,100 @@ class LanHouse {
 			System.out.println(e.getMessage());
 		} finally {
 			System.out.println("----------------- FIM DO TESTE 2 ----------------- ");
+			System.out.println("");
 		}
 
+		/*
+		* 	TESTE 3
+		* 	Funciona com erros;
+			Tenta cadastrar um computador já cadastrado;
+			Tenta conectar um usuario a um computador inexistente;
+			Cadastra um computador novo;
+			Tenta conectar um usuario a um computador desligado;
+			Apaga o computador cadastrado e tenta conectar um cliente a ele posteriormente;
+		 */
+		
+		try{
+			System.out.println("----------------- TESTE 3 -----------------");
+		    adm.cadastrarComputador(new Computador("2", 4000));
+		    adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
+		    adm.conectarCliente("828.408.775-89", "823.597.450-93", "5");
+		    			
+		} catch (ComputadorNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (SemEspacoComputadoresException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorJaCadastradoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (ClienteComComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorUtilizadoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorDesligadoException e) {
+			System.out.println(e.getMessage());
+		} try{
+			adm.conectarCliente("828.408.775-89", "823.597.450-93", "5");
+			
+		} catch (ComputadorNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (ClienteComComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorUtilizadoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorDesligadoException e) {
+			System.out.println(e.getMessage());
+		}
+		try{
+			adm.cadastrarComputador(new Computador("7", 4000));
+			adm.conectarCliente("828.408.775-89", "823.597.450-93", "7");
+			
+		} catch (ComputadorNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (ClienteComComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorUtilizadoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorDesligadoException e) {
+			System.out.println(e.getMessage());
+		} catch(SemEspacoComputadoresException e){
+			System.out.println(e.getMessage());
+		} catch(ComputadorJaCadastradoException e){
+			System.out.println(e.getMessage());
+		}
+		try{
+			adm.removerComputador("7");
+			adm.conectarCliente("828.408.775-89", "823.597.450-93", "7");
+		}catch (ComputadorNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (ClienteComComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorUtilizadoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorDesligadoException e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			System.out.println("----------------- FIM DO TESTE 3 ----------------- ");
+			System.out.println("");
+		}
+		
+		
 	}
 
 }
