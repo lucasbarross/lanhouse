@@ -336,6 +336,7 @@ class LanHouse {
          	Tenta conectar um cliente já conectado;
 		 */
 		try{
+			System.out.println("----------------- TESTE 5 -----------------");
 			adm.cadastrarComputador(new Computador("8",4000));
 			adm.ligarComputador("8");
 			adm.ligarComputador("8");
