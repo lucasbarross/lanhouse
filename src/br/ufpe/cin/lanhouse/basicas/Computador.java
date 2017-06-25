@@ -18,6 +18,7 @@ public class Computador {
 		this.ram = ram;
 	}
 
+	//Liga o PC
 	public void ligar() throws ComputadorLigadoException {
 		if(this.ligado) {
 			throw new ComputadorLigadoException(this.id);
@@ -25,6 +26,7 @@ public class Computador {
         this.ligado = true;
 	}
 
+	//Desliga o PC
 	public void desligar() throws ComputadorDesligadoException, ComputadorUtilizadoException {
 		if(!this.ligado) {
 			throw new ComputadorDesligadoException(this.id);
@@ -44,6 +46,7 @@ public class Computador {
 		}
 	}
 
+	//Funcao usada mais abaixo, informa se o PC ta ligado ou desligado
 	public String getEstado(){
 	    String estado;
 		if(this.ligado){
@@ -57,7 +60,8 @@ public class Computador {
 	public String getId(){
 		return this.id;
 	}
-
+	
+	//Funcao usada mais abaixo, informa o usuario que esta usando o computador 
 	public String getUsuario(){
 	    String usuario;
 		if(this.cliente == null){
@@ -67,7 +71,8 @@ public class Computador {
 		}
 		return usuario;
 	}
-
+	
+	//Adicionar cliente ao PC
     public void setCliente(Cliente cliente) throws ComputadorUtilizadoException, ComputadorDesligadoException {
 		if(!this.ligado) {
 			throw new ComputadorDesligadoException(this.id);
@@ -79,6 +84,7 @@ public class Computador {
 		}
     }
 
+    //Executa app
 	public String executar(Aplicativo app) throws AplicativoEmExecucaoException, SemRamException {
         if(this.appsExecucao.existe(app.getNome())){
             throw new AplicativoEmExecucaoException(app.getNome());
@@ -90,7 +96,8 @@ public class Computador {
         this.ram_ocupada += app.getRamNecessaria();
 		return app.executar();
 	}
-
+	
+	//Encerra app, mata processos
 	public String encerrar(Aplicativo app) throws AplicativoNaoEncontradoException {
         this.appsExecucao.remover(app.getNome());
         this.ram_ocupada -= app.getRamNecessaria();
@@ -98,7 +105,7 @@ public class Computador {
 	}
 
 
-	/* observar estado atual da mÃ¡quina */
+	// Informa estado atual da maquina
 	public String estadoAtual(){
         return "Id: " + this.id + '\n'+
 				"Estado: " + this.getEstado() + '\n' +

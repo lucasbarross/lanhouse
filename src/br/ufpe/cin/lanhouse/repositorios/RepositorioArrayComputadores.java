@@ -13,6 +13,8 @@ public class RepositorioArrayComputadores implements RepositorioComputadores {
 
     public void inserir(Computador maquina) {
         if(this.index == this.computadores.length - 1){
+        	
+        	//Copia todo mundo pra um array com o dobro do tamanho
             Computador[] novaArray = new Computador[this.computadores.length * 2];
             for(int i = 0; i < this.computadores.length-1; i++){
             	novaArray[i] = this.computadores[i];

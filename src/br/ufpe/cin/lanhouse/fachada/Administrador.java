@@ -17,6 +17,8 @@ public class Administrador {
         this.cadastroImpressoras = new CadastroImpressoras(repositorioImpressoras);
         this.cadastroPessoas = new CadastroPessoas(repositorioPessoas);
     }
+    
+    //Todas as funcoes tem nomes autoexplicativos
 
     public void removerImpressora(String id) throws ImpressoraNaoEncontradaException {
         this.cadastroImpressoras.remover(id);
