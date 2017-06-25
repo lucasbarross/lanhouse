@@ -12,26 +12,26 @@ import java.io.IOException;
 class LanHouse {
 
 	public static void main(String[] args) throws IOException, ConfigInvalidoException {
-        Administrador adm;
-        FileReader entrada;
-        String linha;
-        entrada = new FileReader("config.txt");
-        try (BufferedReader br = new BufferedReader(entrada)) {
-            linha = br.readLine();
-            br.close();
-        }
-        if (linha.equals("array")) {
-            adm = new Administrador(new RepositorioArrayAplicativos(), new RepositorioArrayComputadores(), new RepositorioArrayImpressoras(), new RepositorioArrayPessoas());
-        } else if (linha.equals("lista")) {
-            adm = new Administrador(new RepositorioListaAplicativos(), new RepositorioListaComputadores(), new RepositorioListaImpressoras(), new RepositorioListaPessoas());
-        } else {
-            throw new ConfigInvalidoException();
-        }
+		Administrador adm;
+		FileReader entrada;
+		String linha;
+		entrada = new FileReader("config.txt");
+		try (BufferedReader br = new BufferedReader(entrada)) {
+			linha = br.readLine();
+			br.close();
+		}
+		if (linha.equals("array")) {
+			adm = new Administrador(new RepositorioArrayAplicativos(), new RepositorioArrayComputadores(), new RepositorioArrayImpressoras(), new RepositorioArrayPessoas());
+		} else if (linha.equals("lista")) {
+			adm = new Administrador(new RepositorioListaAplicativos(), new RepositorioListaComputadores(), new RepositorioListaImpressoras(), new RepositorioListaPessoas());
+		} else {
+			throw new ConfigInvalidoException();
+		}
 
-        /*
+		/*
          Instalaï¿½ï¿½o de aplicativos padrï¿½es no HD principal da LAN house.
-         */
-        try {
+		 */
+		try {
 			adm.instalarAplicativo(new Aplicativo("Skype", 2, 500));
 			adm.instalarAplicativo(new Aplicativo("Discord", 1, 100));
 			adm.instalarAplicativo(new Aplicativo("Eclipse", 5, 800));
@@ -57,30 +57,30 @@ class LanHouse {
 		}
 
 
-        /*
-         * 	TESTE 1
+		/*
+		 * 	TESTE 1
          	Funciona sem erros;
          	Cadastra dois funcionarios, dois clientes e quatro computadores;
          	Liga os computadores, conecta os clientes a dois deles e faz os clientes e um dos funcionarios usarem o computador, imprimindo as informaï¿½ï¿½es;
-        */
+		 */
 
-        try {
-        	System.out.println("----------------- TESTE 1 -----------------");
-		    adm.cadastrarPessoa(new Funcionario("Gabriel", "828.408.775-89", 'M', 19));
-		    adm.cadastrarPessoa(new Funcionario("Vilma", "651.065.171-84", 'F', 18));
-		    adm.cadastrarPessoa(new Cliente("Lucas", "420.367.175-27", 'M', 18));
-		    adm.cadastrarPessoa(new Cliente("Saulo", "823.597.450-93", 'M', 18));
-		    adm.cadastrarComputador(new Computador("1", 4000));
-		    adm.cadastrarComputador(new Computador("3", 8000));
-		    adm.cadastrarComputador(new Computador("2", 4000));
-		    adm.cadastrarComputador(new Computador("6", 4000));
-		    adm.ligarComputador("1");
+		try {
+			System.out.println("----------------- TESTE 1 -----------------");
+			adm.cadastrarPessoa(new Funcionario("Gabriel", "828.408.775-89", 'M', 19));
+			adm.cadastrarPessoa(new Funcionario("Vilma", "651.065.171-84", 'F', 18));
+			adm.cadastrarPessoa(new Cliente("Lucas", "420.367.175-27", 'M', 18));
+			adm.cadastrarPessoa(new Cliente("Saulo", "823.597.450-93", 'M', 18));
+			adm.cadastrarComputador(new Computador("1", 4000));
+			adm.cadastrarComputador(new Computador("3", 8000));
+			adm.cadastrarComputador(new Computador("2", 4000));
+			adm.cadastrarComputador(new Computador("6", 4000));
+			adm.ligarComputador("1");
 			adm.ligarComputador("2");
-		    adm.conectarCliente("651.065.171-84", "420.367.175-27", "1");
-		    adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
-		    adm.executarApp("420.367.175-27", "Planeta Minecraft");
-		    adm.executarApp("420.367.175-27", "Spotify");
-		    adm.executarApp("823.597.450-93", "Planeta Minecraft");
+			adm.conectarCliente("651.065.171-84", "420.367.175-27", "1");
+			adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
+			adm.executarApp("420.367.175-27", "Planeta Minecraft");
+			adm.executarApp("420.367.175-27", "Spotify");
+			adm.executarApp("823.597.450-93", "Planeta Minecraft");
 			System.out.println(adm.usarComputador("420.367.175-27"));
 			System.out.println(adm.usarComputador("823.597.450-93"));
 			System.out.println(adm.usarComputador("651.065.171-84"));
@@ -116,8 +116,8 @@ class LanHouse {
 		}
 
 		/*
-		* 	TESTE 2
-		* 	Funciona sem erros;
+		 * 	TESTE 2
+		 * 	Funciona sem erros;
 			Cadastra 4 impressoras, lista elas, remove uma impressora e lista de novo;
 			Printa o estado da impressora 2, atualiza ela, printa de novo atualizada;
 			Printa o estado das impressoras 0 e 3, utiliza elas e printa o estado de novo;
@@ -167,21 +167,21 @@ class LanHouse {
 		}
 
 		/*
-		* 	TESTE 3
-		* 	Funciona com erros;
+		 * 	TESTE 3
+		 * 	Funciona com erros;
 			Tenta cadastrar um computador jÃ¡ cadastrado;
 			Tenta conectar um usuario a um computador inexistente;
 			Cadastra um computador novo;
 			Tenta conectar um usuario a um computador desligado;
 			Apaga o computador cadastrado e tenta conectar um cliente a ele posteriormente;
 		 */
-		
+
 		try{
 			System.out.println("----------------- TESTE 3 -----------------");
-		    adm.cadastrarComputador(new Computador("2", 4000));
-		    adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
-		    adm.conectarCliente("828.408.775-89", "823.597.450-93", "5");
-		    			
+			adm.cadastrarComputador(new Computador("2", 4000));
+			adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
+			adm.conectarCliente("828.408.775-89", "823.597.450-93", "5");
+
 		} catch (ComputadorNaoEncontradoException e) {
 			System.out.println(e.getMessage());
 		} catch (SemEspacoComputadoresException e) {
@@ -200,7 +200,7 @@ class LanHouse {
 			System.out.println(e.getMessage());
 		} try{
 			adm.conectarCliente("828.408.775-89", "823.597.450-93", "5");
-			
+
 		} catch (ComputadorNaoEncontradoException e) {
 			System.out.println(e.getMessage());
 		} catch (PessoaNaoEncontradaException e) {
@@ -217,7 +217,7 @@ class LanHouse {
 		try{
 			adm.cadastrarComputador(new Computador("7", 4000));
 			adm.conectarCliente("828.408.775-89", "823.597.450-93", "7");
-			
+
 		} catch (ComputadorNaoEncontradoException e) {
 			System.out.println(e.getMessage());
 		} catch (PessoaNaoEncontradaException e) {
@@ -255,18 +255,18 @@ class LanHouse {
 			System.out.println("----------------- FIM DO TESTE 3 ----------------- ");
 			System.out.println("");
 		}
-		
+
 		/*
-         * 	TESTE 4
+		 * 	TESTE 4
          	Funciona com erros;
          	Tenta armazenar um aplicativo muito grande para o tamanho do HD;
          	Tenta armazenar um aplicativo que ja existe;
-         	Tenta procurar um aplicativo que não existe;
+         	Tenta procurar um aplicativo que nï¿½o existe;
          	Tenta executar um aplicativo sem o computador ter RAM o suficiente;
-         	Atualiza o aplicativo para uma versão que exige menos RAM;
+         	Atualiza o aplicativo para uma versï¿½o que exige menos RAM;
          	Executa o aplicativo;
-         	Tenta executar o aplicativo que já está aberto;
-         */
+         	Tenta executar o aplicativo que jï¿½ estï¿½ aberto;
+		 */
 		try {
 			System.out.println("----------------- TESTE 4 -----------------");
 			adm.instalarAplicativo(new Aplicativo("Pinball Online", 100000, 200));
@@ -283,7 +283,7 @@ class LanHouse {
 			System.out.println(e.getMessage());
 		}
 		try {
-			adm.procurarApp("Dolly Guaraná Web Services");
+			adm.procurarApp("Dolly Guaranï¿½ Web Services");
 		} catch (AplicativoNaoEncontradoException e) {
 			System.out.println(e.getMessage());
 		}
@@ -325,7 +325,73 @@ class LanHouse {
 			System.out.println(e.getMessage());
 		} finally {
 			System.out.println("----------------- FIM DO TESTE 4 -----------------");
+			System.out.println("");
 		}
+
+		/*
+		 * 	TESTE 5
+         	Funciona com erros;
+         	Tenta ligar um computador ligado;
+         	Tenta conectar um cliente em um computador em uso;
+         	Tenta conectar um cliente jÃ¡ conectado;
+		 */
+		try{
+			adm.cadastrarComputador(new Computador("8",4000));
+			adm.ligarComputador("8");
+			adm.ligarComputador("8");
+		} catch (ComputadorNaoEncontradoException e){
+			System.out.println(e.getMessage());
+		} catch (SemEspacoComputadoresException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorJaCadastradoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorLigadoException e){
+			System.out.println(e.getMessage());
+		}
+		try{
+			adm.cadastrarPessoa(new Cliente("Fulano", "123.456.678-45", 'M', 20));
+			adm.cadastrarPessoa(new Cliente("Cicrano", "132.145.234-83", 'M', 21));
+			adm.conectarCliente("828.408.775-89", "123.456.678-45", "8");
+			adm.conectarCliente("828.408.775-89", "132.145.234-83", "8");
+		} catch (PessoaJaCadastradaException e ){
+			System.out.println(e.getMessage());
+		} catch (ComputadorNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (ClienteComComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorUtilizadoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorDesligadoException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		try{
+			adm.ligarComputador("6");
+			adm.conectarCliente("828.408.775-89", "123.456.678-45", "6");
+		} catch (ComputadorNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (ClienteComComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorUtilizadoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorDesligadoException e) {
+			System.out.println(e.getMessage());
+		} catch (ComputadorLigadoException e) {
+			System.out.println(e.getMessage());
+		}finally{
+			System.out.println("----------------- FIM DO TESTE 5 -----------------");
+			System.out.println("");
+		}
+
+		
 		
 	}
 
