@@ -49,7 +49,7 @@ class LanHouse {
 			adm.instalarAplicativo(new Aplicativo("Sublime", 1, 25));
 			adm.instalarAplicativo(new Aplicativo("Spotify", 2, 300));
 			adm.instalarAplicativo(new Aplicativo("Planeta Minecraft", 7, 1700));
-			adm.instalarAplicativo(new Aplicativo("Colheita Feliz", 50, 2000));
+			adm.instalarAplicativo(new Aplicativo("Colheita Feliz", 50, 10000));
 		} catch (SemEspacoAplicativosException e1) {
 			System.out.println(e1.getMessage());
 		} catch (AplicativoJaCadastradoException e1) {
@@ -85,6 +85,7 @@ class LanHouse {
 			System.out.println(adm.usarComputador("823.597.450-93"));
 			System.out.println(adm.usarComputador("651.065.171-84"));
 			System.out.println(adm.usarComputador("828.408.775-89"));
+			adm.encerrarApp("823.597.450-93", "Planeta Minecraft");
 		} catch (ComputadorLigadoException | PessoaJaCadastradaException | ComputadorNaoEncontradoException e) {
 			System.out.println(e.getMessage());
 		} catch (SemEspacoComputadoresException e) {
@@ -255,6 +256,76 @@ class LanHouse {
 			System.out.println("");
 		}
 		
+		/*
+         * 	TESTE 4
+         	Funciona com erros;
+         	Tenta armazenar um aplicativo muito grande para o tamanho do HD;
+         	Tenta armazenar um aplicativo que ja existe;
+         	Tenta procurar um aplicativo que não existe;
+         	Tenta executar um aplicativo sem o computador ter RAM o suficiente;
+         	Atualiza o aplicativo para uma versão que exige menos RAM;
+         	Executa o aplicativo;
+         	Tenta executar o aplicativo que já está aberto;
+         */
+		try {
+			System.out.println("----------------- TESTE 4 -----------------");
+			adm.instalarAplicativo(new Aplicativo("Pinball Online", 100000, 200));
+		} catch (SemEspacoAplicativosException e) {
+			System.out.println(e.getMessage());
+		} catch (AplicativoJaCadastradoException e) {
+			System.out.println(e.getMessage());
+		}
+		try {
+			adm.instalarAplicativo(new Aplicativo("Planeta Minecraft", 10, 100));
+		} catch (SemEspacoAplicativosException e) {
+			System.out.println(e.getMessage());
+		} catch (AplicativoJaCadastradoException e) {
+			System.out.println(e.getMessage());
+		}
+		try {
+			adm.procurarApp("Dolly Guaraná Web Services");
+		} catch (AplicativoNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		}
+		try {
+			//Cliente cadastrado do Teste 1.
+			adm.executarApp("823.597.450-93", "Colheita Feliz");
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (AplicativoNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (AplicativoEmExecucaoException e) {
+			System.out.println(e.getMessage());
+		} catch (SemComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (SemRamException e) {
+			System.out.println(e.getMessage());
+		}
+		try {
+			adm.atualizarAplicativo(new Aplicativo("Colheita Feliz", 1,10));
+			adm.executarApp("823.597.450-93", "Colheita Feliz");
+			System.out.println();
+			System.out.println(adm.usarComputador("823.597.450-93"));
+			adm.executarApp("823.597.450-93", "Colheita Feliz");
+		} catch (AplicativoNaoEncontradoException e) {
+			System.out.println(e.getMessage());
+		} catch (SemEspacoAplicativosException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaNaoEncontradaException e) {
+			System.out.println(e.getMessage());
+		} catch (PessoaSemPermissaoException e) {
+			System.out.println(e.getMessage());
+		} catch (AplicativoEmExecucaoException e) {
+			System.out.println(e.getMessage());
+		} catch (SemComputadorException e) {
+			System.out.println(e.getMessage());
+		} catch (SemRamException e) {
+			System.out.println(e.getMessage());
+		} finally {
+			System.out.println("----------------- FIM DO TESTE 4 -----------------");
+		}
 		
 	}
 
