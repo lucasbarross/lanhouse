@@ -61,7 +61,6 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
 
     }
 
-
     public void remover(String id) throws ComputadorNaoEncontradoException {
         if(this.maquina != null){
             if(this.maquina.comparar(id)){
@@ -86,6 +85,7 @@ public class RepositorioListaComputadores implements RepositorioComputadores {
         }
         return resposta;
     }
+    
     public int getTamanho() {
         int tamanho = 0;
         if (this.proximo != null) {

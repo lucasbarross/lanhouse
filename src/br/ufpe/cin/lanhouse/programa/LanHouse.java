@@ -77,7 +77,7 @@ class LanHouse {
 			adm.ligarComputador("1");
 			adm.ligarComputador("2");
 			adm.conectarCliente("651.065.171-84", "420.367.175-27", "1");
-			adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
+			adm.conectarCliente("651.065.171-84", "823.597.450-93", "2");
 			adm.executarApp("420.367.175-27", "Planeta Minecraft");
 			adm.executarApp("420.367.175-27", "Spotify");
 			adm.executarApp("823.597.450-93", "Planeta Minecraft");
@@ -87,29 +87,29 @@ class LanHouse {
 			System.out.println(adm.usarComputador("828.408.775-89"));
 			adm.encerrarApp("823.597.450-93", "Planeta Minecraft");
 		} catch (ComputadorLigadoException | PessoaJaCadastradaException | ComputadorNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemEspacoComputadoresException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorJaCadastradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClienteComComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorUtilizadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorDesligadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (AplicativoNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (AplicativoEmExecucaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemRamException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			System.out.println("----------------- FIM DO TESTE 1 ----------------- ");
 			System.out.println("");
@@ -160,14 +160,97 @@ class LanHouse {
 			System.out.println(adm.listarImpressoras());
 			System.out.println(adm.getEstadoImpressora("005"));
 		} catch (SemEspacoImpressoraException | ImpressoraJaCadastradaException | SemTintaPretaException | SemFolhaException | ImpressoraNaoEncontradaException | SemTintaColoridaException | SemEspacoPapelException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} finally {
 			System.out.println("----------------- FIM DO TESTE 2 ----------------- ");
 			System.out.println("");
 		}
-
+		
 		/*
 		 * 	TESTE 3
+		 * 	Funciona com erros;
+			Cadastra 4 impressoras;
+			Tenta imprimir com uma impressora não cadastrada;
+			Tenta cadastrar uma impressora uma id que já foi utilizada
+			Tenta imprimir quando a impressora não tem páginas suficientes;
+			Imprime em preto e zera a carga de tinta preto de uma impressora;
+			Tenta imprimir quando não há tinta preta o suficiente;
+			Recarrega a impressora com folhas;
+			Imprime em colorido e zera a carga de tinta colorida de uma impressora;
+			Tenta imprimir quando não há tinta colorida o suficiente;
+		 	Tenta recarregar a impressora com mais folhas que ela permite;
+		 	
+		 */
+		try {
+			System.out.println("----------------- TESTE 3 -----------------");
+			adm.cadastrarImpressora(new Impressora("HP", "1135", 100, 1));
+			adm.recarregarTintaColorida("1135");
+			adm.recarregarTintaPreta("1135");
+			adm.cadastrarImpressora(new Impressora("HP", "1136", 101, 0.01));
+			adm.cadastrarImpressora(new Impressora("HP", "1137", 50, 0.01));
+			adm.cadastrarImpressora(new Impressora("HP", "1138", 50, 0.01));
+			adm.imprimirEmPreto("1134", 2);
+		} catch (ImpressoraJaCadastradaException e) {
+			e.printStackTrace();
+		} catch (ImpressoraNaoEncontradaException e) {
+			e.printStackTrace();
+		} catch (SemEspacoImpressoraException e) {
+			e.printStackTrace();
+		} catch (SemTintaPretaException e) {
+			e.printStackTrace();
+		} catch (SemFolhaException e) {
+			e.printStackTrace();
+		} 
+		try {
+			adm.cadastrarImpressora(new Impressora("HP", "1135", 100, 0.01));
+		} catch (ImpressoraJaCadastradaException e) {
+			e.printStackTrace();
+		} catch (SemEspacoImpressoraException e) {
+			e.printStackTrace();
+		} 
+		try {
+			adm.imprimirEmPreto("1135", 100);
+		}  catch (ImpressoraNaoEncontradaException e) {
+			e.printStackTrace();
+		} catch (SemTintaPretaException e) {
+			e.printStackTrace();
+		} catch (SemFolhaException e) {
+			e.printStackTrace();
+		} 
+		try {
+			adm.recarregarPagina("1135", 100);
+			adm.imprimirEmColorido("1135", 2);
+		}  catch (ImpressoraNaoEncontradaException e) {
+			e.printStackTrace();
+		} catch (SemFolhaException e) {
+			e.printStackTrace();
+		} catch (SemEspacoPapelException e) {
+			e.printStackTrace();
+		} catch (SemTintaColoridaException e) {
+			e.printStackTrace(); 
+		} 
+		try {
+			adm.imprimirEmPreto("1135", 2);
+		} catch (ImpressoraNaoEncontradaException e) {
+			e.printStackTrace();
+		} catch (SemTintaPretaException e) {
+			e.printStackTrace();
+		} catch (SemFolhaException e) {
+			e.printStackTrace();
+		} 
+		try {
+			adm.recarregarPagina("1135", 102);
+		} catch (ImpressoraNaoEncontradaException e) {
+			e.printStackTrace();
+		} catch (SemEspacoPapelException e) {
+			e.printStackTrace();
+		} finally {
+			System.out.println("----------------- FIM DO TESTE 3 ----------------- ");
+			System.out.println("");
+		}		
+		
+		/*
+		 * 	TESTE 4
 		 * 	Funciona com erros;
 			Tenta cadastrar um computador jÃ¡ cadastrado;
 			Tenta conectar um usuario a um computador inexistente;
@@ -177,87 +260,87 @@ class LanHouse {
 		 */
 
 		try{
-			System.out.println("----------------- TESTE 3 -----------------");
+			System.out.println("----------------- TESTE 4 -----------------");
 			adm.cadastrarComputador(new Computador("2", 4000));
 			adm.conectarCliente("828.408.775-89", "823.597.450-93", "2");
 			adm.conectarCliente("828.408.775-89", "823.597.450-93", "5");
 
 		} catch (ComputadorNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemEspacoComputadoresException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorJaCadastradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClienteComComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorUtilizadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorDesligadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} try{
 			adm.conectarCliente("828.408.775-89", "823.597.450-93", "5");
 
 		} catch (ComputadorNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClienteComComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorUtilizadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorDesligadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		try{
 			adm.cadastrarComputador(new Computador("7", 4000));
 			adm.conectarCliente("828.408.775-89", "823.597.450-93", "7");
 
 		} catch (ComputadorNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClienteComComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorUtilizadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorDesligadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch(SemEspacoComputadoresException e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch(ComputadorJaCadastradoException e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		try{
 			adm.removerComputador("7");
 			adm.conectarCliente("828.408.775-89", "823.597.450-93", "7");
 		}catch (ComputadorNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClienteComComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorUtilizadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorDesligadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		finally {
-			System.out.println("----------------- FIM DO TESTE 3 ----------------- ");
+			System.out.println("----------------- FIM DO TESTE 4 ----------------- ");
 			System.out.println("");
 		}
 
 		/*
-		 * 	TESTE 4
+		 * 	TESTE 5
          	Funciona com erros;
          	Tenta armazenar um aplicativo muito grande para o tamanho do HD;
          	Tenta armazenar um aplicativo que ja existe;
@@ -268,40 +351,40 @@ class LanHouse {
          	Tenta executar o aplicativo que jï¿½ estï¿½ aberto;
 		 */
 		try {
-			System.out.println("----------------- TESTE 4 -----------------");
+			System.out.println("----------------- TESTE 5 -----------------");
 			adm.instalarAplicativo(new Aplicativo("Pinball Online", 100000, 200));
 		} catch (SemEspacoAplicativosException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (AplicativoJaCadastradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		try {
 			adm.instalarAplicativo(new Aplicativo("Planeta Minecraft", 10, 100));
 		} catch (SemEspacoAplicativosException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (AplicativoJaCadastradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		try {
 			adm.procurarApp("Dolly Guaranï¿½ Web Services");
 		} catch (AplicativoNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		try {
 			//Cliente cadastrado do Teste 1.
 			adm.executarApp("823.597.450-93", "Colheita Feliz");
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (AplicativoNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (AplicativoEmExecucaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemRamException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		try {
 			adm.atualizarAplicativo(new Aplicativo("Colheita Feliz", 1,10));
@@ -310,44 +393,44 @@ class LanHouse {
 			System.out.println(adm.usarComputador("823.597.450-93"));
 			adm.executarApp("823.597.450-93", "Colheita Feliz");
 		} catch (AplicativoNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemEspacoAplicativosException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (AplicativoEmExecucaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemRamException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} finally {
-			System.out.println("----------------- FIM DO TESTE 4 -----------------");
+			System.out.println("----------------- FIM DO TESTE 5 -----------------");
 			System.out.println("");
 		}
 
 		/*
-		 * 	TESTE 5
+		 * 	TESTE 6
          	Funciona com erros;
          	Tenta ligar um computador ligado;
          	Tenta conectar um cliente em um computador em uso;
          	Tenta conectar um cliente jÃ¡ conectado;
 		 */
 		try{
-			System.out.println("----------------- TESTE 5 -----------------");
+			System.out.println("----------------- TESTE 6 -----------------");
 			adm.cadastrarComputador(new Computador("8",4000));
 			adm.ligarComputador("8");
 			adm.ligarComputador("8");
 		} catch (ComputadorNaoEncontradoException e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (SemEspacoComputadoresException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorJaCadastradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorLigadoException e){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		try{
 			adm.cadastrarPessoa(new Cliente("Fulano", "123.456.678-45", 'M', 20));
@@ -355,44 +438,42 @@ class LanHouse {
 			adm.conectarCliente("828.408.775-89", "123.456.678-45", "8");
 			adm.conectarCliente("828.408.775-89", "132.145.234-83", "8");
 		} catch (PessoaJaCadastradaException e ){
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClienteComComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorUtilizadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorDesligadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		
 		try{
 			adm.ligarComputador("6");
 			adm.conectarCliente("828.408.775-89", "123.456.678-45", "6");
 		} catch (ComputadorNaoEncontradoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaNaoEncontradaException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ClienteComComputadorException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorUtilizadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (PessoaSemPermissaoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorDesligadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		} catch (ComputadorLigadoException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}finally{
-			System.out.println("----------------- FIM DO TESTE 5 -----------------");
+			System.out.println("----------------- FIM DO TESTE 6 -----------------");
 			System.out.println("");
 		}
-
-		
 		
 	}
 
