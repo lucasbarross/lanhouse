@@ -24,7 +24,8 @@ public class Impressora {
 	public String getId() {
 		return this.id;
 	}
-
+	
+	//Impressora imprime em preto, diminuindo a quantidade de papel e tinta preta.
     public void imprimirEmPreto(int numeroPaginas) throws SemFolhaException, SemTintaPretaException {
         if (this.cargaPapel >= numeroPaginas) {
             if (this.cargaTintaPreta >= this.tintaPorPagina * numeroPaginas) {
@@ -38,6 +39,7 @@ public class Impressora {
         }
     }
     
+    //Impressora imprime em colorido, diminuindo a quantidade de papel e tinta colorida.
     public void imprimirEmColorido(int numeroPaginas) throws SemFolhaException, SemTintaColoridaException {
         if (this.cargaPapel >= numeroPaginas) {
             if (this.cargaTintaColorida >= this.tintaPorPagina * numeroPaginas) {
@@ -50,7 +52,8 @@ public class Impressora {
             throw new SemFolhaException(this.id);
         }
     }
-
+    
+    //recarrega a quantidade de papel.
     public void recarregarPagina(int numeroDePaginas) throws SemEspacoPapelException {
         int total = this.cargaPapel + numeroDePaginas;
         if (total <= this.cargaMaxPapel) {
@@ -71,7 +74,8 @@ public class Impressora {
     public String getMarca() {
         return this.marca;
     }
-
+    
+    //Retorna as informações da impressora.
     public String getEstado() {
         return this.marca + ' ' + this.id +
                 ":\n - Numero de PÃ¡ginas: " + this.cargaPapel + '/' +  this.cargaMaxPapel +
@@ -79,6 +83,7 @@ public class Impressora {
                 ";\n - Carga de Tinta Preta: " + this.cargaTintaPreta + "/1.0" +
                 ";\n - Carga de Tinta Colorida: " + this.cargaTintaColorida + "/1.0;\n";
     }
+   
     public boolean comparar(String id) {
         return this.id.equals(id);
     }

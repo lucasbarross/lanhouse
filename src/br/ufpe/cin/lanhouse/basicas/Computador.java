@@ -9,7 +9,7 @@ public class Computador {
 	private int ram;
 	private boolean ligado = false;
 	private Cliente cliente = null;
-	private int ram_ocupada = 0;
+	private int ramOcupada = 0;
     private RepositorioListaAplicativos appsExecucao;
 
 	public Computador(String id, int ram){
@@ -36,7 +36,8 @@ public class Computador {
 		}
         this.ligado = false;
 	}
-
+	
+	//Desfaz a ligaÁ„o cliente-computador.
 	public String desconectarCliente() throws SemClienteException {
 		if(this.cliente != null) {
 		    this.appsExecucao = new RepositorioListaAplicativos();
@@ -84,23 +85,23 @@ public class Computador {
 		}
     }
 
-    //Executa app
+    //Executa app, aumentando a ram ocupada.
 	public String executar(Aplicativo app) throws AplicativoEmExecucaoException, SemRamException {
         if(this.appsExecucao.existe(app.getNome())){
             throw new AplicativoEmExecucaoException(app.getNome());
         }
-		if(this.ram_ocupada +app.getRamNecessaria() > this.ram){
+		if(this.ramOcupada +app.getRamNecessaria() > this.ram){
 			throw new SemRamException(this.id, app.getNome());
 	   	}
         this.appsExecucao.inserir(app);
-        this.ram_ocupada += app.getRamNecessaria();
+        this.ramOcupada += app.getRamNecessaria();
 		return app.executar();
 	}
 	
-	//Encerra app, mata processos
+	//Encerra apps, diminuindo a ram ocupada.
 	public String encerrar(Aplicativo app) throws AplicativoNaoEncontradoException {
         this.appsExecucao.remover(app.getNome());
-        this.ram_ocupada -= app.getRamNecessaria();
+        this.ramOcupada -= app.getRamNecessaria();
 		return app.encerrar();
 	}
 
@@ -111,7 +112,7 @@ public class Computador {
 				"Estado: " + this.getEstado() + '\n' +
 				"Usuario: " + this.getUsuario() + '\n'+
 				"RAM Total: " + this.ram + '\n'+
-				"RAM Disponivel: " + (this.ram - this.ram_ocupada) + '\n'+
+				"RAM Disponivel: " + (this.ram - this.ramOcupada) + '\n'+
 				"Aplicativos em execu√ß√£o: " + this.appsExecucao.getApps() +'\n';
 	}
 

@@ -15,7 +15,9 @@ public abstract class Pessoa {
 		this.sexo = sexo;
 		this.idade = idade;
 	}
-
+	
+	//usar computador em cliente retorna as informações do computador que o cliente está usando, enquanto em funcionário retorna
+	//as informações dos clientes associados ao funcionário.
 	public abstract String usarComputador() throws SemComputadorException;
 
 	public String getNome() {
